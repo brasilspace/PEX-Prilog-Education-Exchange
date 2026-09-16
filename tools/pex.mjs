@@ -158,10 +158,16 @@ export function checkRefs(eff) {
   const scales = new Set((eff.grading?.scales ?? []).filter((x) => !x.disabled).map((x) => x.id));
   const periods = new Set((eff.calendar?.periods ?? []).filter((x) => !x.disabled).map((x) => x.id));
   const tracks = new Map((eff.tracks ?? []).filter((t) => !t.disabled).map((t) => [t.id, t]));
+  const alle = Object.fromEntries(ID_LISTS.map((k) => [k, new Set((eff[k] ?? []).map((x) => x.id))]));
+  /** Anchor reference: target must exist and must not be disabled. */
   const need = (kind, ref, ctx) => { if (!ids[kind]?.has(ref)) errors.push(`${ctx}: unknown or disabled ${kind} '${ref}'`); };
+  /** Membership reference (grades[], programs[], tracks[], qualifications[]): target must exist;
+   *  a disabled target is allowed and filtered when reading – a school can hide a program
+   *  without rewriting every subject and qualification that mentions it. */
+  const member = (kind, ref, ctx) => { if (!alle[kind]?.has(ref)) errors.push(`${ctx}: unknown ${kind} '${ref}'`); };
   const needScale = (ref, ctx) => { if (!scales.has(ref)) errors.push(`${ctx}: unknown scale '${ref}'`); };
 
-  for (const st of eff.stages ?? []) { if (st.disabled) continue; for (const g of st.grades ?? []) need('grades', g, `stage ${st.id}`); }
+  for (const st of eff.stages ?? []) { if (st.disabled) continue; for (const g of st.grades ?? []) member('grades', g, `stage ${st.id}`); }
   for (const g of eff.grades ?? []) { if (g.disabled) continue; if ('stage' in g) need('stages', g.stage, `grade ${g.id}`); }
 
   const progs = new Map((eff.programs ?? []).filter((p) => !p.disabled).map((p) => [p.id, p]));
@@ -169,11 +175,11 @@ export function checkRefs(eff) {
 
   for (const p of progs.values()) {
     const ctx = `program ${p.id}`;
-    for (const g of p.grades ?? []) need('grades', g, ctx);
+    for (const g of p.grades ?? []) member('grades', g, ctx);
     for (const s of p.stages ?? []) need('stages', s, ctx);
-    for (const t of p.tracks ?? []) need('tracks', t, ctx);
+    for (const t of p.tracks ?? []) member('tracks', t, ctx);
     for (const q of p.qualifications ?? []) {
-      need('qualifications', q, ctx);
+      member('qualifications', q, ctx);
       if (quals.has(q) && !(quals.get(q).programs ?? []).includes(p.id)) {
         errors.push(`${ctx} lists qualification '${q}', but qualification '${q}' does not list the program`);
       }
@@ -192,13 +198,13 @@ export function checkRefs(eff) {
     const ctx = `qualification ${q.id}`;
     if ('after_grade' in q) need('grades', q.after_grade, ctx);
     for (const p of q.programs ?? []) {
-      need('programs', p, ctx);
+      member('programs', p, ctx);
       if (progs.has(p) && !(progs.get(p).qualifications ?? []).includes(q.id)) {
         errors.push(`${ctx} lists program '${p}', but program '${p}' does not list the qualification`);
       }
     }
     for (const x of q.after_grade_by_program ?? []) {
-      need('programs', x.program, `${ctx}.after_grade_by_program`);
+      member('programs', x.program, `${ctx}.after_grade_by_program`);
       need('grades', x.after_grade, `${ctx}.after_grade_by_program`);
     }
   }
@@ -211,8 +217,8 @@ export function checkRefs(eff) {
     if (s.disabled) continue;
     const ctx = `subject ${s.id}`;
     if ('domain' in s) need('subject_domains', s.domain, ctx);
-    for (const g of s.grades ?? []) need('grades', g, ctx);
-    for (const p of s.programs ?? []) need('programs', p, ctx);
+    for (const g of s.grades ?? []) member('grades', g, ctx);
+    for (const p of s.programs ?? []) member('programs', p, ctx);
     const hasAge = ['age_from', 'age_to', 'age_years'].some((k) => k in s);
     if (hasAge && s.grades?.length) errors.push(`${ctx}: both grades and an age anchor – choose one`);
     if (hasAge) {
@@ -231,21 +237,21 @@ export function checkRefs(eff) {
     const a = r.applies_to ?? {};
     for (const k of ['from_grade', 'to_grade']) if (k in a) need('grades', a[k], `rule ${r.id}`);
     for (const k of ['from_program', 'to_program']) if (k in a) need('programs', a[k], `rule ${r.id}`);
-    for (const p of a.programs ?? []) need('programs', p, `rule ${r.id}`);
+    for (const p of a.programs ?? []) member('programs', p, `rule ${r.id}`);
   }
 
   const gr = eff.grading ?? {};
   if ('default_scale' in gr) needScale(gr.default_scale, 'grading.default_scale');
   for (const bp of gr.by_program ?? []) {
-    need('programs', bp.program, 'grading.by_program');
+    member('programs', bp.program, 'grading.by_program');
     needScale(bp.scale, 'grading.by_program');
-    for (const g of bp.grades ?? []) need('grades', g, `grading.by_program[${bp.program}]`);
+    for (const g of bp.grades ?? []) member('grades', g, `grading.by_program[${bp.program}]`);
   }
   for (const hm of gr.head_marks ?? []) if ('scale' in hm && !hm.disabled) needScale(hm.scale, `head_mark ${hm.id}`);
   const cal = eff.calendar ?? {};
   for (const rp of cal.report_points ?? []) if (!periods.has(rp)) errors.push(`calendar.report_points: unknown period '${rp}'`);
   for (const x of cal.report_points_by_program ?? []) {
-    need('programs', x.program, 'calendar.report_points_by_program');
+    member('programs', x.program, 'calendar.report_points_by_program');
     for (const rp of x.report_points ?? []) if (!periods.has(rp)) errors.push(`calendar.report_points_by_program[${x.program}]: unknown period '${rp}'`);
   }
 

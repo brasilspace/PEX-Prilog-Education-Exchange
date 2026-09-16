@@ -53,11 +53,23 @@ test('age_range upper bound is exclusive so Montessori programs tile without ove
   assert.ok(b.includes('de'));
 });
 
+test('hiding a program does not force rewriting what mentions it', () => {
+  const pk = new Map(packages);
+  pk.set('schule', { meta: { format: 'pex', id: 'schule', version: '0.0.0', kind: 'overlay', extends: '*', country: 'XX', languages: ['de'], name: { de: 'Schule' } },
+    programs: [{ id: 'berufslehre', disabled: true }] });
+  const { errors } = checkRefs(stack(['ch-de', 'schule'], pk));
+  assert.deepEqual(errors, []);
+  // but an anchor to a disabled element is still an error
+  pk.set('schule2', { meta: { format: 'pex', id: 'schule2', version: '0.0.0', kind: 'overlay', extends: '*', country: 'XX', languages: ['de'], name: { de: 'S' } },
+    subject_domains: [{ id: 'music', disabled: true }] });
+  assert.ok(checkRefs(stack(['ch-de', 'schule2'], pk)).errors.some((e) => e.includes("subject_domains 'music'")));
+});
+
 test('a stack whose references break is refused', () => {
   const broken = new Map(packages);
   broken.set('kaputt', { meta: { format: 'pex', id: 'kaputt', version: '0.0.1', kind: 'overlay', extends: 'de', country: 'DE', languages: ['de'], name: { de: 'x' } },
     subjects: [{ id: 'q', label: { de: 'Q' }, grades: ['g99'] }] });
-  assert.throws(() => effective(['de', 'kaputt'], broken), /unknown or disabled grades 'g99'/);
+  assert.throws(() => effective(['de', 'kaputt'], broken), /unknown grades 'g99'/);
 });
 
 test('terminology falls back gracefully', () => {

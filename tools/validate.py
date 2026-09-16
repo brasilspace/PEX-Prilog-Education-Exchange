@@ -169,14 +169,24 @@ def check_refs(eff):
     """Referential and semantic checks on an effective PEX.
     Returns (errors, hints). Errors block loading; hints do not."""
     ids = {k: {x["id"] for x in eff.get(k, []) if not x.get("disabled")} for k in ID_LISTS}
+    alle = {k: {x["id"] for x in eff.get(k, [])} for k in ID_LISTS}
     scales = {x["id"] for x in eff.get("grading", {}).get("scales", []) if not x.get("disabled")}
     periods = {x["id"] for x in eff.get("calendar", {}).get("periods", []) if not x.get("disabled")}
     tracks = {t["id"]: t for t in eff.get("tracks", []) if not t.get("disabled")}
     errs, hints = [], []
 
     def need(kind, ref, ctx):
+        """Anchor reference: the target must exist and must not be disabled."""
         if ref not in ids.get(kind, set()):
             errs.append(f"{ctx}: unknown or disabled {kind} '{ref}'")
+
+    def member(kind, ref, ctx):
+        """Membership reference (grades[], programs[], tracks[], qualifications[]):
+        the target must exist; a disabled target is allowed and simply filtered
+        when reading – so a school can hide a program without rewriting every
+        subject and qualification that mentions it."""
+        if ref not in alle.get(kind, set()):
+            errs.append(f"{ctx}: unknown {kind} '{ref}'")
 
     def need_scale(ref, ctx):
         if ref not in scales:
@@ -186,7 +196,7 @@ def check_refs(eff):
         if st.get("disabled"):
             continue
         for g in st.get("grades", []):
-            need("grades", g, f"stage {st['id']}")
+            member("grades", g, f"stage {st['id']}")
     for g in eff.get("grades", []):
         if g.get("disabled"):
             continue
@@ -199,13 +209,13 @@ def check_refs(eff):
     for p in progs.values():
         ctx = f"program {p['id']}"
         for g in p.get("grades", []):
-            need("grades", g, ctx)
+            member("grades", g, ctx)
         for s in p.get("stages", []):
             need("stages", s, ctx)
         for t in p.get("tracks", []):
-            need("tracks", t, ctx)
+            member("tracks", t, ctx)
         for q in p.get("qualifications", []):
-            need("qualifications", q, ctx)
+            member("qualifications", q, ctx)
             if q in quals and p["id"] not in quals[q].get("programs", []):
                 errs.append(f"{ctx} lists qualification '{q}', but qualification '{q}' does not list the program")
         if not p.get("grades") and not p.get("age_range"):
@@ -226,11 +236,11 @@ def check_refs(eff):
         if "after_grade" in q:
             need("grades", q["after_grade"], ctx)
         for p in q.get("programs", []):
-            need("programs", p, ctx)
+            member("programs", p, ctx)
             if p in progs and q["id"] not in progs[p].get("qualifications", []):
                 errs.append(f"{ctx} lists program '{p}', but program '{p}' does not list the qualification")
         for x in q.get("after_grade_by_program", []):
-            need("programs", x["program"], f"{ctx}.after_grade_by_program")
+            member("programs", x["program"], f"{ctx}.after_grade_by_program")
             need("grades", x["after_grade"], f"{ctx}.after_grade_by_program")
 
     for t in tracks.values():
@@ -245,9 +255,9 @@ def check_refs(eff):
         if "domain" in s:
             need("subject_domains", s["domain"], ctx)
         for g in s.get("grades", []):
-            need("grades", g, ctx)
+            member("grades", g, ctx)
         for p in s.get("programs", []):
-            need("programs", p, ctx)
+            member("programs", p, ctx)
         has_age = any(k in s for k in ("age_from", "age_to", "age_years"))
         if has_age and s.get("grades"):
             errs.append(f"{ctx}: both grades and an age anchor – choose one")
@@ -274,16 +284,16 @@ def check_refs(eff):
             if k in a:
                 need("programs", a[k], f"rule {r['id']}")
         for p in a.get("programs", []):
-            need("programs", p, f"rule {r['id']}")
+            member("programs", p, f"rule {r['id']}")
 
     gr = eff.get("grading", {})
     if "default_scale" in gr:
         need_scale(gr["default_scale"], "grading.default_scale")
     for bp in gr.get("by_program", []):
-        need("programs", bp["program"], "grading.by_program")
+        member("programs", bp["program"], "grading.by_program")
         need_scale(bp["scale"], "grading.by_program")
         for g in bp.get("grades", []):
-            need("grades", g, f"grading.by_program[{bp['program']}]")
+            member("grades", g, f"grading.by_program[{bp['program']}]")
     for hm in gr.get("head_marks", []):
         if "scale" in hm and not hm.get("disabled"):
             need_scale(hm["scale"], f"head_mark {hm['id']}")
@@ -292,7 +302,7 @@ def check_refs(eff):
         if rp not in periods:
             errs.append(f"calendar.report_points: unknown period '{rp}'")
     for x in cal.get("report_points_by_program", []):
-        need("programs", x["program"], "calendar.report_points_by_program")
+        member("programs", x["program"], "calendar.report_points_by_program")
         for rp in x.get("report_points", []):
             if rp not in periods:
                 errs.append(f"calendar.report_points_by_program[{x['program']}]: unknown period '{rp}'")
