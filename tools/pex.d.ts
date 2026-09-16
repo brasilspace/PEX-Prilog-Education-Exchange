@@ -56,6 +56,8 @@ export function extendsOf(meta: Meta | undefined): string[];
 export function loadAll(dir?: string): Map<string, Pex>;
 export function merge<T>(base: T, over: T): T;
 export function stack(ids: string[], packages: Map<string, Pex>): Pex;
+/** One effective package for a house running several systems: first base wins, overlays fitting any base, in order. */
+export function stackHouse(baseIds: string[], overlayIds: string[], packages: Map<string, Pex>): Pex;
 export function gradesForAge(eff: Pex, from?: number, to?: number, years?: number[]): string[];
 export function subjectGrades(eff: Pex, s: Subject): string[];
 export function programGrades(eff: Pex, p: Program): string[];

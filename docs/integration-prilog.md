@@ -51,7 +51,7 @@ Das effektive PEX ist `effective([...systeme, overrides])`, gegen Schema und `ch
 
 **Vorgabe hält den Bestand.** Leere Liste = „noch nicht gesagt“, keine laufende Installation verschiebt sich. Erst eine gewählte Liste liefert Jahrgänge, Fächer, Begriffe – und auch dann nur an Module, die danach fragen.
 
-**Ein Override liegt über jeder gewählten Basis** (`extends: "*"`). Für ein Haus mit zwei Systemen gilt deshalb dieselbe Regel wie für Pädagogik-Overlays: Fächer über `age_from`/`age_to` binden, nicht über Jahrgangs-IDs, und `domain` nur, wenn es sie in beiden Basen gibt. Anpassungen, die nur ein System betreffen, brauchen Overrides je Basis – erst bauen, wenn eine Schule es braucht.
+**Ein Haus mit mehreren Systemen hat EIN effektives Paket** (`stackHouse`): das erste gewählte System ist das Hauptsystem und gewinnt bei gleichen ids, die weiteren Basen bringen ihre Gänge, Jahrgänge und Fächer dazu, dann Kanton und Pädagogik, zuletzt die eigenen Anpassungen. Ein Override darf deshalb auf beide Systeme verweisen – ein US-Programm mit `g8`…`g12` und ein Matura-Programm mit `s2-1`…`s2-4` im selben Paket (Ecole, 17.09.2026). `GET …/schulsystem/effective` liefert `haus` (das lesen die Module) und `systeme` (je Basis der pure Stapel, zum Nachsehen).
 
 **Ehrlich zum Pin:** Prilog trägt je Paket genau eine Version (die gesyncte). Der Pin sagt, welchen Stand die Schule bestätigt hat, nicht, welcher zurückgehalten wird; ein Sync mit neuer Version erscheint als `abweichungen` in `GET …/schulsystem/effective`, die Karte zeigt sie und lässt per `PUT …/schulsystem/pin` bestätigen. Ein Versionsarchiv ist eine spätere Entscheidung.
 

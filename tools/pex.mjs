@@ -90,6 +90,38 @@ export function stack(ids, packages) {
   return eff;
 }
 
+/**
+ * A house that runs several school systems (a Swiss and a US programme on
+ * one campus) has ONE effective package: the first base is the main system,
+ * every further base adds what it brings (on equal ids the main system
+ * wins), then the overlays that fit any of the bases, in the given order.
+ * `meta` is the main system's; `meta.languages` is the union, `meta.layers`
+ * lists everything. A single base behaves exactly like `stack`.
+ */
+export function stackHouse(baseIds, overlayIds, packages) {
+  const get = (id) => { const p = packages.get(id); if (!p) throw new Error(`unknown package '${id}'`); return clone(p); };
+  const bases = baseIds.map(get);
+  for (const [i, b] of bases.entries()) if ((b.meta.kind ?? 'base') !== 'base') throw new Error(`${baseIds[i]} is not a base package`);
+  if (!bases.length) throw new Error('a house needs at least one base');
+  // main system wins: merge the later bases first, then the main one on top
+  let eff = clone(bases[bases.length - 1]);
+  for (let i = bases.length - 2; i >= 0; i--) { const b = clone(bases[i]); delete b.meta; eff = merge(eff, b); }
+  eff.meta = clone(bases[0].meta);
+  eff.meta.languages = [...new Set(bases.flatMap((b) => b.meta.languages))];
+  const layers = bases.map((b) => ({ id: b.meta.id, version: b.meta.version }));
+  for (const id of overlayIds) {
+    const ov = get(id);
+    if (ov.meta.kind !== 'overlay') throw new Error(`${id} is not an overlay`);
+    const ex = extendsOf(ov.meta);
+    if (!ex.includes('*') && !baseIds.some((b) => ex.includes(b))) throw new Error(`${id} extends ${JSON.stringify(ex)}, none of ${baseIds.join(', ')}`);
+    layers.push({ id: ov.meta.id, version: ov.meta.version });
+    delete ov.meta;
+    eff = merge(eff, ov);
+  }
+  eff.meta.layers = layers;
+  return eff;
+}
+
 /** Grade ids whose typical_age lies in [from, to] (inclusive) or in `years`. */
 export function gradesForAge(eff, from, to, years) {
   if (from === undefined && to === undefined && !(years?.length)) return [];
@@ -227,16 +259,22 @@ export function checkRefs(eff) {
     }
   }
 
+  // Rules and exams follow what they are about: a rule on admission to a program
+  // a school has hidden is simply inactive – a hint, not an error.
+  const inactiveIf = (kind, ref, ctx) => {
+    if (alle[kind]?.has(ref) && !ids[kind]?.has(ref)) { hints.push(`${ctx}: refers to disabled ${kind} '${ref}' – inactive`); return true; }
+    member(kind, ref, ctx); return false;
+  };
   for (const e of eff.exams ?? []) {
     if (e.disabled) continue;
-    need('qualifications', e.qualification, `exam ${e.id}`);
-    if ('at_grade' in e) need('grades', e.at_grade, `exam ${e.id}`);
+    inactiveIf('qualifications', e.qualification, `exam ${e.id}`);
+    if ('at_grade' in e) inactiveIf('grades', e.at_grade, `exam ${e.id}`);
   }
   for (const r of eff.rules ?? []) {
     if (r.disabled) continue;
     const a = r.applies_to ?? {};
-    for (const k of ['from_grade', 'to_grade']) if (k in a) need('grades', a[k], `rule ${r.id}`);
-    for (const k of ['from_program', 'to_program']) if (k in a) need('programs', a[k], `rule ${r.id}`);
+    for (const k of ['from_grade', 'to_grade']) if (k in a) inactiveIf('grades', a[k], `rule ${r.id}`);
+    for (const k of ['from_program', 'to_program']) if (k in a) inactiveIf('programs', a[k], `rule ${r.id}`);
     for (const p of a.programs ?? []) member('programs', p, `rule ${r.id}`);
   }
 

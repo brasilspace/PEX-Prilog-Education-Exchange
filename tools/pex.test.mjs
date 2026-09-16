@@ -8,7 +8,8 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadAll, merge, stack, checkRefs, standardStacks, gradesForAge, subjectsOfProgram, effective, term } from './pex.mjs';
+import { execFileSync } from 'node:child_process';
+import { loadAll, merge, stack, stackHouse, checkRefs, standardStacks, gradesForAge, subjectsOfProgram, effective, term } from './pex.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const packages = loadAll();
@@ -98,4 +99,27 @@ test('JavaScript and the Python reference produce identical effective packages (
     assert.deepEqual(mine, py, `effective ${s.id}`);
     assert.equal(checkRefs(mine).hints.length, s.hints, `hints ${s.id}`);
   }
+});
+
+test('a house with two systems: main system wins, both add, overlays fit any base', () => {
+  const eff = stackHouse(['ch-de', 'us'], ['ch-be', 'waldorf'], packages);
+  assert.deepEqual(eff.meta.layers.map((l) => l.id), ['ch-de', 'us', 'ch-be', 'waldorf']);
+  assert.deepEqual(eff.meta.languages, ['de', 'en']);
+  assert.equal(stackHouse(['ch-de', 'us'], [], packages).grading.default_scale, 'ch-6', 'main system wins');
+  assert.equal(eff.grading.default_scale, 'text', 'the pedagogical overlay still applies last');
+  assert.equal(stackHouse(['ch-de', 'us'], [], packages).terminology.class_teacher.de, 'Klassenlehrperson', 'main system wins on terminology');
+  assert.ok(eff.programs.some((p) => p.id === 'high') && eff.programs.some((p) => p.id === 'sek1'));
+  assert.ok(eff.grades.some((g) => g.id === 'g12') && eff.grades.some((g) => g.id === 'h11'));
+  assert.deepEqual(checkRefs(eff).errors, []);
+  // Python reference agrees
+  const py = JSON.parse(execFileSync('python3', ['-c',
+    "import json,sys; sys.path.insert(0,'tools'); import validate as V; print(json.dumps(V.stack_house(['ch-de','us'],['ch-be','waldorf'])))"],
+    { cwd: ROOT, encoding: 'utf8' }));
+  assert.deepEqual(eff, py);
+});
+
+test('a single-system house equals the plain stack', () => {
+  const a = stackHouse(['de'], ['de-hh', 'waldorf'], packages);
+  const b = stack(['de', 'de-hh', 'waldorf'], packages);
+  assert.deepEqual(a, b);
 });

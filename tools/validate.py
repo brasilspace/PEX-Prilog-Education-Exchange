@@ -95,6 +95,42 @@ def stack(ids):
     return eff
 
 
+def stack_house(base_ids, overlay_ids):
+    """One effective package for a house that runs several school systems:
+    the first base is the main system (it wins on equal ids), every further
+    base adds what it brings, then the overlays that fit any base, in order.
+    meta is the main system's, languages the union, layers list everything."""
+    bases = [copy.deepcopy(load(b)) for b in base_ids]
+    for bid, b in zip(base_ids, bases):
+        if b["meta"].get("kind", "base") != "base":
+            raise ValueError(f"{bid} is not a base package")
+    if not bases:
+        raise ValueError("a house needs at least one base")
+    eff = copy.deepcopy(bases[-1])
+    for b in reversed(bases[:-1]):
+        b = copy.deepcopy(b); b.pop("meta")
+        eff = merge(eff, b)
+    eff["meta"] = copy.deepcopy(bases[0]["meta"])
+    langs = []
+    for b in bases:
+        for l in b["meta"]["languages"]:
+            if l not in langs: langs.append(l)
+    eff["meta"]["languages"] = langs
+    layers = [{"id": b["meta"]["id"], "version": b["meta"]["version"]} for b in bases]
+    for oid in overlay_ids:
+        ov = copy.deepcopy(load(oid))
+        if ov["meta"].get("kind") != "overlay":
+            raise ValueError(f"{oid} is not an overlay")
+        exts = extends_of(ov["meta"])
+        if "*" not in exts and not any(b in exts for b in base_ids):
+            raise ValueError(f"{oid} extends {exts}, none of {base_ids}")
+        layers.append({"id": ov["meta"]["id"], "version": ov["meta"]["version"]})
+        ov.pop("meta")
+        eff = merge(eff, ov)
+    eff["meta"]["layers"] = layers
+    return eff
+
+
 # ------------------------------------------------------------ derivations
 # These mirror what Prilog needs at runtime; keeping them here means the
 # validator checks the same derivation the application will use.
@@ -267,22 +303,32 @@ def check_refs(eff):
             elif not subject_grades(eff, s):
                 hints.append(f"{ctx}: age anchor matches no grade of this base")
 
+    # Rules and exams follow what they are about: a rule on admission to a
+    # program a school has hidden is simply inactive – a hint, not an error.
+    # (Ecole 17.09.2026: hiding the Gymnasium must not force hiding every
+    # cantonal rule that names it.)
+    def inactive_if(kind, ref, ctx):
+        if ref in alle.get(kind, set()) and ref not in ids.get(kind, set()):
+            hints.append(f"{ctx}: refers to disabled {kind} '{ref}' – inactive")
+            return True
+        member(kind, ref, ctx)
+        return False
     for e in eff.get("exams", []):
         if e.get("disabled"):
             continue
-        need("qualifications", e["qualification"], f"exam {e['id']}")
+        inactive_if("qualifications", e["qualification"], f"exam {e['id']}")
         if "at_grade" in e:
-            need("grades", e["at_grade"], f"exam {e['id']}")
+            inactive_if("grades", e["at_grade"], f"exam {e['id']}")
     for r in eff.get("rules", []):
         if r.get("disabled"):
             continue
         a = r.get("applies_to", {})
         for k in ("from_grade", "to_grade"):
             if k in a:
-                need("grades", a[k], f"rule {r['id']}")
+                inactive_if("grades", a[k], f"rule {r['id']}")
         for k in ("from_program", "to_program"):
             if k in a:
-                need("programs", a[k], f"rule {r['id']}")
+                inactive_if("programs", a[k], f"rule {r['id']}")
         for p in a.get("programs", []):
             member("programs", p, f"rule {r['id']}")
 

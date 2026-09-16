@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.3 – 2026-09-17
+- Mehrsystem-Haus: `stackHouse` (JS) / `stack_house` (Python) baut EIN effektives Paket für ein Haus mit mehreren Schulsystemen – Hauptsystem zuerst (gewinnt bei gleichen ids), weitere Basen dazu, Overlays, die über irgendeine Basis passen, in Reihenfolge; `meta.languages` als Vereinigung. Grund: Ecole (Schweizer Weg + US-Weg) verweist in einem Override auf Jahrgänge beider Systeme
+- Prüfung: Regeln und Prüfungen, deren `applies_to`/`qualification`/`at_grade` auf Ausgeblendetes zeigt, sind inaktiv (Hinweis), kein Fehler – wer das Gymnasium ausblendet, muss nicht jede Regel ausblenden, die es nennt
+
 ## 2.2.2 – 2026-09-17
 - Schema: ein ausgeblendeter Zug braucht weder `scope` noch `levels` (gefunden an `ch-be`: ein Kanton mit nur einem gymnasialen Weg blendet `gym-variant` aus)
 - Paket: `ch-be` (Kanton Bern, deutschsprachiger Teil) vom Owner beigesteuert – Real/Sek mit Niveaufächern und drei Zusammenarbeitsmodellen, GYM1–4 mit Schwerpunktfächern, Basisstufe, BVS, Übertritt/Aufnahme/Niveauwechsel als Regeln, Recht (VSG, DVBS, MiSG, KDSG). Nachgezogen: `gym-variant` ausgeblendet (nur ein gymnasialer Weg), Schema-URL, `remark` an Basisstufe und BVS
