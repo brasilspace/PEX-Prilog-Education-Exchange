@@ -1,0 +1,1329 @@
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/PEX-Prilog-Education-Exchange/main/schema/pex.schema.json",
+    "id": "us",
+    "version": "0.2.1",
+    "kind": "base",
+    "country": "US",
+    "languages": [
+      "en"
+    ],
+    "name": {
+      "en": "United States (K-12, generic)"
+    },
+    "source": "Common K-12 structure; graduation requirements and grade bands vary by state and district — see overlays us-<state>",
+    "notes": "Course-based model: students have courses with credits, not a fixed class. Homeroom acts as the Prilog class.",
+    "license": "CC-BY-4.0",
+    "maintainer": "info@prilog.team",
+    "layers": [
+      {
+        "id": "us",
+        "version": "0.2.1"
+      },
+      {
+        "id": "montessori",
+        "version": "0.3.0"
+      }
+    ]
+  },
+  "terminology": {
+    "teacher": {
+      "en": "Teacher"
+    },
+    "class_teacher": {
+      "en": "Guide",
+      "de": "Lernbegleiter:in"
+    },
+    "head": {
+      "en": "Principal"
+    },
+    "class": {
+      "en": "Learning group",
+      "de": "Lerngruppe"
+    },
+    "grade": {
+      "en": "Grade"
+    },
+    "student": {
+      "en": "Student"
+    },
+    "parents": {
+      "en": "Parents / Guardians"
+    },
+    "report": {
+      "en": "Developmental report",
+      "de": "Entwicklungsbericht"
+    },
+    "parent_conference": {
+      "en": "Parent-Teacher Conference"
+    },
+    "parent_evening": {
+      "en": "Back-to-School Night"
+    },
+    "holidays": {
+      "en": "Break"
+    },
+    "lesson": {
+      "en": "Period"
+    },
+    "subject": {
+      "en": "Course"
+    },
+    "track": {
+      "en": "Level"
+    }
+  },
+  "calendar": {
+    "year_start_month": 8,
+    "periods": [
+      {
+        "id": "q1",
+        "label": {
+          "en": "Quarter 1"
+        },
+        "months": [
+          8,
+          10
+        ]
+      },
+      {
+        "id": "q2",
+        "label": {
+          "en": "Quarter 2"
+        },
+        "months": [
+          11,
+          1
+        ]
+      },
+      {
+        "id": "q3",
+        "label": {
+          "en": "Quarter 3"
+        },
+        "months": [
+          1,
+          3
+        ]
+      },
+      {
+        "id": "q4",
+        "label": {
+          "en": "Quarter 4"
+        },
+        "months": [
+          4,
+          6
+        ]
+      }
+    ],
+    "report_points": [
+      "q1",
+      "q2",
+      "q3",
+      "q4"
+    ]
+  },
+  "grading": {
+    "default_scale": "text",
+    "scales": [
+      {
+        "id": "letter",
+        "label": {
+          "en": "Letter grades"
+        },
+        "kind": "letter",
+        "values": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "F"
+        ],
+        "best": "A",
+        "pass": "D",
+        "gpa": {
+          "A": 4.0,
+          "B": 3.0,
+          "C": 2.0,
+          "D": 1.0,
+          "F": 0.0
+        }
+      },
+      {
+        "id": "percent",
+        "label": {
+          "en": "Percent"
+        },
+        "kind": "percent",
+        "best": 100,
+        "pass": 60
+      },
+      {
+        "id": "standards",
+        "label": {
+          "en": "Standards-based (1–4)"
+        },
+        "kind": "numeric",
+        "values": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "step": 1,
+        "best": 4,
+        "pass": 3
+      },
+      {
+        "id": "text",
+        "label": {
+          "de": "Entwicklungsbericht",
+          "en": "Developmental report"
+        },
+        "kind": "text"
+      }
+    ]
+  },
+  "stages": [
+    {
+      "id": "elementary",
+      "label": {
+        "en": "Elementary"
+      },
+      "ordinal": 1,
+      "grades": [
+        "k",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5"
+      ]
+    },
+    {
+      "id": "middle",
+      "label": {
+        "en": "Middle School"
+      },
+      "ordinal": 2,
+      "grades": [
+        "g6",
+        "g7",
+        "g8"
+      ]
+    },
+    {
+      "id": "high",
+      "label": {
+        "en": "High School"
+      },
+      "ordinal": 3,
+      "grades": [
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ]
+    }
+  ],
+  "grades": [
+    {
+      "id": "k",
+      "label": {
+        "en": "Kindergarten"
+      },
+      "ordinal": 0,
+      "stage": "elementary",
+      "typical_age": 5
+    },
+    {
+      "id": "g1",
+      "label": {
+        "en": "1st Grade"
+      },
+      "ordinal": 1,
+      "stage": "elementary",
+      "typical_age": 6
+    },
+    {
+      "id": "g2",
+      "label": {
+        "en": "2nd Grade"
+      },
+      "ordinal": 2,
+      "stage": "elementary",
+      "typical_age": 7
+    },
+    {
+      "id": "g3",
+      "label": {
+        "en": "3rd Grade"
+      },
+      "ordinal": 3,
+      "stage": "elementary",
+      "typical_age": 8
+    },
+    {
+      "id": "g4",
+      "label": {
+        "en": "4th Grade"
+      },
+      "ordinal": 4,
+      "stage": "elementary",
+      "typical_age": 9
+    },
+    {
+      "id": "g5",
+      "label": {
+        "en": "5th Grade"
+      },
+      "ordinal": 5,
+      "stage": "elementary",
+      "typical_age": 10
+    },
+    {
+      "id": "g6",
+      "label": {
+        "en": "6th Grade"
+      },
+      "ordinal": 6,
+      "stage": "middle",
+      "typical_age": 11
+    },
+    {
+      "id": "g7",
+      "label": {
+        "en": "7th Grade"
+      },
+      "ordinal": 7,
+      "stage": "middle",
+      "typical_age": 12
+    },
+    {
+      "id": "g8",
+      "label": {
+        "en": "8th Grade"
+      },
+      "ordinal": 8,
+      "stage": "middle",
+      "typical_age": 13
+    },
+    {
+      "id": "g9",
+      "label": {
+        "en": "9th Grade"
+      },
+      "ordinal": 9,
+      "stage": "high",
+      "typical_age": 14,
+      "aliases": [
+        "Freshman"
+      ]
+    },
+    {
+      "id": "g10",
+      "label": {
+        "en": "10th Grade"
+      },
+      "ordinal": 10,
+      "stage": "high",
+      "typical_age": 15,
+      "aliases": [
+        "Sophomore"
+      ]
+    },
+    {
+      "id": "g11",
+      "label": {
+        "en": "11th Grade"
+      },
+      "ordinal": 11,
+      "stage": "high",
+      "typical_age": 16,
+      "aliases": [
+        "Junior"
+      ]
+    },
+    {
+      "id": "g12",
+      "label": {
+        "en": "12th Grade"
+      },
+      "ordinal": 12,
+      "stage": "high",
+      "typical_age": 17,
+      "aliases": [
+        "Senior"
+      ]
+    }
+  ],
+  "programs": [
+    {
+      "id": "elementary",
+      "label": {
+        "en": "Elementary School"
+      },
+      "stages": [
+        "elementary"
+      ],
+      "grades": [
+        "k",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5"
+      ],
+      "class_model": "class"
+    },
+    {
+      "id": "middle",
+      "label": {
+        "en": "Middle School"
+      },
+      "stages": [
+        "middle"
+      ],
+      "grades": [
+        "g6",
+        "g7",
+        "g8"
+      ],
+      "tracks": [
+        "course-level"
+      ],
+      "class_model": "homeroom",
+      "aliases": [
+        "Junior High"
+      ]
+    },
+    {
+      "id": "high",
+      "label": {
+        "en": "High School"
+      },
+      "stages": [
+        "high"
+      ],
+      "grades": [
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "tracks": [
+        "course-level"
+      ],
+      "qualifications": [
+        "diploma"
+      ],
+      "class_model": "course"
+    },
+    {
+      "id": "k8",
+      "label": {
+        "en": "K-8 School"
+      },
+      "stages": [
+        "elementary",
+        "middle"
+      ],
+      "grades": [
+        "k",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8"
+      ],
+      "tracks": [
+        "course-level"
+      ],
+      "class_model": "homeroom"
+    },
+    {
+      "id": "k12",
+      "label": {
+        "en": "K-12 School"
+      },
+      "stages": [
+        "elementary",
+        "middle",
+        "high"
+      ],
+      "grades": [
+        "k",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "tracks": [
+        "course-level"
+      ],
+      "qualifications": [
+        "diploma"
+      ],
+      "class_model": "course"
+    },
+    {
+      "id": "kinderhaus",
+      "label": {
+        "de": "Kinderhaus",
+        "en": "Children's House (3–6)"
+      },
+      "stages": [],
+      "grades": [],
+      "age_range": [
+        3,
+        6
+      ],
+      "class_model": "mixed-age",
+      "remark": {
+        "de": "Ohne Fächerkanon geführt: Das Kinderhaus arbeitet mit vorbereiteter Umgebung und Übungen des praktischen Lebens, nicht mit Fächern.",
+        "en": "Carried without a subject canon: the Children's House works with the prepared environment and practical life exercises, not with subjects."
+      }
+    },
+    {
+      "id": "mont-primar",
+      "label": {
+        "de": "Primarstufe (altersgemischt)",
+        "en": "Elementary (mixed-age)"
+      },
+      "stages": [],
+      "grades": [],
+      "age_range": [
+        6,
+        12
+      ],
+      "class_model": "mixed-age",
+      "notes": "Typisch zwei Gruppen: 6–9 und 9–12; die Aufteilung ist Sache der Lerngruppe, nicht des Programms",
+      "remark": {
+        "de": "Fächer kommen aus dem Basis-Paket über das Alter der Gruppe; die Lerngruppe trägt ihre Altersspanne selbst.",
+        "en": "Subjects come from the base package via the group's age span; the learning group carries its own age range."
+      }
+    },
+    {
+      "id": "mont-sek",
+      "label": {
+        "de": "Sekundarstufe (altersgemischt)",
+        "en": "Adolescent programme (mixed-age)"
+      },
+      "stages": [],
+      "grades": [],
+      "age_range": [
+        12,
+        16
+      ],
+      "class_model": "mixed-age",
+      "remark": {
+        "de": "Fächer kommen aus dem Basis-Paket über das Alter der Gruppe; Abschlüsse folgen den Jahrgängen des Landes.",
+        "en": "Subjects come from the base package via the group's age span; qualifications follow the country's grades."
+      }
+    }
+  ],
+  "tracks": [
+    {
+      "id": "course-level",
+      "label": {
+        "en": "Course level"
+      },
+      "scope": "enrollment",
+      "levels": [
+        {
+          "id": "regular",
+          "label": {
+            "en": "Regular"
+          }
+        },
+        {
+          "id": "honors",
+          "label": {
+            "en": "Honors"
+          }
+        },
+        {
+          "id": "ap",
+          "label": {
+            "en": "Advanced Placement (AP)"
+          }
+        },
+        {
+          "id": "ib",
+          "label": {
+            "en": "International Baccalaureate (IB)"
+          }
+        },
+        {
+          "id": "remedial",
+          "label": {
+            "en": "Support / Remedial"
+          }
+        }
+      ]
+    }
+  ],
+  "qualifications": [
+    {
+      "id": "diploma",
+      "label": {
+        "en": "High School Diploma"
+      },
+      "after_grade": "g12",
+      "grants_access": [
+        "college",
+        "university",
+        "community-college"
+      ],
+      "requirements": {
+        "note": "Credit totals per domain are state/district specific — set in overlay",
+        "total_credits": null
+      },
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "ged",
+      "label": {
+        "en": "GED (equivalency)"
+      },
+      "after_grade": "g12",
+      "grants_access": [
+        "community-college"
+      ],
+      "programs": []
+    }
+  ],
+  "subject_domains": [
+    {
+      "id": "ela",
+      "label": {
+        "en": "English Language Arts"
+      }
+    },
+    {
+      "id": "math",
+      "label": {
+        "en": "Mathematics"
+      }
+    },
+    {
+      "id": "science",
+      "label": {
+        "en": "Science"
+      }
+    },
+    {
+      "id": "social",
+      "label": {
+        "en": "Social Studies"
+      }
+    },
+    {
+      "id": "worldlang",
+      "label": {
+        "en": "World Languages"
+      }
+    },
+    {
+      "id": "arts",
+      "label": {
+        "en": "Visual & Performing Arts"
+      }
+    },
+    {
+      "id": "pe",
+      "label": {
+        "en": "Physical Education & Health"
+      }
+    },
+    {
+      "id": "cte",
+      "label": {
+        "en": "Career & Technical Education"
+      }
+    },
+    {
+      "id": "elective",
+      "label": {
+        "en": "Electives"
+      }
+    }
+  ],
+  "subjects": [
+    {
+      "id": "ela",
+      "label": {
+        "en": "English Language Arts"
+      },
+      "domain": "ela",
+      "grades": [
+        "k",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8"
+      ],
+      "programs": [
+        "elementary",
+        "middle",
+        "k8"
+      ]
+    },
+    {
+      "id": "eng9",
+      "label": {
+        "en": "English 9"
+      },
+      "domain": "ela",
+      "grades": [
+        "g9"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "eng10",
+      "label": {
+        "en": "English 10"
+      },
+      "domain": "ela",
+      "grades": [
+        "g10"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "eng11",
+      "label": {
+        "en": "English 11 / American Literature"
+      },
+      "domain": "ela",
+      "grades": [
+        "g11"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "eng12",
+      "label": {
+        "en": "English 12 / British Literature"
+      },
+      "domain": "ela",
+      "grades": [
+        "g12"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "math-el",
+      "label": {
+        "en": "Mathematics"
+      },
+      "domain": "math",
+      "grades": [
+        "k",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7"
+      ],
+      "programs": [
+        "elementary",
+        "middle",
+        "k8"
+      ]
+    },
+    {
+      "id": "prealg",
+      "label": {
+        "en": "Pre-Algebra"
+      },
+      "domain": "math",
+      "grades": [
+        "g7",
+        "g8"
+      ],
+      "tracked": true,
+      "programs": [
+        "middle",
+        "k8"
+      ]
+    },
+    {
+      "id": "alg1",
+      "label": {
+        "en": "Algebra I"
+      },
+      "domain": "math",
+      "grades": [
+        "g8",
+        "g9"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "programs": [
+        "middle",
+        "high",
+        "k8",
+        "k12"
+      ]
+    },
+    {
+      "id": "geom",
+      "label": {
+        "en": "Geometry"
+      },
+      "domain": "math",
+      "grades": [
+        "g9",
+        "g10"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "alg2",
+      "label": {
+        "en": "Algebra II"
+      },
+      "domain": "math",
+      "grades": [
+        "g10",
+        "g11"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "precalc",
+      "label": {
+        "en": "Pre-Calculus"
+      },
+      "domain": "math",
+      "grades": [
+        "g11",
+        "g12"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "optional": true,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "calc",
+      "label": {
+        "en": "Calculus"
+      },
+      "domain": "math",
+      "grades": [
+        "g12"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "optional": true,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "stats",
+      "label": {
+        "en": "Statistics"
+      },
+      "domain": "math",
+      "grades": [
+        "g11",
+        "g12"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "optional": true,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "sci-el",
+      "label": {
+        "en": "Science"
+      },
+      "domain": "science",
+      "grades": [
+        "k",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8"
+      ],
+      "programs": [
+        "elementary",
+        "middle",
+        "k8"
+      ]
+    },
+    {
+      "id": "bio",
+      "label": {
+        "en": "Biology"
+      },
+      "domain": "science",
+      "grades": [
+        "g9",
+        "g10"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "chem",
+      "label": {
+        "en": "Chemistry"
+      },
+      "domain": "science",
+      "grades": [
+        "g10",
+        "g11"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "phys",
+      "label": {
+        "en": "Physics"
+      },
+      "domain": "science",
+      "grades": [
+        "g11",
+        "g12"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "earth",
+      "label": {
+        "en": "Earth / Environmental Science"
+      },
+      "domain": "science",
+      "grades": [
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "optional": true,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "ss-el",
+      "label": {
+        "en": "Social Studies"
+      },
+      "domain": "social",
+      "grades": [
+        "k",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8"
+      ],
+      "programs": [
+        "elementary",
+        "middle",
+        "k8"
+      ]
+    },
+    {
+      "id": "world-hist",
+      "label": {
+        "en": "World History"
+      },
+      "domain": "social",
+      "grades": [
+        "g9",
+        "g10"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "us-hist",
+      "label": {
+        "en": "U.S. History"
+      },
+      "domain": "social",
+      "grades": [
+        "g11"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "gov",
+      "label": {
+        "en": "U.S. Government / Civics"
+      },
+      "domain": "social",
+      "grades": [
+        "g12"
+      ],
+      "tracked": true,
+      "credits": 0.5,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "econ",
+      "label": {
+        "en": "Economics"
+      },
+      "domain": "social",
+      "grades": [
+        "g12"
+      ],
+      "tracked": true,
+      "credits": 0.5,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "spanish",
+      "label": {
+        "en": "Spanish"
+      },
+      "domain": "worldlang",
+      "grades": [
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "middle",
+        "high",
+        "k8",
+        "k12"
+      ]
+    },
+    {
+      "id": "french",
+      "label": {
+        "en": "French"
+      },
+      "domain": "worldlang",
+      "grades": [
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "german",
+      "label": {
+        "en": "German"
+      },
+      "domain": "worldlang",
+      "grades": [
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "art",
+      "label": {
+        "en": "Art"
+      },
+      "domain": "arts",
+      "grades": [
+        "k",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "credits": 1,
+      "optional": true
+    },
+    {
+      "id": "music",
+      "label": {
+        "en": "Music"
+      },
+      "domain": "arts",
+      "grades": [
+        "k",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "credits": 1,
+      "optional": true,
+      "aliases": [
+        "Band",
+        "Orchestra",
+        "Choir"
+      ]
+    },
+    {
+      "id": "drama",
+      "label": {
+        "en": "Theater / Drama"
+      },
+      "domain": "arts",
+      "grades": [
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "credits": 1,
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "pe",
+      "label": {
+        "en": "Physical Education"
+      },
+      "domain": "pe",
+      "grades": [
+        "k",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "credits": 1
+    },
+    {
+      "id": "health",
+      "label": {
+        "en": "Health"
+      },
+      "domain": "pe",
+      "grades": [
+        "g9",
+        "g10"
+      ],
+      "credits": 0.5,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "cs",
+      "label": {
+        "en": "Computer Science"
+      },
+      "domain": "cte",
+      "grades": [
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "tracked": true,
+      "credits": 1,
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "cte",
+      "label": {
+        "en": "Career & Technical Education"
+      },
+      "domain": "cte",
+      "grades": [
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "credits": 1,
+      "kind": "elective",
+      "optional": true,
+      "aliases": [
+        "Business",
+        "Engineering",
+        "Culinary",
+        "Auto"
+      ],
+      "programs": [
+        "high",
+        "k12"
+      ]
+    },
+    {
+      "id": "elective",
+      "label": {
+        "en": "General Elective"
+      },
+      "domain": "elective",
+      "grades": [
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "credits": 1,
+      "kind": "elective",
+      "optional": true
+    }
+  ]
+}

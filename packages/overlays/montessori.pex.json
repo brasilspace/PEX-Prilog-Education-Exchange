@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/PEX-Prilog-Education-Exchange/main/schema/pex.schema.json",
+    "id": "montessori",
+    "version": "0.3.0",
+    "kind": "overlay",
+    "extends": "*",
+    "country": "XX",
+    "languages": [
+      "de",
+      "en"
+    ],
+    "name": {
+      "de": "Montessori (altersgemischte Lerngruppen)",
+      "en": "Montessori (mixed-age learning groups)"
+    },
+    "notes": "Programme ohne feste Jahrgangsstufe: age_range trägt die Aussage, stages bleibt leer, weil eine altersgemischte Gruppe nicht in einer Stufe des Landes sitzt, sondern sich darüber spannt (und die Stufen je Land anders heißen). Jahrgänge des Basis-Pakets bleiben für Zeugnis, Übertritt und Schulpflicht verfügbar, tragen aber nicht die Gruppe.",
+    "license": "CC-BY-4.0",
+    "maintainer": "info@prilog.team"
+  },
+  "terminology": {
+    "class": {
+      "de": "Lerngruppe",
+      "en": "Learning group"
+    },
+    "class_teacher": {
+      "de": "Lernbegleiter:in",
+      "en": "Guide"
+    },
+    "report": {
+      "de": "Entwicklungsbericht",
+      "en": "Developmental report"
+    }
+  },
+  "programs": [
+    {
+      "id": "kinderhaus",
+      "label": {
+        "de": "Kinderhaus",
+        "en": "Children's House (3–6)"
+      },
+      "stages": [],
+      "grades": [],
+      "age_range": [
+        3,
+        6
+      ],
+      "class_model": "mixed-age",
+      "remark": {
+        "de": "Ohne Fächerkanon geführt: Das Kinderhaus arbeitet mit vorbereiteter Umgebung und Übungen des praktischen Lebens, nicht mit Fächern.",
+        "en": "Carried without a subject canon: the Children's House works with the prepared environment and practical life exercises, not with subjects."
+      }
+    },
+    {
+      "id": "mont-primar",
+      "label": {
+        "de": "Primarstufe (altersgemischt)",
+        "en": "Elementary (mixed-age)"
+      },
+      "stages": [],
+      "grades": [],
+      "age_range": [
+        6,
+        12
+      ],
+      "class_model": "mixed-age",
+      "notes": "Typisch zwei Gruppen: 6–9 und 9–12; die Aufteilung ist Sache der Lerngruppe, nicht des Programms",
+      "remark": {
+        "de": "Fächer kommen aus dem Basis-Paket über das Alter der Gruppe; die Lerngruppe trägt ihre Altersspanne selbst.",
+        "en": "Subjects come from the base package via the group's age span; the learning group carries its own age range."
+      }
+    },
+    {
+      "id": "mont-sek",
+      "label": {
+        "de": "Sekundarstufe (altersgemischt)",
+        "en": "Adolescent programme (mixed-age)"
+      },
+      "stages": [],
+      "grades": [],
+      "age_range": [
+        12,
+        16
+      ],
+      "class_model": "mixed-age",
+      "remark": {
+        "de": "Fächer kommen aus dem Basis-Paket über das Alter der Gruppe; Abschlüsse folgen den Jahrgängen des Landes.",
+        "en": "Subjects come from the base package via the group's age span; qualifications follow the country's grades."
+      }
+    }
+  ],
+  "grading": {
+    "default_scale": "text",
+    "scales": [
+      {
+        "id": "text",
+        "label": {
+          "de": "Entwicklungsbericht",
+          "en": "Developmental report"
+        },
+        "kind": "text"
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+name: validate
+on:
+  push:
+  pull_request:
+jobs:
+  pex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - run: pip install jsonschema
+      - name: Schema + Stapel (Python, Referenz)
+        run: python tools/validate.py
+      - name: dist/ aktuell?
+        run: python tools/build.py --check
+      - name: JavaScript-Implementierung stimmt mit der Referenz überein
+        run: node --test tools/pex.test.mjs

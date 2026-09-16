@@ -1,0 +1,929 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/brasilspace/PEX-Prilog-Education-Exchange/main/schema/pex.schema.json",
+  "title": "PEX – Prilog Education Exchange (school system package), schema v2.2",
+  "type": "object",
+  "required": [
+    "meta"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "format",
+        "id",
+        "version",
+        "country",
+        "languages",
+        "name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "const": "pex"
+        },
+        "schema": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL des Schemas, gegen das dieses Paket geschrieben ist"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "kind": {
+          "enum": [
+            "base",
+            "overlay"
+          ],
+          "default": "base"
+        },
+        "extends": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            }
+          ],
+          "description": "Nur bei overlay: id(s) der Basis-Pakete, auf die dieses Overlay legbar ist. \"*\" = jede Basis; dann dürfen Fächer nur über age_from/age_to/age_years an Jahrgänge binden, nie über grades-IDs"
+        },
+        "country": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "region": {
+          "type": "string",
+          "description": "Kanton / Bundesland / State, ISO 3166-2 Suffix"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "name": {
+          "$ref": "#/$defs/label"
+        },
+        "source": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string",
+          "description": "SPDX identifier of the package data, e.g. CC-BY-4.0"
+        },
+        "maintainer": {
+          "type": "string",
+          "description": "contact for corrections, e.g. info@prilog.team"
+        }
+      }
+    },
+    "terminology": {
+      "type": "object",
+      "description": "Sichtbare Begriffe; Schlüssel sind stabil, Werte mehrsprachig",
+      "additionalProperties": {
+        "$ref": "#/$defs/label"
+      }
+    },
+    "calendar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "year_start_month": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "periods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label",
+              "months"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "label": {
+                "$ref": "#/$defs/label"
+              },
+              "months": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "report_points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "report_points_by_program": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "program",
+              "report_points"
+            ],
+            "properties": {
+              "program": {
+                "$ref": "#/$defs/id"
+              },
+              "report_points": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "holiday_authority": {
+          "type": "object",
+          "properties": {
+            "level": {
+              "enum": [
+                "state",
+                "canton",
+                "municipality",
+                "school",
+                "federal"
+              ]
+            },
+            "label": {
+              "$ref": "#/$defs/label"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "grading": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "default_scale": {
+          "$ref": "#/$defs/id"
+        },
+        "scales": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label",
+              "kind"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "label": {
+                "$ref": "#/$defs/label"
+              },
+              "kind": {
+                "enum": [
+                  "numeric",
+                  "letter",
+                  "points",
+                  "percent",
+                  "text"
+                ]
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "string",
+                    "number"
+                  ]
+                }
+              },
+              "step": {
+                "type": "number"
+              },
+              "best": {
+                "type": [
+                  "string",
+                  "number"
+                ]
+              },
+              "pass": {
+                "type": [
+                  "string",
+                  "number"
+                ]
+              },
+              "gpa": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "number"
+                }
+              },
+              "disabled": {
+                "type": "boolean"
+              },
+              "tendencies": {
+                "type": "boolean",
+                "description": "Noten mit + / – Tendenz"
+              },
+              "notes": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "head_marks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "label": {
+                "$ref": "#/$defs/label"
+              },
+              "scale": {
+                "$ref": "#/$defs/id"
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          },
+          "description": "Kopfnoten (Arbeits-/Sozialverhalten)"
+        },
+        "by_program": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "program",
+              "scale"
+            ],
+            "properties": {
+              "program": {
+                "$ref": "#/$defs/id"
+              },
+              "grades": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id"
+                }
+              },
+              "scale": {
+                "$ref": "#/$defs/id"
+              }
+            },
+            "additionalProperties": false
+          },
+          "description": "Skala je Programm/Jahrgang, z. B. Berichtszeugnis bis Kl. 2"
+        }
+      }
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/stage"
+      }
+    },
+    "grades": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/grade"
+      }
+    },
+    "programs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/program"
+      }
+    },
+    "tracks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/track"
+      }
+    },
+    "qualifications": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/qualification"
+      }
+    },
+    "subject_domains": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/named"
+      }
+    },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/subject"
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/rule"
+      }
+    },
+    "exams": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/exam"
+      }
+    },
+    "legal": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/legal"
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "label": {
+      "type": "object",
+      "description": "Sprachcode → Text; mindestens eine Sprache aus meta.languages",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "named": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "$ref": "#/$defs/label"
+        },
+        "disabled": {
+          "type": "boolean",
+          "description": "true: Element ist im effektiven PEX ausgeblendet. Nur so wird etwas entfernt – nie durch Weglassen"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Pflegehinweis für Menschen, die das Paket schreiben (nicht für die Oberfläche)"
+        },
+        "remark": {
+          "$ref": "#/$defs/label",
+          "description": "Sichtbarer Hinweis, den die Oberfläche neben dem Element zeigt – z. B. warum ein Bildungsgang absichtlich ohne Fächer geführt wird"
+        }
+      },
+      "if": {
+        "properties": {
+          "disabled": {
+            "const": true
+          }
+        },
+        "required": [
+          "disabled"
+        ]
+      },
+      "then": {},
+      "else": {
+        "required": [
+          "label"
+        ]
+      }
+    },
+    "stage": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/named"
+        }
+      ],
+      "properties": {
+        "ordinal": {
+          "type": "integer"
+        },
+        "grades": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "grade": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/named"
+        }
+      ],
+      "properties": {
+        "ordinal": {
+          "type": "integer",
+          "description": "Sortierung und der einzige Weg, Jahrgänge zu vergleichen – nie die id parsen"
+        },
+        "stage": {
+          "$ref": "#/$defs/id"
+        },
+        "typical_age": {
+          "type": "integer",
+          "description": "typisches Alter zu Schuljahresbeginn; Anker für age_from/age_to/age_years an Fächern und age_range an Programmen"
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "track": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/named"
+        }
+      ],
+      "properties": {
+        "scope": {
+          "enum": [
+            "learning_group",
+            "enrollment",
+            "learner",
+            "program"
+          ],
+          "description": "learning_group: Zug hängt an der Gruppe (Sek A ist eine Klasse); enrollment: Niveau je Teilnahme Person×Kurs (Mathe A, LK); learner: individueller Pfad je Person; program: Variante des Programms (Langzeit-/Kurzzeitgymnasium)"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/level"
+          },
+          "minItems": 2
+        }
+      },
+      "unevaluatedProperties": false,
+      "required": [
+        "scope",
+        "levels"
+      ]
+    },
+    "qualification": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/named"
+        }
+      ],
+      "properties": {
+        "after_grade": {
+          "$ref": "#/$defs/id",
+          "description": "Regelfall; abweichende Programme über after_grade_by_program"
+        },
+        "after_grade_by_program": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "program",
+              "after_grade"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "program": {
+                "$ref": "#/$defs/id"
+              },
+              "after_grade": {
+                "$ref": "#/$defs/id"
+              }
+            }
+          },
+          "description": "Abweichung je Programm, z. B. Abitur nach g12 am Gymnasium, nach g13 an der Stadtteilschule"
+        },
+        "grants_access": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requirements": {
+          "type": "object",
+          "description": "frei, z. B. Credits je Domain",
+          "additionalProperties": true
+        },
+        "programs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "subject": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/named"
+        }
+      ],
+      "properties": {
+        "domain": {
+          "$ref": "#/$defs/id"
+        },
+        "grades": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "description": "Jahrgangs-IDs der Basis. Alternative für Pädagogik-Overlays: age_from/age_to oder age_years"
+        },
+        "age_from": {
+          "type": "integer",
+          "description": "Altersanker statt grades: ab diesem typical_age (einschließlich). Ein Overlay mit Altersbezug passt über jede Basis"
+        },
+        "age_to": {
+          "type": "integer",
+          "description": "bis zu diesem typical_age (einschließlich)"
+        },
+        "age_years": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "einzelne Alter statt einer Spanne – Klassenspiel mit 13 und 17, dazwischen nicht"
+        },
+        "kind": {
+          "enum": [
+            "core",
+            "elective",
+            "project",
+            "remedial",
+            "epoch"
+          ],
+          "default": "core"
+        },
+        "tracked": {
+          "type": "boolean",
+          "default": false,
+          "description": "true: Für Kurse dieses Fachs gilt ein Zug mit scope enrollment – wirksam nur in Programmen, die einen solchen Zug führen"
+        },
+        "optional": {
+          "type": "boolean",
+          "default": false
+        },
+        "credits": {
+          "type": "number"
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "short": {
+          "$ref": "#/$defs/label"
+        },
+        "programs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "description": "fehlt: gilt für alle Programme, die diese Jahrgänge haben"
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "program": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/named"
+        }
+      ],
+      "properties": {
+        "stages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "grades": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "description": "Jahrgänge dieses Programms; leer oder fehlend = Programm ohne feste Jahrgangsstufen (Lerngruppe trägt dann age_range)"
+        },
+        "tracks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "qualifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "class_model": {
+          "enum": [
+            "class",
+            "homeroom",
+            "course",
+            "mixed-age"
+          ],
+          "default": "class",
+          "description": "class: feste Jahrgangsklasse; homeroom: Stammgruppe + Kurse; course: nur Kurse; mixed-age: altersgemischte Lerngruppe ohne feste Jahrgangsstufe"
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "age_range": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "typische Altersspanne, wenn keine grades: [von, bis) – obere Grenze ausschließend, damit [3,6],[6,12],[12,16] lückenlos kacheln"
+        },
+        "duration_years": {
+          "type": "number"
+        },
+        "approval": {
+          "enum": [
+            "state",
+            "private-recognized",
+            "private-approved",
+            "private-licensed"
+          ],
+          "description": "Trägerschaft/Genehmigungsstatus – für freie Schulen"
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "rule": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "label",
+        "summary",
+        "source"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": [
+            "transition",
+            "admission",
+            "compulsory-schooling",
+            "promotion",
+            "subject-choice",
+            "attendance",
+            "other"
+          ]
+        },
+        "label": {
+          "$ref": "#/$defs/label"
+        },
+        "applies_to": {
+          "type": "object",
+          "properties": {
+            "from_grade": {
+              "$ref": "#/$defs/id"
+            },
+            "to_grade": {
+              "$ref": "#/$defs/id"
+            },
+            "from_program": {
+              "$ref": "#/$defs/id"
+            },
+            "to_program": {
+              "$ref": "#/$defs/id"
+            },
+            "programs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/id"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "mode": {
+          "type": "string",
+          "description": "kleine geschlossene Liste je kind, z. B. transition: parent-choice | binding-recommendation | exam | recommendation-with-probation"
+        },
+        "summary": {
+          "$ref": "#/$defs/label"
+        },
+        "source": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "exam": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "qualification",
+        "mode",
+        "source"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "$ref": "#/$defs/label"
+        },
+        "qualification": {
+          "$ref": "#/$defs/id"
+        },
+        "mode": {
+          "enum": [
+            "internal",
+            "external",
+            "central",
+            "state-recognized"
+          ]
+        },
+        "at_grade": {
+          "$ref": "#/$defs/id"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "enum": [
+                  "written",
+                  "oral",
+                  "practical",
+                  "presentation",
+                  "thesis"
+                ]
+              },
+              "count": {
+                "type": "integer"
+              },
+              "label": {
+                "$ref": "#/$defs/label"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "summary": {
+          "$ref": "#/$defs/label"
+        },
+        "source": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "legal": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "label"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": [
+            "school-act",
+            "data-protection",
+            "authority",
+            "retention",
+            "reporting",
+            "private-school",
+            "other"
+          ]
+        },
+        "label": {
+          "$ref": "#/$defs/label"
+        },
+        "summary": {
+          "$ref": "#/$defs/label"
+        },
+        "source": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "sections": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "level": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/named"
+        }
+      ],
+      "properties": {},
+      "unevaluatedProperties": false
+    }
+  },
+  "$comment": "PEX – Prilog Education Exchange, schema v2.2. SPDX-License-Identifier: Apache-2.0. Copyright 2026 Prilog (prilog.chat), info@prilog.team"
+}

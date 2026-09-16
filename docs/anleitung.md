@@ -1,0 +1,412 @@
+# PEX – Prilog Education Exchange
+## Anleitung: Aufbau, Logik und Schreiben von Paketen
+
+Schema-Version 2.2 · Stand 16.09.2026
+
+---
+
+## 1. Was PEX ist – und was nicht
+
+PEX ist ein JSON-Format, das beschreibt, **was ein Bildungssystem kennt**: welche Stufen, Jahrgänge und Programme es gibt, welche Fächer, Züge und Abschlüsse, wie benotet wird, wie das Schuljahr getaktet ist, wie die Dinge heißen – und welche Regeln und Rechtsgrundlagen dahinterstehen.
+
+PEX beschreibt **nicht, wie eine konkrete Schule organisiert ist**. Keine Klasse 7b, kein Kurs bei Frau Meier, keine Schülerin, kein Ferientermin. Das ist Sache des Mandanten (siehe *Organisationsmodell und Einschreibung*).
+
+Die eine Regel, die alles andere trägt:
+
+> **Ein PEX enthält niemals eine Instanz.** Es beschreibt Typen, nicht Dinge.
+
+Wenn du beim Schreiben eines Pakets etwas eintragen willst, das es genau einmal gibt (eine bestimmte Schule, ein Datum, eine Person), gehört es nicht ins PEX.
+
+Zweite Regel:
+
+> **PEX rechnet nicht.** Regeln, Prüfungen und Rechtsbezüge stehen als Text mit Quelle. Prilog liest sie an, zeigt sie an und verlinkt sie. Wer aus einer Regel Logik machen will, baut ein Modul, das die Regel liest.
+
+---
+
+## 2. Die Dateien
+
+| Datei | Rolle |
+|---|---|
+| `schema/pex.schema.json` | JSON-Schema (Draft 2020-12), gegen das jede PEX-Datei geprüft wird. `$id` ist die Roh-URL dieser Datei im Repo (`https://raw.githubusercontent.com/brasilspace/PEX-Prilog-Education-Exchange/main/schema/pex.schema.json`) |
+| `packages/<base|overlays>/<id>.pex.json` | Ein Paket. `<id>` ist die `meta.id`: `de`, `ch-de`, `de-hh`, `waldorf` |
+| `dist/index.json` | Registry: alle Pakete und Standard-Stapel mit Version und Prüfsumme – das liest ein Loader zuerst |
+| `dist/effective/<stapel>.json` | Materialisierte effektive Pakete, z. B. `de+de-hh+waldorf.json`; erzeugt von `tools/build.py`, von CI auf Frische geprüft |
+| `tools/validate.py` | Referenz-Implementierung von Merge und Prüfung (Python) |
+| `tools/pex.mjs`, `tools/pex.d.ts` | Dieselbe Logik für Prilog (JavaScript, ohne Abhängigkeiten); `tools/pex.test.mjs` beweist die Gleichheit |
+
+Jede PEX-Datei beginnt mit denselben zwei Feldern:
+
+```json
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/PEX-Prilog-Education-Exchange/main/schema/pex.schema.json",
+    ...
+```
+
+Damit erkennt ein Loader die Datei am Inhalt, nicht am Namen. Eine Datei ohne `format: "pex"` wird abgelehnt.
+
+---
+
+## 3. Die drei Schichten
+
+Ein Mandant benutzt nie ein einzelnes PEX, sondern einen **Stapel**:
+
+```
+  Basis-PEX          de          ch-de        at          us
+       ↓
+  Regionales Overlay de-hh       ch-zh        at-w        us-ca
+       ↓
+  Pädagogik-Overlay  waldorf / montessori   (auf jede Basis legbar)
+       ↓
+  Mandanten-Overrides   (die Schule selbst, im Admin-UI – technisch dasselbe Format)
+       ↓
+  = effektives PEX   (materialisiert, gegen das Schema geprüft, vom Code gelesen)
+```
+
+Alle Schichten haben **dieselbe Struktur**. Ein Overlay ist ein PEX mit `meta.kind: "overlay"` und `meta.extends`, das nur enthält, was es ändert oder ergänzt.
+
+### 3.1 Merge-Regeln
+
+Der Stapel wird von unten nach oben zusammengeführt:
+
+1. **Skalare Felder** (Strings, Zahlen, Booleans) – die höhere Schicht überschreibt.
+2. **Objekte ohne `id`** (`terminology`, `calendar`, `grading` als Ganzes) – tiefer Merge; Schlüssel der höheren Schicht überschreiben einzeln, fehlende bleiben.
+3. **Listen mit `id`** (`stages`, `grades`, `programs`, `tracks`, `qualifications`, `subjects`, `subject_domains`, `rules`, `exams`, `legal`, `scales`, `periods`) – **Merge nach `id`**, nicht Anhängen:
+   - gleiche `id` in beiden Schichten → das Element wird tief gemergt (Felder der höheren Schicht gewinnen, fehlende bleiben)
+   - `id` nur in der höheren Schicht → Element wird hinzugefügt
+   - `id` nur in der tieferen Schicht → Element bleibt
+4. **Ausblenden** geht nur über `"disabled": true` am Element. Es gibt kein Löschen – so bleibt nachvollziehbar, dass Hamburg die Realschule *abgeschafft* hat und nicht *vergessen*.
+5. **Listen ohne `id`** (`grades` an einem Fach oder Programm, `aliases`, `report_points`) – die höhere Schicht **ersetzt** die Liste komplett. Wer ein Fach um einen Jahrgang erweitern will, schreibt die ganze `grades`-Liste neu. Achtung: `levels` eines Zugs *haben* eine `id` und werden deshalb gemischt – wer LK/GK durch eA/gA ersetzen will, blendet LK/GK mit `disabled` aus (so macht es `de-hh`).
+6. Das effektive `meta` ist das der Basis; `meta.layers` hält fest, aus welchen Paketen in welcher Version der Stapel gebaut wurde.
+
+Beispiel – Overlay ändert nur ein Feld eines Programms:
+
+```json
+// Basis de:
+{ "id": "gymnasium", "label": {"de": "Gymnasium"}, "grades": ["g5",…,"g12"], "tracks": ["oberstufe"], … }
+
+// Overlay de-by:
+{ "id": "gymnasium", "grades": ["g5",…,"g13"], "tracks": ["gym-zweig", "oberstufe"] }
+
+// effektiv:
+{ "id": "gymnasium", "label": {"de": "Gymnasium"}, "grades": ["g5",…,"g13"], "tracks": ["gym-zweig", "oberstufe"], … }
+```
+
+Das Label kam aus der Basis, `grades` und `tracks` wurden ersetzt (Listen ohne `id`), alles andere blieb.
+
+### 3.2 Pädagogik-Overlays und `extends`
+
+`extends` nennt die Basis-Pakete, auf die ein Overlay legbar ist – ein String, eine Liste oder `"*"` für alle. Ein Overlay mit `"*"` darf **keine Jahrgangs- oder Stufen-IDs einer Basis** referenzieren, denn die Länder zählen verschieden: das erste Schuljahr heißt in Deutschland `g1`, in der Schweiz `h3` (HarmoS zählt den Kindergarten mit), in Österreich `s1`. Was sich über alle Länder deckt, ist das **Alter**. Deshalb binden Pädagogik-Overlays ihre Fächer über `age_from`/`age_to` (einschließlich) oder `age_years` (einzelne Alter), und der Loader übersetzt das je Basis über `typical_age` in Jahrgänge: Eurythmie `age_from: 6, age_to: 18` trifft in Deutschland `g1`–`g13`, in der Schweiz `h3`–`s2-4`. So passt `waldorf` über jede Basis, ohne Kopien je Land. `montessori` referenziert gar nichts aus der Basis: seine Programme tragen `age_range`, `stages` bleibt leer.
+
+Owner-Entscheid 16.09.2026: „Die pädagogische Prägung, die es für jedes Land gibt, auch in der Schweiz.“ – Vorher hing Waldorf an `g1`…`g13`; über der Schweiz zeigten alle 100 Verweise ins Leere.
+
+Der Validator prüft jeden Stapel aus `extends` und meldet fehlende Referenzen. Ein Overlay auf eine Basis zu legen, die nicht in `extends` steht, ist ein Fehler.
+
+### 3.3 Validierung
+
+Zwei Stufen:
+
+- **Datei-Validierung** gegen `schema/pex.schema.json` – Struktur, Pflichtfelder, erlaubte Werte. Jede Datei einzeln.
+- **Stapel-Validierung** nach dem Merge – referenzielle und semantische Prüfung. **Fehler** (blockieren das Laden): jede referenzierte `id` (`stage`, `grades[]`, `programs[]`, `tracks[]`, `qualifications[]`, `domain`, `qualification`, `scale`, `period`, `applies_to.*`, `after_grade_by_program`, `report_points_by_program`) existiert und ist nicht `disabled`; Programm↔Abschluss verweisen symmetrisch aufeinander; jeder Zug hat mindestens zwei aktive Levels; ein Fach hat entweder `grades` oder einen Altersanker; Labels und `remark` tragen eine Sprache aus `meta.languages` der Basis. **Hinweise** (blockieren nicht): ein Programm ohne Fach und ohne `remark`, ein Programm ohne `grades` und ohne `age_range`, ein Altersanker, der in dieser Basis keinen Jahrgang trifft, ein `tracked`-Fach, das in keinem Programm mit `enrollment`-Zug vorkommt.
+
+Ein Overlay allein ist referenziell **nicht** prüfbar – es darf auf die Basis verweisen. Allein prüfbar ist nur: ein `"*"`-Overlay bindet nicht an Jahrgangs-IDs.
+
+Geprüft werden alle **Standard-Stapel**: jede Basis allein, jede Basis mit jedem passenden Overlay, und jede Basis mit jedem regionalen *und* jedem pädagogischen Overlay (`de + de-hh + waldorf`). Genau diese Stapel liegen materialisiert in `dist/effective/`.
+
+---
+
+## 4. Die Bausteine, in der Reihenfolge, in der man sie liest
+
+Alle **IDs** sind kleingeschriebene Slugs (`^[a-z0-9][a-z0-9-]*$`), stabil und englisch oder neutral (`sek1`, `gym`, `math`, `g7`). Code liest IDs.
+Alle **Labels** sind Objekte `{ "de": "…", "fr": "…", "en": "…" }` – mindestens eine Sprache aus `meta.languages`. Menschen lesen Labels.
+**Aliases** sind freie Strings – andere Namen, unter denen dasselbe Ding in der Praxis vorkommt. Sie dienen der Suche und der Anzeige („auch bekannt als"), nie der Referenz.
+Jedes benannte Element darf zwei Arten von Anmerkung tragen: **`notes`** (String) ist für die Menschen, die das Paket pflegen; **`remark`** (mehrsprachig) ist der Satz, den die Schule in der Oberfläche liest – etwa warum ein Bildungsgang absichtlich ohne Fächer geführt wird. Ein Element mit `"disabled": true` braucht kein `label`.
+
+### 4.1 `meta` – Identität des Pakets
+
+```json
+"meta": {
+  "format": "pex", "schema": "…/pex/v2.1",
+  "id": "de-hh", "version": "0.1.0",
+  "kind": "overlay", "extends": "de",
+  "country": "DE", "region": "HH",
+  "languages": ["de"],
+  "name": { "de": "Hamburg" },
+  "source": "HmbSG, APO-GrundStGy …",
+  "notes": "Zweigliedrig …"
+}
+```
+
+- `id` = Dateiname ohne `.pex.json`. Konvention: `<land>` für Basen, `<land>-<region>` für regionale Overlays (ISO-3166-2-Suffix), ein Wort für Pädagogik-Overlays.
+- `version` semver. Mandanten pinnen eine Version; ein Update ist ein bewusster Schritt mit Diff.
+- `kind` = `base` oder `overlay`; `extends` nur bei Overlay.
+- `source` ist die Quellenangabe für das ganze Paket; einzelne `rules`/`exams`/`legal` haben ihre eigene.
+
+### 4.2 `terminology` – wie die Dinge heißen
+
+Ein flaches Objekt: stabiler Schlüssel → mehrsprachiges Label.
+
+```json
+"terminology": {
+  "teacher": { "de": "Lehrperson" },
+  "class_teacher": { "de": "Klassenlehrperson" },
+  "parent_conference": { "de": "Elterngespräch" },
+  "report_midyear": { "de": "Schulnachricht" }
+}
+```
+
+Die Oberfläche fragt `terminology.class_teacher` und bekommt in Hamburg „Klassenleitung", in Zürich „Klassenlehrperson", in Wien „Klassenvorstand", in Ohio „Homeroom Teacher". Fehlt ein Schlüssel, greift der Plattform-Standard. Neue Schlüssel darf jedes Paket einführen; die Oberfläche benutzt sie, sobald ein Modul danach fragt.
+
+Die Schlüssel, die Prilog heute liest, stehen als Katalog in `docs/integration-prilog.md`, Abschnitt 6.
+
+### 4.3 `calendar` – der Takt
+
+```json
+"calendar": {
+  "year_start_month": 8,
+  "periods": [ { "id": "s1", "label": {"de": "1. Semester"}, "months": [8, 1] }, … ],
+  "report_points": ["s1", "s2"],
+  "report_points_by_program": [ { "program": "primar", "report_points": ["s2"] } ],
+  "holiday_authority": { "level": "canton", "label": {…}, "url": "…" }
+}
+```
+
+Nur der **Rhythmus**, nie ein Datum. `report_points` sagt, wann Zeugnisse entstehen; `holiday_authority` sagt, wer die Ferien festlegt und wo – die Termine selbst trägt der Mandant ein, Prilog kann sie von dort vorschlagen.
+
+### 4.4 `grading` – wie bewertet wird
+
+```json
+"grading": {
+  "default_scale": "ch-6",
+  "scales": [
+    { "id": "ch-6", "kind": "numeric", "values": [1,1.5,…,6], "step": 0.5, "best": 6, "pass": 4, "tendencies": false },
+    { "id": "letter", "kind": "letter", "values": ["A","B","C","D","F"], "best": "A", "pass": "D", "gpa": {"A": 4.0, …} },
+    { "id": "text", "kind": "text" }
+  ],
+  "head_marks": [ { "id": "sozial", "label": {"de": "Sozialverhalten"}, "scale": "de-6" } ],
+  "by_program": [ { "program": "grundschule", "grades": ["g1","g2"], "scale": "text" } ]
+}
+```
+
+`best` und `pass` sind die zwei Zahlen, die ein Zeugnismodul braucht, um nicht die 6 hart zu codieren: In Deutschland ist 1 best, in der Schweiz 6, in Österreich gibt es keine 6. `by_program` löst den Berichtszeugnis-Fall (Text bis Klasse 2, Noten danach).
+
+### 4.5 `stages` und `grades` – die vertikale Achse
+
+```json
+"stages": [ { "id": "sec1", "label": {"de": "Sekundarstufe I"}, "ordinal": 3, "grades": ["h9","h10","h11"] } ],
+"grades": [ { "id": "h9", "label": {"de": "7. Klasse"}, "ordinal": 9, "stage": "sec1", "typical_age": 12, "aliases": ["1. Sek"] } ]
+```
+
+Die `id` ist die stabile Zählung des Systems (HarmoS `h1`–`h11` in der Schweiz, Schulstufen `s1`–`s13` in Österreich, `k`,`g1`–`g12` in den USA). Das `label` ist die Alltagszählung. Beides zu trennen ist Absicht: Zürich sagt „1. Sek", Bern „7. Klasse", beide meinen `h9`.
+
+`ordinal` ist die Sortierung und der einzige Weg, Jahrgänge zu vergleichen – nie die `id` parsen.
+
+### 4.6 `programs` – die Bildungsgänge
+
+```json
+{ "id": "sek1", "label": {"de": "Sekundarschule"},
+  "stages": ["sec1"], "grades": ["h9","h10","h11"],
+  "class_model": "homeroom",
+  "tracks": ["sek-level", "sek-subject-level"],
+  "qualifications": ["sek1-abschluss"],
+  "approval": "state",
+  "aliases": ["Oberstufe", "Realschule", "Bezirksschule"] }
+```
+
+Ein Programm ist ein Bildungsgang, den das System kennt – nicht eine Schule. Ein Mandant kann mehrere führen.
+
+**`class_model`** ist die wichtigste Angabe: Sie sagt dem Organisationsmodell, welche Form von Lerngruppe dieses Programm normalerweise bildet.
+
+| Wert | Bedeutung |
+|---|---|
+| `class` | feste Jahrgangsklasse, Unterricht überwiegend im Verband |
+| `homeroom` | Stammgruppe + Kurse in wechselnder Zusammensetzung |
+| `course` | keine Stammgruppe, nur Kurse |
+| `mixed-age` | altersgemischt, keine feste Jahrgangsstufe |
+
+**`grades` darf leer sein** – dann trägt das Programm eine `age_range`, und die Jahrgangsstufe ist Sache der einzelnen Person (Zeugnis, Übertritt), nicht der Gruppe. So funktionieren Montessori und Kindergarten ohne Sonderfall. `age_range` ist `[von, bis)` – die obere Grenze **ausschließend**, damit `[3,6]`, `[6,12]`, `[12,16]` lückenlos und ohne Überschneidung kacheln. Der Loader übersetzt die Spanne über `typical_age` in Jahrgänge der Basis, um die Fächer des Programms zu finden.
+
+**Welche Fächer gehören zu einem Programm?** Ein Fach, das `programs` nennt, gehört nur zu diesen. Ein Programm mit `grades` oder `age_range` nimmt die Fächer, deren Jahrgänge sich mit seinen schneiden (löst die Spanne in dieser Basis zu nichts auf, nimmt es keines). Ein Programm ohne beides nimmt jedes nicht anderweitig eingeschränkte Fach. Ein Programm ohne Fächer sagt in `remark`, warum – sonst meldet der Validator einen Hinweis.
+
+**`approval`** (nur für freie Schulen relevant) sagt, ob ein Programm staatlich, anerkannt, genehmigt oder bewilligt ist – das entscheidet, ob Abschlüsse im Haus oder extern geprüft werden (siehe `exams`).
+
+### 4.7 `tracks` – Züge und Niveaus
+
+```json
+{ "id": "sek-subject-level", "label": {"de": "Niveaufach"},
+  "scope": "enrollment",
+  "levels": [ {"id": "e", "label": {"de": "erweitert"}}, {"id": "g", "label": {"de": "grundlegend"}} ] }
+```
+
+Ein Zug ist eine Differenzierung. **Woran er hängt, sagt `scope`** – das ist die Stelle, an der PEX mehr kann als ein deutsches Klassenmodell:
+
+| `scope` | hängt an … | Beispiele |
+|---|---|---|
+| `learning_group` | der Gruppe – alle darin sind im selben Zug | Sek A/B/C als Klassen, M-Zug an der Mittelschule |
+| `enrollment` | der Teilnahme einer Person an einem Kurs | Mathe Niveau A, Leistungskurs, Honors/AP, Standard AHS (Österreich) |
+| `learner` | der Person, unabhängig von Gruppe und Kurs | Förderschwerpunkt, Nachteilsausgleich, IEP |
+| `program` | der Programmvariante | Langzeit-/Kurzzeitgymnasium, NTG/SG/WSG in Bayern |
+
+Ein Programm listet die Züge, die es kennt. Ein Fach mit `tracked: true` sagt: Für Kurse dieses Fachs gilt ein `enrollment`-Zug.
+
+Faustregel: Wenn zwei Schüler derselben Klasse in einem Fach verschiedene Niveaus haben können, ist es `enrollment`. Wenn das Niveau die Klasse definiert, ist es `learning_group`.
+
+### 4.8 `qualifications` – Abschlüsse
+
+```json
+{ "id": "matura", "label": {"de": "Reifeprüfung (Matura)"},
+  "after_grade": "s12", "programs": ["ahs-o"],
+  "grants_access": ["universitaet", "fh", "ph"],
+  "requirements": { … frei … } }
+```
+
+`grants_access` ist eine freie Liste von Anschlusszielen – für Beratung und Anzeige, keine Logik. `requirements` ist ein freies Objekt (Credits je Domain in den USA, Fächerbindung beim Abitur) – wer es auswertet, muss wissen, was drinsteht.
+
+`after_grade` ist der Regelfall; weicht ein Programm ab, sagt es `after_grade_by_program`: In Hamburg ist das Abitur nach `g12` am Gymnasium und nach `g13` an der Stadtteilschule. Programm und Abschluss verweisen **symmetrisch** aufeinander (`programs[].qualifications` ↔ `qualifications[].programs`); der Validator erzwingt das.
+
+### 4.9 `subject_domains` und `subjects` – die Fächer
+
+```json
+{ "id": "nt", "label": {"de": "Natur und Technik"}, "domain": "science",
+  "grades": ["h9","h10","h11"], "programs": ["sek1"],
+  "kind": "core", "tracked": true, "optional": false,
+  "credits": 1, "aliases": ["Naturlehre"] }
+```
+
+- `domain` gruppiert (Sprachen, Naturwissenschaften …) – für Stundentafeln, Zeugnisse, Abschlussanforderungen.
+- `grades` und `programs` sagen, wo das Fach vorkommt. Fehlt `programs`, gilt es für alle Programme, die diese Jahrgänge haben.
+- Statt `grades` darf ein Fach einen **Altersanker** tragen: `age_from`/`age_to` (einschließlich) oder `age_years` (einzelne Alter: Klassenspiel mit 13 und 17). Pflicht für Overlays mit `extends: "*"`, erlaubt für alle. Beides zugleich ist ein Fehler.
+- `tracked: true` wirkt nur in Programmen, die einen Zug mit `scope: enrollment` führen. Deutsch ist in der Basis `de` „tracked“, weil Gesamtschule und Oberstufe Niveaus kennen; in der Grundschule hat das Feld keine Wirkung.
+- `kind`: `core` (Pflicht), `elective` (Wahl/Wahlpflicht), `project` (Jahresarbeit, Maturaarbeit, Seminar), `remedial` (Förder-/Stützkurs), `epoch` (Waldorf-Epoche).
+- `optional: true` heißt: Es muss nicht jede Person belegen.
+- `credits` nur, wo das System in Credits rechnet (USA).
+
+Dieselbe Sache, die in einem Land ein Fach ist, ist im anderen drei (NT vs. Biologie/Chemie/Physik). Das ist gewollt: PEX bildet das System ab, nicht eine Norm-Fächerliste. Ein Modul, das „das Fach Biologie" sucht, sucht in der Schweiz vergebens – es muss über `domain: science` gehen.
+
+### 4.10 `rules` – Regeln mit Quelle (v2.1)
+
+```json
+{ "id": "uebertritt-5", "kind": "transition",
+  "label": {"de": "Übertritt nach Jahrgangsstufe 4"},
+  "applies_to": { "from_grade": "g4" },
+  "mode": "binding-recommendation",
+  "summary": {"de": "Übertrittszeugnis im Mai: Gymnasium bei Notenschnitt bis 2,33 …"},
+  "source": "BayEUG Art. 44; GrSO §§ 6–8", "url": "…" }
+```
+
+`kind` sagt, wovon die Regel handelt (`transition`, `admission`, `compulsory-schooling`, `promotion`, `subject-choice`, `attendance`, `other`). `mode` ist ein kurzes Stichwort, das die Regel filterbar macht, ohne sie zur Logik zu machen (`parent-choice`, `binding-recommendation`, `exam`, `grade-threshold` …). `summary` ist der Text, den ein Mensch liest. `source` ist Pflicht.
+
+Prilog zeigt Regeln an der passenden Stelle – im Übertrittsgespräch, in der Anmeldung, im Nachweisbericht. Es rechnet nicht mit ihnen.
+
+### 4.11 `exams` – Prüfungen (v2.1)
+
+```json
+{ "id": "abitur-extern", "label": {"de": "Abitur für andere Bewerber"},
+  "qualification": "abitur", "mode": "external", "at_grade": "g13",
+  "components": [ {"id": "written", "count": 4}, {"id": "oral", "count": 4} ],
+  "summary": {"de": "Waldorfschüler an genehmigten Ersatzschulen legen das Abitur als Externe ab …"},
+  "source": "GSO §§ 88 ff." }
+```
+
+`mode`: `internal` (im Haus), `external` (Schulfremdenprüfung), `central` (zentral gestellt), `state-recognized` (im Haus unter staatlichem Vorsitz). Das ist der Block, der für freie Schulen den Unterschied macht – er bestimmt Jahresplanung und Fächer der Abschlussklasse.
+
+### 4.12 `legal` – Rechtsbezüge (v2.1)
+
+```json
+{ "id": "schulgesetz", "kind": "school-act",
+  "label": {"de": "Hamburgisches Schulgesetz"}, "url": "…",
+  "sections": { "schulpflicht": "§§ 37–41", "datenschutz": "§§ 98–100" } }
+```
+
+`kind`: `school-act`, `data-protection`, `authority`, `retention`, `reporting`, `private-school`, `other`. Ein Ort für die Rechtsbezüge, die sonst in jedem Modul neu stehen – Datenschutz-Handbuch, Konzept-Verankerung und Nachweisbericht lesen von hier.
+
+---
+
+## 5. Die Logik hinter den Entscheidungen
+
+**Warum IDs englisch und Labels mehrsprachig?** Damit Code über Länder hinweg dieselbe Frage stellen kann (`grades` mit `stage: sec1`) und die Oberfläche trotzdem „7. Klasse" oder „1. Sek" zeigt.
+
+**Warum Overlays statt Varianten?** 16 Bundesländer × 26 Kantone × Waldorf/Montessori wären hunderte Pakete. Als Stapel sind es 4 Basen + ~50 kleine Overlays + 2 Pädagogik-Overlays. Und: Wenn Bayern G9 einführt, ändert sich eine Zeile in `de-by`, nicht in jedem bayerischen Waldorf-Paket.
+
+**Warum `disabled` statt Löschen?** Weil die Abwesenheit einer Sache eine Aussage ist. „Hamburg hat keine Realschule" muss man sehen können.
+
+**Warum Listen-Merge nach `id`?** Weil ein Overlay ein Programm um ein Feld erweitern soll, ohne es ganz neu zu schreiben – und weil sich so nachvollziehen lässt, was aus der Basis kommt und was regional ist.
+
+**Warum `class_model` am Programm und nicht an der Schule?** Weil ein Internat Sek I (`homeroom`) und Gymnasium (`class`) zugleich führt. Die Form der Gruppe folgt dem Bildungsgang.
+
+**Warum Zug-Scopes statt „Zug am Fach"?** Weil ein Niveau keine Eigenschaft des Fachs Mathematik ist, sondern der Teilnahme *dieser* Schülerin an *diesem* Kurs. Sobald man das so sagt, ist klar, dass es ein Einschreibungs-Objekt braucht – auf der Mandantenseite.
+
+**Warum Regeln als Text?** Weil eine Übertrittsregel mit Notenschnitt, Probeunterricht und Elternwille als Logik in jedem Bundesland anders wäre und sich jede Legislatur ändert. Als Text mit Quelle ist sie pflegbar; als Logik wäre sie ein eigenes Produkt.
+
+**Warum keine Stundentafeln?** Weil Wochenstunden je Fach jährlich schwanken, schulautonom sind und in den Stundenplan gehören. PEX sagt, dass es Mathematik in der 7. gibt – nicht, wie oft.
+
+---
+
+## 6. Ein Overlay schreiben – Schritt für Schritt
+
+1. **Basis wählen** und lesen. Alles, was dort schon stimmt, wird nicht wiederholt.
+2. `meta` schreiben: `kind: overlay`, `extends`, `region`, `source`.
+3. **Was ist anders?** In dieser Reihenfolge prüfen: Programme (welche gibt es, welche nicht → `disabled`), Jahrgangsgrenzen (G8/G9, Grundschule 6), Züge, Abschlüsse und ihre Namen, Fächer (Namen als `aliases`, neue Fächer, andere Jahrgänge), Notenskala und Zeugnisrhythmus, Begriffe.
+4. **Regeln, Prüfungen, Recht** – je eine Zeile mit `source`. Übertritt, Schulpflicht, Abschlussprüfung (intern/extern), Schulgesetz, Datenschutz, Aufsicht, Aufbewahrung.
+5. **Nur ändern, was sich ändert.** Ein Overlay mit 300 Zeilen ist meist eine kopierte Basis.
+6. **Validieren**: Datei gegen das Schema, dann den Stapel referenziell.
+7. **Versionieren** und ins Repo `prilog-pex` mit Review.
+
+Checkliste vor dem Merge:
+
+- [ ] Jede `id`, auf die verwiesen wird, existiert in Basis oder Overlay
+- [ ] Kein Element mit `disabled: true` wird noch referenziert
+- [ ] Jede `rule`, `exam`, `legal` hat `source`
+- [ ] Keine Instanzen (Schulnamen, Daten, Personen)
+- [ ] Labels in allen Sprachen aus `meta.languages`
+- [ ] `notes` erklärt, was für Menschen nicht aus der Struktur ersichtlich ist
+
+---
+
+## 7. Wie Prilog das effektive PEX liest
+
+| Modul | fragt |
+|---|---|
+| Mandanten-Setup | `programs`, `class_model`, `grades` → Vorschlag für Lerngruppen |
+| Lerngruppe anlegen | `programs`, `grades` (oder `age_range`), `tracks` mit `scope: learning_group` |
+| Einschreibung | `tracks` mit `scope: enrollment`, `subjects.tracked` |
+| Fachkatalog / Stundenplan | `subjects` gefiltert nach Programm und Jahrgang |
+| Zeugnis | `grading` (Skala, `best`, `pass`, `by_program`, `head_marks`), `calendar.report_points`, `qualifications`, `exams` |
+| Oberfläche | `terminology.*` |
+| Jahreslauf | `calendar.periods` |
+| Elternsprechtag | `terminology.parent_conference`; Lehrkräfte aus Einschreibungen |
+| Übertrittsberatung, Anmeldung | `rules` mit `kind: transition | admission` |
+| Datenschutz-Handbuch, Nachweisbericht | `legal` |
+| Konzept-Verankerung | `meta.country/region` → Fachredaktion |
+
+Der Code liest immer das **materialisierte effektive PEX** des Mandanten, nie die Einzeldateien. Ein Mandant sieht eine Änderung an einem Paket erst, wenn er die neue Version bewusst übernimmt. Wie Prilog das Repo einbindet – Registry, Loader, Pinnen, Mandanten-Overrides – steht in `docs/integration-prilog.md`.
+
+---
+
+## 8. Häufige Fehler
+
+| Fehler | Warum falsch | Richtig |
+|---|---|---|
+| Fach „Biologie" im Schweizer Paket suchen | In der Schweiz heißt es NT und umfasst drei Fächer | über `domain: science` gehen |
+| `grades` an einem Fach „ergänzen" | Listen ohne `id` werden ersetzt, nicht gemergt | die ganze Liste im Overlay schreiben |
+| Realschule in Hamburg weglassen | Basis hat sie, Weglassen ändert nichts | `{"id": "realschule", "disabled": true}` |
+| LK/GK durch eA/gA „ersetzen“, indem man nur eA/gA schreibt | Levels haben `id` und werden gemischt – effektiv vier Levels | LK und GK mit `disabled: true` ausblenden |
+| Notenschnitt 2,33 als Zahl in `rules` | PEX rechnet nicht; die Zahl gehört in den `summary`-Text | Text + `source` |
+| Pädagogik-Overlay mit `grades: ["g1", …]` | über der Schweiz heißt das erste Schuljahr `h3` – alle Verweise ins Leere | `age_from: 6, age_to: 18`; der Loader übersetzt je Basis |
+| Ferientermine im Paket | Instanz | Mandant; `holiday_authority.url` als Quelle |
+| `id` mit Großbuchstaben oder Umlaut | Schema lehnt ab | `sek-level`, nicht `Sek_A` |
+| Overlay mit 300 Zeilen | kopierte Basis | nur die Änderungen |
+
+---
+
+## 9. Versionen
+
+| Schema | Änderung |
+|---|---|
+| v1 | `school_types`, Track-Scopes `class`/`subject` |
+| v2 | `programs`, `grades` optional + `age_range`, `class_model` mit `mixed-age`, Track-Scopes `learning_group`/`enrollment`/`learner`/`program`, `meta.format` Pflicht |
+| v2.1 | `rules`, `exams`, `legal`; `grading.tendencies`/`head_marks`/`by_program`; `calendar.report_points_by_program`/`holiday_authority`; `programs.approval` |
+| v2.2 | Altersanker `age_from`/`age_to`/`age_years`; `remark`/`notes` an jedem Element; `after_grade_by_program`; `disabled` ohne `label`; geschlossene Objekte; `meta.layers` im effektiven PEX; `dist/` mit Registry |
+
+Ein Paket nennt in `meta.schema` das Schema, gegen das es geschrieben ist. `tools/pex.mjs` und `tools/validate.py` prüfen gegen v2.2; ältere Pakete werden nicht stillschweigend übersetzt, sondern im Repo auf den Stand gebracht (siehe CHANGELOG).

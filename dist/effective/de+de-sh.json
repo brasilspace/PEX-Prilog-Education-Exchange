@@ -1,0 +1,1475 @@
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/PEX-Prilog-Education-Exchange/main/schema/pex.schema.json",
+    "id": "de",
+    "version": "0.3.0",
+    "kind": "base",
+    "country": "DE",
+    "languages": [
+      "de"
+    ],
+    "name": {
+      "de": "Deutschland (Basis)"
+    },
+    "source": "KMK-Vereinbarungen; Schultypen und Abschlussnamen je Bundesland über Overlays de-<land>",
+    "notes": "Entspricht dem heute implizit in Prilog verankerten Modell.",
+    "license": "CC-BY-4.0",
+    "maintainer": "info@prilog.team",
+    "layers": [
+      {
+        "id": "de",
+        "version": "0.3.0"
+      },
+      {
+        "id": "de-sh",
+        "version": "0.1.0"
+      }
+    ]
+  },
+  "terminology": {
+    "teacher": {
+      "de": "Lehrkraft"
+    },
+    "class_teacher": {
+      "de": "Klassenlehrkraft"
+    },
+    "head": {
+      "de": "Schulleitung"
+    },
+    "class": {
+      "de": "Klasse"
+    },
+    "grade": {
+      "de": "Jahrgangsstufe"
+    },
+    "student": {
+      "de": "Schülerin / Schüler"
+    },
+    "parents": {
+      "de": "Erziehungsberechtigte"
+    },
+    "report": {
+      "de": "Zeugnis"
+    },
+    "parent_conference": {
+      "de": "Elternsprechtag"
+    },
+    "parent_evening": {
+      "de": "Elternabend"
+    },
+    "holidays": {
+      "de": "Ferien"
+    },
+    "lesson": {
+      "de": "Unterrichtsstunde"
+    },
+    "subject": {
+      "de": "Fach"
+    },
+    "track": {
+      "de": "Kurs"
+    },
+    "report_midyear": {
+      "de": "Halbjahreszeugnis"
+    }
+  },
+  "calendar": {
+    "year_start_month": 8,
+    "periods": [
+      {
+        "id": "hj1",
+        "label": {
+          "de": "1. Halbjahr"
+        },
+        "months": [
+          8,
+          1
+        ]
+      },
+      {
+        "id": "hj2",
+        "label": {
+          "de": "2. Halbjahr"
+        },
+        "months": [
+          2,
+          7
+        ]
+      }
+    ],
+    "report_points": [
+      "hj1",
+      "hj2"
+    ],
+    "holiday_authority": {
+      "level": "state",
+      "label": {
+        "de": "Ministerium für Allgemeine und Berufliche Bildung, Wissenschaft, Forschung und Kultur (MBWFK)"
+      },
+      "url": "https://www.schleswig-holstein.de/"
+    }
+  },
+  "grading": {
+    "default_scale": "de-6",
+    "scales": [
+      {
+        "id": "de-6",
+        "label": {
+          "de": "Noten 1–6"
+        },
+        "kind": "numeric",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "step": 1,
+        "best": 1,
+        "pass": 4
+      },
+      {
+        "id": "de-15",
+        "label": {
+          "de": "Punkte 0–15 (Oberstufe)"
+        },
+        "kind": "points",
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "step": 1,
+        "best": 15,
+        "pass": 5
+      },
+      {
+        "id": "text",
+        "label": {
+          "de": "Berichtszeugnis"
+        },
+        "kind": "text"
+      }
+    ],
+    "by_program": [
+      {
+        "program": "grundschule",
+        "grades": [
+          "g1",
+          "g2"
+        ],
+        "scale": "text"
+      }
+    ]
+  },
+  "stages": [
+    {
+      "id": "primar",
+      "label": {
+        "de": "Primarstufe"
+      },
+      "ordinal": 1,
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ]
+    },
+    {
+      "id": "sec1",
+      "label": {
+        "de": "Sekundarstufe I"
+      },
+      "ordinal": 2,
+      "grades": [
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10"
+      ]
+    },
+    {
+      "id": "sec2",
+      "label": {
+        "de": "Sekundarstufe II"
+      },
+      "ordinal": 3,
+      "grades": [
+        "g11",
+        "g12",
+        "g13"
+      ]
+    }
+  ],
+  "grades": [
+    {
+      "id": "g1",
+      "label": {
+        "de": "Klasse 1"
+      },
+      "ordinal": 1,
+      "stage": "primar",
+      "typical_age": 6
+    },
+    {
+      "id": "g2",
+      "label": {
+        "de": "Klasse 2"
+      },
+      "ordinal": 2,
+      "stage": "primar",
+      "typical_age": 7
+    },
+    {
+      "id": "g3",
+      "label": {
+        "de": "Klasse 3"
+      },
+      "ordinal": 3,
+      "stage": "primar",
+      "typical_age": 8
+    },
+    {
+      "id": "g4",
+      "label": {
+        "de": "Klasse 4"
+      },
+      "ordinal": 4,
+      "stage": "primar",
+      "typical_age": 9
+    },
+    {
+      "id": "g5",
+      "label": {
+        "de": "Klasse 5"
+      },
+      "ordinal": 5,
+      "stage": "sec1",
+      "typical_age": 10
+    },
+    {
+      "id": "g6",
+      "label": {
+        "de": "Klasse 6"
+      },
+      "ordinal": 6,
+      "stage": "sec1",
+      "typical_age": 11
+    },
+    {
+      "id": "g7",
+      "label": {
+        "de": "Klasse 7"
+      },
+      "ordinal": 7,
+      "stage": "sec1",
+      "typical_age": 12
+    },
+    {
+      "id": "g8",
+      "label": {
+        "de": "Klasse 8"
+      },
+      "ordinal": 8,
+      "stage": "sec1",
+      "typical_age": 13
+    },
+    {
+      "id": "g9",
+      "label": {
+        "de": "Klasse 9"
+      },
+      "ordinal": 9,
+      "stage": "sec1",
+      "typical_age": 14
+    },
+    {
+      "id": "g10",
+      "label": {
+        "de": "Klasse 10"
+      },
+      "ordinal": 10,
+      "stage": "sec1",
+      "typical_age": 15
+    },
+    {
+      "id": "g11",
+      "label": {
+        "de": "Jahrgang 11"
+      },
+      "ordinal": 11,
+      "stage": "sec2",
+      "typical_age": 16,
+      "aliases": [
+        "Einführungsphase",
+        "E"
+      ]
+    },
+    {
+      "id": "g12",
+      "label": {
+        "de": "Jahrgang 12"
+      },
+      "ordinal": 12,
+      "stage": "sec2",
+      "typical_age": 17,
+      "aliases": [
+        "Q1"
+      ]
+    },
+    {
+      "id": "g13",
+      "label": {
+        "de": "Jahrgang 13"
+      },
+      "ordinal": 13,
+      "stage": "sec2",
+      "typical_age": 18,
+      "aliases": [
+        "Q2"
+      ]
+    }
+  ],
+  "programs": [
+    {
+      "id": "grundschule",
+      "label": {
+        "de": "Grundschule"
+      },
+      "stages": [
+        "primar"
+      ],
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ],
+      "class_model": "class"
+    },
+    {
+      "id": "gymnasium",
+      "label": {
+        "de": "Gymnasium"
+      },
+      "stages": [
+        "sec1",
+        "sec2"
+      ],
+      "grades": [
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "tracks": [
+        "oberstufe"
+      ],
+      "qualifications": [
+        "msa",
+        "fhr",
+        "abitur"
+      ],
+      "notes": "G9 für alle Jahrgänge seit 2019/20; Orientierungsstufe 5–6; Profiloberstufe ab Jg. 11 (E-Phase), Qualifikationsphase 12–13",
+      "class_model": "class"
+    },
+    {
+      "id": "gesamtschule",
+      "label": {
+        "de": "Gesamtschule"
+      },
+      "stages": [
+        "sec1",
+        "sec2"
+      ],
+      "grades": [
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "tracks": [
+        "ge-kurs",
+        "oberstufe"
+      ],
+      "qualifications": [
+        "esa",
+        "msa",
+        "fhr",
+        "abitur"
+      ],
+      "class_model": "class",
+      "notes": "Oberstufe: Kurse mit Track oberstufe (scope enrollment), Stammgruppe als Tutorium.",
+      "disabled": true
+    },
+    {
+      "id": "realschule",
+      "label": {
+        "de": "Realschule"
+      },
+      "stages": [
+        "sec1"
+      ],
+      "grades": [
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10"
+      ],
+      "qualifications": [
+        "msa"
+      ],
+      "class_model": "class",
+      "disabled": true
+    },
+    {
+      "id": "hauptschule",
+      "label": {
+        "de": "Hauptschule"
+      },
+      "stages": [
+        "sec1"
+      ],
+      "grades": [
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9"
+      ],
+      "qualifications": [
+        "esa"
+      ],
+      "class_model": "class",
+      "disabled": true
+    },
+    {
+      "id": "foerderschule",
+      "label": {
+        "de": "Förderzentrum"
+      },
+      "stages": [
+        "primar",
+        "sec1"
+      ],
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10"
+      ],
+      "aliases": [
+        "Förderzentrum",
+        "FöZ"
+      ],
+      "class_model": "class",
+      "notes": "In SH heißen Förderschulen Förderzentren; sie arbeiten überwiegend inklusiv an Regelschulen"
+    },
+    {
+      "id": "gemeinschaftsschule",
+      "label": {
+        "de": "Gemeinschaftsschule"
+      },
+      "stages": [
+        "sec1",
+        "sec2"
+      ],
+      "grades": [
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "class_model": "class",
+      "tracks": [
+        "ge-kurs",
+        "oberstufe"
+      ],
+      "qualifications": [
+        "esa",
+        "msa",
+        "fhr",
+        "abitur"
+      ],
+      "aliases": [
+        "GemS"
+      ],
+      "notes": "Gemeinsames Lernen bis Jg. 10, Abschlüsse ESA/MSA; Oberstufe nur an Gemeinschaftsschulen mit Oberstufe, Abitur nach 13"
+    },
+    {
+      "id": "waldorf-ersatzschule",
+      "label": {
+        "de": "Freie Waldorfschule (Ersatzschule)"
+      },
+      "stages": [
+        "primar",
+        "sec1",
+        "sec2"
+      ],
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "class_model": "class",
+      "qualifications": [
+        "esa",
+        "msa",
+        "abitur"
+      ],
+      "approval": "private-approved",
+      "notes": "Genehmigte Ersatzschule. Ob ESA/MSA/Abitur im Haus unter staatlichem Vorsitz oder als Externenprüfung abgelegt werden, ist je Schule an der Anerkennung festzumachen – vor Einsatz prüfen (siehe exams)."
+    }
+  ],
+  "tracks": [
+    {
+      "id": "ge-kurs",
+      "label": {
+        "de": "Kursniveau (Gesamtschule)"
+      },
+      "scope": "enrollment",
+      "levels": [
+        {
+          "id": "e",
+          "label": {
+            "de": "E-Kurs (erweitert)"
+          }
+        },
+        {
+          "id": "g",
+          "label": {
+            "de": "G-Kurs (grundlegend)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "oberstufe",
+      "label": {
+        "de": "Profiloberstufe"
+      },
+      "scope": "enrollment",
+      "levels": [
+        {
+          "id": "lk",
+          "label": {
+            "de": "Leistungskurs"
+          },
+          "disabled": true
+        },
+        {
+          "id": "gk",
+          "label": {
+            "de": "Grundkurs"
+          },
+          "disabled": true
+        },
+        {
+          "id": "ea",
+          "label": {
+            "de": "erhöhtes Anforderungsniveau (Kernfächer, Profilfach)"
+          }
+        },
+        {
+          "id": "ga",
+          "label": {
+            "de": "grundlegendes Anforderungsniveau"
+          }
+        }
+      ],
+      "notes": "Kein LK/GK-System: Kernfächer und Profilfach auf erhöhtem Niveau, profilergänzende Fächer grundlegend"
+    }
+  ],
+  "qualifications": [
+    {
+      "id": "esa",
+      "label": {
+        "de": "Erster allgemeinbildender Schulabschluss (ESA)"
+      },
+      "after_grade": "g9",
+      "grants_access": [
+        "ausbildung"
+      ],
+      "aliases": [
+        "Hauptschulabschluss",
+        "Berufsbildungsreife"
+      ],
+      "programs": [
+        "gemeinschaftsschule",
+        "waldorf-ersatzschule"
+      ]
+    },
+    {
+      "id": "msa",
+      "label": {
+        "de": "Mittlerer Schulabschluss (MSA)"
+      },
+      "after_grade": "g10",
+      "grants_access": [
+        "ausbildung",
+        "oberstufe",
+        "fachoberschule"
+      ],
+      "aliases": [
+        "Realschulabschluss",
+        "Mittlere Reife"
+      ],
+      "programs": [
+        "gemeinschaftsschule",
+        "gymnasium",
+        "waldorf-ersatzschule"
+      ]
+    },
+    {
+      "id": "fhr",
+      "label": {
+        "de": "Fachhochschulreife (schulischer Teil)"
+      },
+      "after_grade": "g12",
+      "grants_access": [
+        "fachhochschule"
+      ],
+      "programs": [
+        "gemeinschaftsschule",
+        "gymnasium"
+      ]
+    },
+    {
+      "id": "abitur",
+      "label": {
+        "de": "Abitur"
+      },
+      "after_grade": "g13",
+      "grants_access": [
+        "universitaet",
+        "fachhochschule"
+      ],
+      "programs": [
+        "gymnasium",
+        "gemeinschaftsschule",
+        "waldorf-ersatzschule"
+      ]
+    }
+  ],
+  "subject_domains": [
+    {
+      "id": "lang",
+      "label": {
+        "de": "Sprachen"
+      }
+    },
+    {
+      "id": "math",
+      "label": {
+        "de": "Mathematik"
+      }
+    },
+    {
+      "id": "science",
+      "label": {
+        "de": "Naturwissenschaften"
+      }
+    },
+    {
+      "id": "social",
+      "label": {
+        "de": "Gesellschaftswissenschaften"
+      }
+    },
+    {
+      "id": "arts",
+      "label": {
+        "de": "Künste"
+      }
+    },
+    {
+      "id": "sport",
+      "label": {
+        "de": "Sport"
+      }
+    },
+    {
+      "id": "religion",
+      "label": {
+        "de": "Religion / Ethik"
+      }
+    },
+    {
+      "id": "media",
+      "label": {
+        "de": "Informatik / Medien"
+      }
+    },
+    {
+      "id": "cross",
+      "label": {
+        "de": "Übergreifend"
+      }
+    }
+  ],
+  "subjects": [
+    {
+      "id": "de",
+      "label": {
+        "de": "Deutsch"
+      },
+      "domain": "lang",
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "tracked": true
+    },
+    {
+      "id": "en",
+      "label": {
+        "de": "Englisch"
+      },
+      "domain": "lang",
+      "grades": [
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "tracked": true
+    },
+    {
+      "id": "fr",
+      "label": {
+        "de": "Französisch"
+      },
+      "domain": "lang",
+      "grades": [
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "kind": "elective",
+      "optional": true
+    },
+    {
+      "id": "la",
+      "label": {
+        "de": "Latein"
+      },
+      "domain": "lang",
+      "grades": [
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "kind": "elective",
+      "optional": true
+    },
+    {
+      "id": "es",
+      "label": {
+        "de": "Spanisch"
+      },
+      "domain": "lang",
+      "grades": [
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "kind": "elective",
+      "optional": true
+    },
+    {
+      "id": "math",
+      "label": {
+        "de": "Mathematik"
+      },
+      "domain": "math",
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "tracked": true
+    },
+    {
+      "id": "su",
+      "label": {
+        "de": "Sachunterricht"
+      },
+      "domain": "science",
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ]
+    },
+    {
+      "id": "bio",
+      "label": {
+        "de": "Biologie"
+      },
+      "domain": "science",
+      "grades": [
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ]
+    },
+    {
+      "id": "ch",
+      "label": {
+        "de": "Chemie"
+      },
+      "domain": "science",
+      "grades": [
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ]
+    },
+    {
+      "id": "ph",
+      "label": {
+        "de": "Physik"
+      },
+      "domain": "science",
+      "grades": [
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ]
+    },
+    {
+      "id": "nawi",
+      "label": {
+        "de": "Naturwissenschaften"
+      },
+      "domain": "science",
+      "grades": [
+        "g5",
+        "g6"
+      ],
+      "aliases": [
+        "NaWi"
+      ]
+    },
+    {
+      "id": "gs",
+      "label": {
+        "de": "Geschichte"
+      },
+      "domain": "social",
+      "grades": [
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ]
+    },
+    {
+      "id": "geo",
+      "label": {
+        "de": "Geografie"
+      },
+      "domain": "social",
+      "grades": [
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "aliases": [
+        "Erdkunde"
+      ]
+    },
+    {
+      "id": "pol",
+      "label": {
+        "de": "Wirtschaft/Politik"
+      },
+      "domain": "social",
+      "grades": [
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "aliases": [
+        "WiPo"
+      ]
+    },
+    {
+      "id": "wi",
+      "label": {
+        "de": "Wirtschaft"
+      },
+      "domain": "social",
+      "grades": [
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "aliases": [
+        "Arbeitslehre",
+        "WAT"
+      ]
+    },
+    {
+      "id": "ku",
+      "label": {
+        "de": "Kunst"
+      },
+      "domain": "arts",
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ]
+    },
+    {
+      "id": "mu",
+      "label": {
+        "de": "Musik"
+      },
+      "domain": "arts",
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ]
+    },
+    {
+      "id": "ds",
+      "label": {
+        "de": "Darstellendes Spiel"
+      },
+      "domain": "arts",
+      "grades": [
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "aliases": [
+        "Theater"
+      ]
+    },
+    {
+      "id": "sp",
+      "label": {
+        "de": "Sport"
+      },
+      "domain": "sport",
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ]
+    },
+    {
+      "id": "rel",
+      "label": {
+        "de": "Religion"
+      },
+      "domain": "religion",
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "optional": true
+    },
+    {
+      "id": "eth",
+      "label": {
+        "de": "Philosophie"
+      },
+      "domain": "religion",
+      "grades": [
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "optional": true,
+      "aliases": [
+        "Werte und Normen",
+        "Praktische Philosophie"
+      ],
+      "notes": "Alternative zum Religionsunterricht"
+    },
+    {
+      "id": "inf",
+      "label": {
+        "de": "Informatik"
+      },
+      "domain": "media",
+      "grades": [
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "kind": "elective",
+      "optional": true
+    },
+    {
+      "id": "wpk",
+      "label": {
+        "de": "Wahlpflichtkurs"
+      },
+      "domain": "cross",
+      "grades": [
+        "g7",
+        "g8",
+        "g9",
+        "g10"
+      ],
+      "kind": "elective",
+      "optional": true
+    },
+    {
+      "id": "sem",
+      "label": {
+        "de": "Seminar / Projektkurs"
+      },
+      "domain": "cross",
+      "grades": [
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "kind": "project",
+      "optional": true,
+      "aliases": [
+        "W-Seminar",
+        "P-Seminar",
+        "Seminarkurs"
+      ]
+    },
+    {
+      "id": "weltkunde",
+      "label": {
+        "de": "Weltkunde"
+      },
+      "domain": "social",
+      "grades": [
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10"
+      ],
+      "programs": [
+        "gemeinschaftsschule"
+      ],
+      "aliases": [
+        "Gesellschaftswissenschaften"
+      ],
+      "notes": "Fächerverbund Geschichte/Geografie/Wirtschaft-Politik an Gemeinschaftsschulen"
+    },
+    {
+      "id": "da",
+      "label": {
+        "de": "Dänisch"
+      },
+      "domain": "lang",
+      "grades": [
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "notes": "Landesspezifisches Angebot, verbreitet im Landesteil Schleswig"
+    },
+    {
+      "id": "profil",
+      "label": {
+        "de": "Profilfach"
+      },
+      "domain": "cross",
+      "grades": [
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "kind": "core",
+      "tracked": true,
+      "aliases": [
+        "Profilgebendes Fach",
+        "Profilergänzendes Fach"
+      ],
+      "notes": "Sprachliches, naturwissenschaftliches, gesellschaftswissenschaftliches, ästhetisches oder sportliches Profil"
+    }
+  ],
+  "rules": [
+    {
+      "id": "uebertritt-5",
+      "kind": "transition",
+      "label": {
+        "de": "Übergang nach Klasse 4"
+      },
+      "applies_to": {
+        "from_grade": "g4"
+      },
+      "mode": "parent-choice",
+      "summary": {
+        "de": "Die Grundschule gibt eine Schulartempfehlung ab; die Eltern entscheiden zwischen Gemeinschaftsschule und Gymnasium. Weicht die Wahl von der Empfehlung ab, ist ein Beratungsgespräch vorgesehen. Am Gymnasium entscheidet die Orientierungsstufe (Jg. 5–6) über den Verbleib."
+      },
+      "source": "SchulG SH; GrVO; SAVOGym",
+      "notes": "Paragrafen vor Einsatz nachtragen"
+    },
+    {
+      "id": "schulpflicht",
+      "kind": "compulsory-schooling",
+      "label": {
+        "de": "Schulpflicht"
+      },
+      "summary": {
+        "de": "9 Jahre Vollzeitschulpflicht, anschließend Berufsschulpflicht; Einschulungsstichtag 30. Juni, auf Antrag vorzeitige Einschulung."
+      },
+      "source": "SchulG SH §§ 20–22"
+    },
+    {
+      "id": "versetzung",
+      "kind": "promotion",
+      "label": {
+        "de": "Aufsteigen und Versetzung"
+      },
+      "summary": {
+        "de": "Grundschule und Gemeinschaftsschule Sek I: Aufsteigen ohne Versetzungsentscheidung, Wiederholung auf Antrag oder Beschluss; Gymnasium: Versetzung nach Leistung ab Jg. 7."
+      },
+      "source": "SchulG SH; GrVO; GemVO; SAVOGym",
+      "notes": "Paragrafen vor Einsatz nachtragen"
+    }
+  ],
+  "exams": [
+    {
+      "id": "abitur-sh",
+      "label": {
+        "de": "Abiturprüfung Schleswig-Holstein"
+      },
+      "qualification": "abitur",
+      "mode": "central",
+      "at_grade": "g13",
+      "components": [
+        {
+          "id": "written",
+          "count": 3
+        },
+        {
+          "id": "oral",
+          "count": 1
+        }
+      ],
+      "summary": {
+        "de": "Zentrale schriftliche Aufgaben in den Kernfächern und im Profilfach; vierte Prüfung mündlich, auf Antrag als Präsentationsprüfung."
+      },
+      "source": "OAPVO"
+    },
+    {
+      "id": "msa-sh",
+      "label": {
+        "de": "Prüfung zum Mittleren Schulabschluss"
+      },
+      "qualification": "msa",
+      "mode": "central",
+      "at_grade": "g10",
+      "components": [
+        {
+          "id": "written",
+          "count": 3
+        },
+        {
+          "id": "oral",
+          "count": 1
+        }
+      ],
+      "summary": {
+        "de": "Zentrale schriftliche Prüfungen in Deutsch, Mathematik und Englisch; mündliche Prüfung bzw. Projektprüfung."
+      },
+      "source": "GemVO"
+    },
+    {
+      "id": "esa-sh",
+      "label": {
+        "de": "Prüfung zum Ersten allgemeinbildenden Schulabschluss"
+      },
+      "qualification": "esa",
+      "mode": "central",
+      "at_grade": "g9",
+      "components": [
+        {
+          "id": "written",
+          "count": 3
+        },
+        {
+          "id": "practical",
+          "count": 1,
+          "label": {
+            "de": "Projektprüfung"
+          }
+        }
+      ],
+      "summary": {
+        "de": "Zentrale schriftliche Prüfungen in Deutsch, Mathematik und Englisch; Projektprüfung."
+      },
+      "source": "GemVO"
+    },
+    {
+      "id": "abitur-waldorf-sh",
+      "label": {
+        "de": "Abitur an Waldorfschulen"
+      },
+      "qualification": "abitur",
+      "mode": "external",
+      "at_grade": "g13",
+      "summary": {
+        "de": "Genehmigte Ersatzschulen ohne eigene Prüfungsberechtigung führen zur Externenprüfung (Nichtschülerabitur); anerkannte Ersatzschulen prüfen im Haus unter staatlichem Vorsitz. Welcher Fall gilt, steht in der Anerkennung der jeweiligen Schule."
+      },
+      "source": "SchulG SH (Ersatzschulen); Landesverordnung über die Abiturprüfung für Nichtschülerinnen und Nichtschüler",
+      "notes": "Vor Einsatz je Schule klären"
+    }
+  ],
+  "legal": [
+    {
+      "id": "schulgesetz",
+      "kind": "school-act",
+      "label": {
+        "de": "Schleswig-Holsteinisches Schulgesetz (SchulG)"
+      },
+      "url": "https://www.gesetze-rechtsprechung.sh.juris.de/",
+      "sections": {
+        "schulpflicht": "§§ 20–29",
+        "datenschutz": "§ 30",
+        "ersatzschulen": "§§ 115–122",
+        "elternrechte": "§§ 67–73"
+      },
+      "notes": "Paragrafen gegen aktuellen Stand prüfen"
+    },
+    {
+      "id": "datenschutz",
+      "kind": "data-protection",
+      "label": {
+        "de": "SchulG § 30, Schul-Datenschutzverordnung (SchulDSVO), LDSG SH, DSGVO"
+      },
+      "summary": {
+        "de": "Datenverarbeitung an Schulen nach SchulG und SchulDSVO; Auftragsverarbeitung nach Art. 28 DSGVO; Datenschutzbeauftragte Person je Schule."
+      }
+    },
+    {
+      "id": "aufsicht",
+      "kind": "authority",
+      "label": {
+        "de": "Ministerium für Allgemeine und Berufliche Bildung, Wissenschaft, Forschung und Kultur (MBWFK); Schulämter der Kreise und kreisfreien Städte für Grund-, Gemeinschafts- und Förderschulen"
+      },
+      "url": "https://www.schleswig-holstein.de/"
+    },
+    {
+      "id": "aufbewahrung",
+      "kind": "retention",
+      "label": {
+        "de": "Aufbewahrungsfristen Schülerunterlagen"
+      },
+      "summary": {
+        "de": "Schülerakten nach Abgang befristet aufbewahren, Abschlusszeugnisse und Zeugnislisten langfristig; konkrete Fristen nach Verwaltungsvorschrift des Landes."
+      },
+      "source": "Aufbewahrungsbestimmungen für Schulen SH",
+      "notes": "Fristen vor Einsatz nachtragen"
+    },
+    {
+      "id": "meldung-ifsg",
+      "kind": "reporting",
+      "label": {
+        "de": "Meldepflicht nach § 34 IfSG"
+      },
+      "summary": {
+        "de": "Meldung an das Gesundheitsamt bei meldepflichtigen Erkrankungen; Belehrung der Eltern bei Aufnahme."
+      },
+      "source": "IfSG § 34"
+    }
+  ]
+}

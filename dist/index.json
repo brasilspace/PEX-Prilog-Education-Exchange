@@ -1,0 +1,587 @@
+{
+  "format": "pex-index",
+  "schema": "https://raw.githubusercontent.com/brasilspace/PEX-Prilog-Education-Exchange/main/schema/pex.schema.json",
+  "schema_version": "2.2",
+  "packages": [
+    {
+      "id": "at",
+      "kind": "base",
+      "version": "0.3.0",
+      "extends": null,
+      "country": "AT",
+      "region": null,
+      "languages": [
+        "de"
+      ],
+      "name": {
+        "de": "Österreich"
+      },
+      "file": "packages/base/at.pex.json",
+      "sha256": "sha256:834671f65fd0e7e32eff81c45190c4328b616978a13dfd41c490f3cb9a8acfc6"
+    },
+    {
+      "id": "ch-de",
+      "kind": "base",
+      "version": "0.3.0",
+      "extends": null,
+      "country": "CH",
+      "region": null,
+      "languages": [
+        "de"
+      ],
+      "name": {
+        "de": "Schweiz – Deutschschweiz (Lehrplan 21)"
+      },
+      "file": "packages/base/ch-de.pex.json",
+      "sha256": "sha256:9f24750b54f15245dc1e3e937d85eb60bef0c99f3b594c54a142a88ccbab4b34"
+    },
+    {
+      "id": "de",
+      "kind": "base",
+      "version": "0.3.0",
+      "extends": null,
+      "country": "DE",
+      "region": null,
+      "languages": [
+        "de"
+      ],
+      "name": {
+        "de": "Deutschland (Basis)"
+      },
+      "file": "packages/base/de.pex.json",
+      "sha256": "sha256:1f74e22bf0f3807bc173ba7c06e1098c00af2531626ab19ae14db39f0d38f98d"
+    },
+    {
+      "id": "us",
+      "kind": "base",
+      "version": "0.2.1",
+      "extends": null,
+      "country": "US",
+      "region": null,
+      "languages": [
+        "en"
+      ],
+      "name": {
+        "en": "United States (K-12, generic)"
+      },
+      "file": "packages/base/us.pex.json",
+      "sha256": "sha256:78b11344fc5a1b4a32db13e90d535949fee8531bdd71506a5202e8a284bfdb4a"
+    },
+    {
+      "id": "ch-zh",
+      "kind": "overlay",
+      "version": "0.1.0",
+      "extends": [
+        "ch-de"
+      ],
+      "country": "CH",
+      "region": "ZH",
+      "languages": [
+        "de"
+      ],
+      "name": {
+        "de": "Kanton Zürich"
+      },
+      "file": "packages/overlays/ch-zh.pex.json",
+      "sha256": "sha256:e9c874406a0bd66ce630420f373d984252e20ae4e09e924bad3347a5f868fd66"
+    },
+    {
+      "id": "de-by",
+      "kind": "overlay",
+      "version": "0.1.1",
+      "extends": [
+        "de"
+      ],
+      "country": "DE",
+      "region": "BY",
+      "languages": [
+        "de"
+      ],
+      "name": {
+        "de": "Bayern"
+      },
+      "file": "packages/overlays/de-by.pex.json",
+      "sha256": "sha256:5dbd94dea7705404e174c65ed192ee87d629b826f38ad7aff8c440ec9eea3558"
+    },
+    {
+      "id": "de-hh",
+      "kind": "overlay",
+      "version": "0.2.0",
+      "extends": [
+        "de"
+      ],
+      "country": "DE",
+      "region": "HH",
+      "languages": [
+        "de"
+      ],
+      "name": {
+        "de": "Hamburg"
+      },
+      "file": "packages/overlays/de-hh.pex.json",
+      "sha256": "sha256:906e69945512c5905308139e5e876d4c5ef9a74fa8ee360282141b8de3ef37c3"
+    },
+    {
+      "id": "de-sh",
+      "kind": "overlay",
+      "version": "0.1.0",
+      "extends": [
+        "de"
+      ],
+      "country": "DE",
+      "region": "SH",
+      "languages": [
+        "de"
+      ],
+      "name": {
+        "de": "Schleswig-Holstein"
+      },
+      "file": "packages/overlays/de-sh.pex.json",
+      "sha256": "sha256:3c5bc85fd7175dd71f0691beea407f675953cd8eac50ec0c54f6e330d4cbd055"
+    },
+    {
+      "id": "montessori",
+      "kind": "overlay",
+      "version": "0.3.0",
+      "extends": [
+        "*"
+      ],
+      "country": "XX",
+      "region": null,
+      "languages": [
+        "de",
+        "en"
+      ],
+      "name": {
+        "de": "Montessori (altersgemischte Lerngruppen)",
+        "en": "Montessori (mixed-age learning groups)"
+      },
+      "file": "packages/overlays/montessori.pex.json",
+      "sha256": "sha256:0da115fe586367a0d28a5dbcf36ba4435dbf519c47913169400224675bd9298d"
+    },
+    {
+      "id": "waldorf",
+      "kind": "overlay",
+      "version": "0.4.0",
+      "extends": [
+        "*"
+      ],
+      "country": "XX",
+      "region": null,
+      "languages": [
+        "de",
+        "fr",
+        "en"
+      ],
+      "name": {
+        "de": "Waldorfpädagogik",
+        "fr": "Pédagogie Waldorf",
+        "en": "Waldorf education"
+      },
+      "file": "packages/overlays/waldorf.pex.json",
+      "sha256": "sha256:7cb1b6af79f70023d0ad9957db9ca68e33851f9809cbaff5755db6230ad754d6"
+    }
+  ],
+  "stacks": [
+    {
+      "id": "at",
+      "layers": [
+        {
+          "id": "at",
+          "version": "0.3.0"
+        }
+      ],
+      "file": "dist/effective/at.json",
+      "sha256": "sha256:a3f8b3fd9333ac0234d5caccf45cb7aba7b6cfa46aa5427b35f9d1f59686a9a0",
+      "hints": 0
+    },
+    {
+      "id": "ch-de",
+      "layers": [
+        {
+          "id": "ch-de",
+          "version": "0.3.0"
+        }
+      ],
+      "file": "dist/effective/ch-de.json",
+      "sha256": "sha256:341b55e072f8c4131a7cc03212f68918edeeb94c51a786585726d38d4b836469",
+      "hints": 0
+    },
+    {
+      "id": "de",
+      "layers": [
+        {
+          "id": "de",
+          "version": "0.3.0"
+        }
+      ],
+      "file": "dist/effective/de.json",
+      "sha256": "sha256:40aaaee1a77d6aa4c657302f1a7b37ffee250ddbc69ed0b808222c6e6136d233",
+      "hints": 0
+    },
+    {
+      "id": "us",
+      "layers": [
+        {
+          "id": "us",
+          "version": "0.2.1"
+        }
+      ],
+      "file": "dist/effective/us.json",
+      "sha256": "sha256:727a8dd5721d4a9d0516f1c0a08c26807f1724f9aa5ef0f2fa4d04bd61432aef",
+      "hints": 0
+    },
+    {
+      "id": "at+montessori",
+      "layers": [
+        {
+          "id": "at",
+          "version": "0.3.0"
+        },
+        {
+          "id": "montessori",
+          "version": "0.3.0"
+        }
+      ],
+      "file": "dist/effective/at+montessori.json",
+      "sha256": "sha256:8cf1a3e3c1effedf689410af4a9da47e68949889856cac8e65027458df99bd4c",
+      "hints": 0
+    },
+    {
+      "id": "at+waldorf",
+      "layers": [
+        {
+          "id": "at",
+          "version": "0.3.0"
+        },
+        {
+          "id": "waldorf",
+          "version": "0.4.0"
+        }
+      ],
+      "file": "dist/effective/at+waldorf.json",
+      "sha256": "sha256:8eef2df7dd24ce224e541af5ebc68b709054e97f5de3a2cd884c3cd8539c61e4",
+      "hints": 0
+    },
+    {
+      "id": "ch-de+ch-zh",
+      "layers": [
+        {
+          "id": "ch-de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "ch-zh",
+          "version": "0.1.0"
+        }
+      ],
+      "file": "dist/effective/ch-de+ch-zh.json",
+      "sha256": "sha256:7e1da96e32c39eec47a8d36f1387296a46656a04f5c5d95ddfde292e3a179411",
+      "hints": 0
+    },
+    {
+      "id": "ch-de+montessori",
+      "layers": [
+        {
+          "id": "ch-de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "montessori",
+          "version": "0.3.0"
+        }
+      ],
+      "file": "dist/effective/ch-de+montessori.json",
+      "sha256": "sha256:deec8ac260a58f6b8827c6e30936a44ea595c40efaf0611bb0db06745d949707",
+      "hints": 0
+    },
+    {
+      "id": "ch-de+waldorf",
+      "layers": [
+        {
+          "id": "ch-de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "waldorf",
+          "version": "0.4.0"
+        }
+      ],
+      "file": "dist/effective/ch-de+waldorf.json",
+      "sha256": "sha256:c41ad37f45240e4ca7165f0ba464e1cdd6924a61716254acef9c34696878e9c0",
+      "hints": 0
+    },
+    {
+      "id": "ch-de+ch-zh+montessori",
+      "layers": [
+        {
+          "id": "ch-de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "ch-zh",
+          "version": "0.1.0"
+        },
+        {
+          "id": "montessori",
+          "version": "0.3.0"
+        }
+      ],
+      "file": "dist/effective/ch-de+ch-zh+montessori.json",
+      "sha256": "sha256:1f625774a89478f46784c64036fb74e964430d6890d388d3fc10a7e0baafbc6c",
+      "hints": 0
+    },
+    {
+      "id": "ch-de+ch-zh+waldorf",
+      "layers": [
+        {
+          "id": "ch-de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "ch-zh",
+          "version": "0.1.0"
+        },
+        {
+          "id": "waldorf",
+          "version": "0.4.0"
+        }
+      ],
+      "file": "dist/effective/ch-de+ch-zh+waldorf.json",
+      "sha256": "sha256:a5907628c0fe5f800a4ec06843a03ff4d5d2c8e2b733f6a01a1b69868d52b514",
+      "hints": 0
+    },
+    {
+      "id": "de+de-by",
+      "layers": [
+        {
+          "id": "de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "de-by",
+          "version": "0.1.1"
+        }
+      ],
+      "file": "dist/effective/de+de-by.json",
+      "sha256": "sha256:101cd0fbb2a8df4712f0921ac79c2372ffc3e5b84900d157a167b30f6206c82a",
+      "hints": 0
+    },
+    {
+      "id": "de+de-hh",
+      "layers": [
+        {
+          "id": "de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "de-hh",
+          "version": "0.2.0"
+        }
+      ],
+      "file": "dist/effective/de+de-hh.json",
+      "sha256": "sha256:8a57cb9cc6211c1d451d416fbcd4f7e1181bda0b315ddf6908a8b2b112ab85bb",
+      "hints": 0
+    },
+    {
+      "id": "de+de-sh",
+      "layers": [
+        {
+          "id": "de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "de-sh",
+          "version": "0.1.0"
+        }
+      ],
+      "file": "dist/effective/de+de-sh.json",
+      "sha256": "sha256:706ffa2e605a0329c9a4902749a4ef3aed4059cd850028667b998c5bf09ff53b",
+      "hints": 0
+    },
+    {
+      "id": "de+montessori",
+      "layers": [
+        {
+          "id": "de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "montessori",
+          "version": "0.3.0"
+        }
+      ],
+      "file": "dist/effective/de+montessori.json",
+      "sha256": "sha256:d776e70e4388bc594a7dc1a627d5b2778af47af531b78d82de924a16df68a8e5",
+      "hints": 0
+    },
+    {
+      "id": "de+waldorf",
+      "layers": [
+        {
+          "id": "de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "waldorf",
+          "version": "0.4.0"
+        }
+      ],
+      "file": "dist/effective/de+waldorf.json",
+      "sha256": "sha256:9a0d05c0df827988f2fdf8ebf98e3b83bb871d684a8feee47ce7ccdf55839d77",
+      "hints": 0
+    },
+    {
+      "id": "de+de-by+montessori",
+      "layers": [
+        {
+          "id": "de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "de-by",
+          "version": "0.1.1"
+        },
+        {
+          "id": "montessori",
+          "version": "0.3.0"
+        }
+      ],
+      "file": "dist/effective/de+de-by+montessori.json",
+      "sha256": "sha256:559887f406e7abbf2df0d056fd7990515a92fa08a38d33e3e6cdc43f8c4697cc",
+      "hints": 0
+    },
+    {
+      "id": "de+de-by+waldorf",
+      "layers": [
+        {
+          "id": "de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "de-by",
+          "version": "0.1.1"
+        },
+        {
+          "id": "waldorf",
+          "version": "0.4.0"
+        }
+      ],
+      "file": "dist/effective/de+de-by+waldorf.json",
+      "sha256": "sha256:0ee7e225867f8f44beb3b1c63be548ff75c097347f3da5fdc3116da8103463a7",
+      "hints": 0
+    },
+    {
+      "id": "de+de-hh+montessori",
+      "layers": [
+        {
+          "id": "de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "de-hh",
+          "version": "0.2.0"
+        },
+        {
+          "id": "montessori",
+          "version": "0.3.0"
+        }
+      ],
+      "file": "dist/effective/de+de-hh+montessori.json",
+      "sha256": "sha256:e4b0ec2ee2e0ff520d0e3ba370e2da73cf913ec888ec9c64312c3d93fc94a7e8",
+      "hints": 0
+    },
+    {
+      "id": "de+de-hh+waldorf",
+      "layers": [
+        {
+          "id": "de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "de-hh",
+          "version": "0.2.0"
+        },
+        {
+          "id": "waldorf",
+          "version": "0.4.0"
+        }
+      ],
+      "file": "dist/effective/de+de-hh+waldorf.json",
+      "sha256": "sha256:a4eef992a0b87c3562304b6bb84f54deb52f9cfa057534cb48fe4b6d19fde816",
+      "hints": 0
+    },
+    {
+      "id": "de+de-sh+montessori",
+      "layers": [
+        {
+          "id": "de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "de-sh",
+          "version": "0.1.0"
+        },
+        {
+          "id": "montessori",
+          "version": "0.3.0"
+        }
+      ],
+      "file": "dist/effective/de+de-sh+montessori.json",
+      "sha256": "sha256:f2dc3d9b83d025fa64d05754e11ca733b2ca429c2ea071e3be0e435cef51e2c6",
+      "hints": 0
+    },
+    {
+      "id": "de+de-sh+waldorf",
+      "layers": [
+        {
+          "id": "de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "de-sh",
+          "version": "0.1.0"
+        },
+        {
+          "id": "waldorf",
+          "version": "0.4.0"
+        }
+      ],
+      "file": "dist/effective/de+de-sh+waldorf.json",
+      "sha256": "sha256:02b6176039936906a8e476286469c2a2b3ca19b1939ee053437c5cf13b03b9fb",
+      "hints": 0
+    },
+    {
+      "id": "us+montessori",
+      "layers": [
+        {
+          "id": "us",
+          "version": "0.2.1"
+        },
+        {
+          "id": "montessori",
+          "version": "0.3.0"
+        }
+      ],
+      "file": "dist/effective/us+montessori.json",
+      "sha256": "sha256:bdfa0b6430bf0863b163e160624b325bf6897d24a51a05062d19c2d5b1ee858a",
+      "hints": 0
+    },
+    {
+      "id": "us+waldorf",
+      "layers": [
+        {
+          "id": "us",
+          "version": "0.2.1"
+        },
+        {
+          "id": "waldorf",
+          "version": "0.4.0"
+        }
+      ],
+      "file": "dist/effective/us+waldorf.json",
+      "sha256": "sha256:6d5c8960209296614c286cf97d25c877fae6df2e59c3d9462de37bc19b259297",
+      "hints": 0
+    }
+  ]
+}

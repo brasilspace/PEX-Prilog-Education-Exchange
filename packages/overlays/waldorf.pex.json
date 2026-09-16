@@ -1,0 +1,266 @@
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/PEX-Prilog-Education-Exchange/main/schema/pex.schema.json",
+    "id": "waldorf",
+    "version": "0.4.0",
+    "kind": "overlay",
+    "extends": "*",
+    "country": "XX",
+    "languages": [
+      "de",
+      "fr",
+      "en"
+    ],
+    "name": {
+      "de": "Waldorfpädagogik",
+      "fr": "Pédagogie Waldorf",
+      "en": "Waldorf education"
+    },
+    "source": "Lehrplan der Freien Waldorfschulen (Richter), Bund der Freien Waldorfschulen",
+    "notes": "Ändert Begriffe, ergänzt Fächer und Epochenunterricht, fügt Textzeugnis hinzu. Jahrgänge und Abschlüsse kommen aus dem Basis-Paket. Fächer hängen am Alter (age_from/age_to/age_years), nicht an Jahrgangs-IDs – deshalb passt das Overlay über jede Basis. Klassenzahlen stehen bewusst nicht im Klassenlehrer-Begriff: das achte Waldorf-Jahr ist in der Schweiz h10, in den USA sagt niemand „Kl. 8“.",
+    "license": "CC-BY-4.0",
+    "maintainer": "info@prilog.team"
+  },
+  "terminology": {
+    "class_teacher": {
+      "de": "Klassenlehrer:in / Klassenbetreuer:in ab der Oberstufe",
+      "fr": "Professeur·e de classe / référent·e au secondaire",
+      "en": "Class Teacher / Class Guardian from upper school"
+    },
+    "head": {
+      "de": "Schulführungskonferenz / Geschäftsführung",
+      "fr": "Conférence de direction / administration",
+      "en": "College of Teachers / Administration"
+    },
+    "report": {
+      "de": "Zeugnis (Textzeugnis)",
+      "fr": "Bulletin (appréciation rédigée)",
+      "en": "Report (written narrative)"
+    },
+    "parent_evening": {
+      "de": "Elternabend",
+      "fr": "Soirée des parents",
+      "en": "Parent Evening"
+    },
+    "lesson": {
+      "de": "Stunde",
+      "fr": "Heure de cours",
+      "en": "Lesson"
+    }
+  },
+  "grading": {
+    "default_scale": "text",
+    "scales": [
+      {
+        "id": "text",
+        "label": {
+          "de": "Textzeugnis",
+          "fr": "Bulletin rédigé",
+          "en": "Written report"
+        },
+        "kind": "text"
+      }
+    ]
+  },
+  "subject_domains": [
+    {
+      "id": "waldorf",
+      "label": {
+        "de": "Waldorfspezifisch",
+        "fr": "Spécifique Waldorf",
+        "en": "Waldorf-specific"
+      }
+    },
+    {
+      "id": "epoch",
+      "label": {
+        "de": "Epochen (Hauptunterricht)",
+        "fr": "Périodes (cours principal)",
+        "en": "Main lesson blocks"
+      }
+    }
+  ],
+  "subjects": [
+    {
+      "id": "eu",
+      "label": {
+        "de": "Eurythmie",
+        "fr": "Eurythmie",
+        "en": "Eurythmy"
+      },
+      "domain": "waldorf",
+      "age_from": 6,
+      "age_to": 18
+    },
+    {
+      "id": "gartenbau",
+      "label": {
+        "de": "Gartenbau",
+        "fr": "Jardinage",
+        "en": "Gardening"
+      },
+      "domain": "waldorf",
+      "age_from": 11,
+      "age_to": 15
+    },
+    {
+      "id": "handarbeit",
+      "label": {
+        "de": "Handarbeit",
+        "fr": "Travaux manuels textiles",
+        "en": "Handwork"
+      },
+      "domain": "waldorf",
+      "age_from": 6,
+      "age_to": 13
+    },
+    {
+      "id": "werken",
+      "label": {
+        "de": "Werken",
+        "fr": "Travaux manuels (bois, métal)",
+        "en": "Crafts (wood, metal)"
+      },
+      "domain": "waldorf",
+      "age_from": 10,
+      "age_to": 17
+    },
+    {
+      "id": "formenzeichnen",
+      "label": {
+        "de": "Formenzeichnen",
+        "fr": "Dessin de formes",
+        "en": "Form drawing"
+      },
+      "domain": "waldorf",
+      "age_from": 6,
+      "age_to": 10
+    },
+    {
+      "id": "ep-de",
+      "label": {
+        "de": "Epoche Deutsch",
+        "fr": "Période de langue",
+        "en": "Main lesson: Language"
+      },
+      "domain": "epoch",
+      "kind": "epoch",
+      "age_from": 6,
+      "age_to": 17
+    },
+    {
+      "id": "ep-math",
+      "label": {
+        "de": "Epoche Mathematik",
+        "fr": "Période de mathématiques",
+        "en": "Main lesson: Mathematics"
+      },
+      "domain": "epoch",
+      "kind": "epoch",
+      "age_from": 6,
+      "age_to": 17
+    },
+    {
+      "id": "ep-gs",
+      "label": {
+        "de": "Epoche Geschichte",
+        "fr": "Période d'histoire",
+        "en": "Main lesson: History"
+      },
+      "domain": "epoch",
+      "kind": "epoch",
+      "age_from": 10,
+      "age_to": 17
+    },
+    {
+      "id": "ep-geo",
+      "label": {
+        "de": "Epoche Geografie",
+        "fr": "Période de géographie",
+        "en": "Main lesson: Geography"
+      },
+      "domain": "epoch",
+      "kind": "epoch",
+      "age_from": 9,
+      "age_to": 17
+    },
+    {
+      "id": "ep-nawi",
+      "label": {
+        "de": "Epoche Naturkunde / Naturwissenschaft",
+        "fr": "Période de sciences de la nature",
+        "en": "Main lesson: Nature study / Science"
+      },
+      "domain": "epoch",
+      "kind": "epoch",
+      "aliases": [
+        "Tierkunde",
+        "Pflanzenkunde",
+        "Physik",
+        "Chemie",
+        "Astronomie"
+      ],
+      "age_from": 9,
+      "age_to": 17
+    },
+    {
+      "id": "ep-kunst",
+      "label": {
+        "de": "Epoche Kunstgeschichte / Ästhetik",
+        "fr": "Période d'histoire de l'art / esthétique",
+        "en": "Main lesson: Art history / Aesthetics"
+      },
+      "domain": "epoch",
+      "kind": "epoch",
+      "age_from": 14,
+      "age_to": 17
+    },
+    {
+      "id": "praktikum",
+      "label": {
+        "de": "Praktikum",
+        "fr": "Stage pratique",
+        "en": "Practicum"
+      },
+      "domain": "waldorf",
+      "kind": "project",
+      "aliases": [
+        "Landwirtschaftspraktikum",
+        "Feldmesspraktikum",
+        "Sozialpraktikum",
+        "Betriebspraktikum"
+      ],
+      "age_from": 14,
+      "age_to": 16
+    },
+    {
+      "id": "jahresarbeit",
+      "label": {
+        "de": "Jahresarbeit",
+        "fr": "Travail de fin d'année",
+        "en": "Year project"
+      },
+      "domain": "waldorf",
+      "kind": "project",
+      "age_years": [
+        13,
+        17
+      ]
+    },
+    {
+      "id": "klassenspiel",
+      "label": {
+        "de": "Klassenspiel",
+        "fr": "Pièce de théâtre de classe",
+        "en": "Class play"
+      },
+      "domain": "waldorf",
+      "kind": "project",
+      "age_years": [
+        13,
+        17
+      ]
+    }
+  ]
+}

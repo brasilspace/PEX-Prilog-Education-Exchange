@@ -1,0 +1,472 @@
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/PEX-Prilog-Education-Exchange/main/schema/pex.schema.json",
+    "id": "ch-zh",
+    "version": "0.1.0",
+    "kind": "overlay",
+    "extends": "ch-de",
+    "country": "CH",
+    "region": "ZH",
+    "languages": [
+      "de"
+    ],
+    "name": {
+      "de": "Kanton Zürich"
+    },
+    "source": "Volksschulgesetz (VSG, LS 412.100), Volksschulverordnung (VSV, LS 412.101), Zeugnisreglement, Mittelschulgesetz (MSG, LS 413.21), Aufnahmereglement für die Gymnasien",
+    "notes": "Geteiltes Sek-Modell: Abteilungen A/B (C) als Klassen, dazu Anforderungsstufen I–III je Fach. Langgymnasium ab 7. Schuljahr (h9, 6 Jahre), Kurzgymnasium nach 2./3. Sek (4 Jahre), zentrale Aufnahmeprüfung. Englisch ab 2., Französisch ab 5. Klasse. Struktur nach Fachkenntnis; Regeln und Paragrafen vor Einsatz gegen den aktuellen Erlasstext lesen.",
+    "license": "CC-BY-4.0",
+    "maintainer": "info@prilog.team"
+  },
+  "terminology": {
+    "class_teacher": {
+      "de": "Klassenlehrperson"
+    },
+    "parent_conference": {
+      "de": "Elterngespräch"
+    },
+    "track": {
+      "de": "Anforderungsstufe"
+    }
+  },
+  "grades": [
+    {
+      "id": "h9",
+      "label": {
+        "de": "1. Sek"
+      },
+      "aliases": [
+        "7. Klasse",
+        "1. Klasse Untergymnasium"
+      ]
+    },
+    {
+      "id": "h10",
+      "label": {
+        "de": "2. Sek"
+      },
+      "aliases": [
+        "8. Klasse",
+        "2. Klasse Untergymnasium"
+      ]
+    },
+    {
+      "id": "h11",
+      "label": {
+        "de": "3. Sek"
+      },
+      "aliases": [
+        "9. Klasse"
+      ]
+    }
+  ],
+  "programs": [
+    {
+      "id": "sek1",
+      "label": {
+        "de": "Sekundarschule"
+      },
+      "tracks": [
+        "sek-level",
+        "sek-subject-level"
+      ],
+      "notes": "Abteilungen A und B (C nur noch vereinzelt) als eigene Klassen; Anforderungsstufen I–III in Mathematik, Französisch, Englisch (und Deutsch) je Fach. Umstufungen semesterweise."
+    },
+    {
+      "id": "gym",
+      "label": {
+        "de": "Gymnasium (Kantonsschule)"
+      },
+      "grades": [
+        "h9",
+        "h10",
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "notes": "Langgymnasium: Untergymnasium h9–h10, dann 4 Jahre Obergymnasium; Kurzgymnasium: Eintritt nach 2. oder 3. Sek in s2-1. Welcher Weg gilt, sagt der Zug gym-variant an der Lerngruppe."
+    },
+    {
+      "id": "hms",
+      "label": {
+        "de": "Handelsmittelschule (HMS)"
+      },
+      "stages": [
+        "sec2"
+      ],
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "class_model": "class",
+      "qualifications": [
+        "efz",
+        "berufsmatura"
+      ],
+      "notes": "3 Jahre Schule plus 1 Jahr Praktikum; EFZ Kauffrau/Kaufmann und Berufsmaturität",
+      "remark": {
+        "de": "Fächer sind Sache der Schule (Fachrichtung); Prilog kennt Bildungsgang und Abschlüsse, den Fachkatalog ergänzt der Mandant."
+      }
+    },
+    {
+      "id": "ims",
+      "label": {
+        "de": "Informatikmittelschule (IMS)"
+      },
+      "stages": [
+        "sec2"
+      ],
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "class_model": "class",
+      "qualifications": [
+        "efz",
+        "berufsmatura"
+      ],
+      "notes": "3 Jahre Schule plus 1 Jahr Praktikum; EFZ Informatik und Berufsmaturität",
+      "remark": {
+        "de": "Fächer sind Sache der Schule (Fachrichtung); Prilog kennt Bildungsgang und Abschlüsse, den Fachkatalog ergänzt der Mandant."
+      }
+    }
+  ],
+  "tracks": [
+    {
+      "id": "sek-subject-level",
+      "label": {
+        "de": "Anforderungsstufe"
+      },
+      "scope": "enrollment",
+      "levels": [
+        {
+          "id": "e",
+          "disabled": true
+        },
+        {
+          "id": "g",
+          "disabled": true
+        },
+        {
+          "id": "i",
+          "label": {
+            "de": "Anforderungsstufe I (höchste)"
+          }
+        },
+        {
+          "id": "ii",
+          "label": {
+            "de": "Anforderungsstufe II"
+          }
+        },
+        {
+          "id": "iii",
+          "label": {
+            "de": "Anforderungsstufe III"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gym-variant",
+      "label": {
+        "de": "Gymnasialtyp"
+      },
+      "scope": "program",
+      "levels": [
+        {
+          "id": "kurz",
+          "label": {
+            "de": "Kurzgymnasium (nach 2./3. Sek, 4 Jahre)"
+          }
+        },
+        {
+          "id": "lang",
+          "label": {
+            "de": "Langgymnasium (nach 6. Klasse, 6 Jahre)"
+          }
+        }
+      ]
+    }
+  ],
+  "qualifications": [
+    {
+      "id": "efz",
+      "label": {
+        "de": "Eidg. Fähigkeitszeugnis (EFZ)"
+      },
+      "programs": [
+        "berufslehre",
+        "hms",
+        "ims"
+      ]
+    },
+    {
+      "id": "berufsmatura",
+      "label": {
+        "de": "Berufsmaturität"
+      },
+      "programs": [
+        "berufslehre",
+        "hms",
+        "ims"
+      ]
+    }
+  ],
+  "subjects": [
+    {
+      "id": "en",
+      "label": {
+        "de": "Englisch"
+      },
+      "domain": "lang",
+      "grades": [
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "tracked": true,
+      "programs": [
+        "primar",
+        "sek1"
+      ],
+      "notes": "Englisch ab der 2. Klasse"
+    },
+    {
+      "id": "fr",
+      "label": {
+        "de": "Französisch"
+      },
+      "domain": "lang",
+      "grades": [
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "tracked": true,
+      "programs": [
+        "primar",
+        "sek1"
+      ],
+      "notes": "Französisch ab der 5. Klasse"
+    },
+    {
+      "id": "mi",
+      "label": {
+        "de": "Medien und Informatik"
+      },
+      "domain": "media",
+      "grades": [
+        "h7",
+        "h8",
+        "h9",
+        "h11"
+      ],
+      "programs": [
+        "primar",
+        "sek1"
+      ]
+    }
+  ],
+  "grading": {
+    "by_program": [
+      {
+        "program": "primar",
+        "grades": [
+          "h3"
+        ],
+        "scale": "text"
+      }
+    ]
+  },
+  "calendar": {
+    "holiday_authority": {
+      "level": "municipality",
+      "label": {
+        "de": "Schulgemeinde im kantonalen Rahmen (Bildungsdirektion legt Sommer- und Weihnachtsferien fest)"
+      },
+      "url": "https://www.zh.ch/de/bildung.html"
+    }
+  },
+  "rules": [
+    {
+      "id": "aufnahme-gym",
+      "kind": "admission",
+      "label": {
+        "de": "Aufnahme ins Gymnasium"
+      },
+      "applies_to": {
+        "to_program": "gym"
+      },
+      "mode": "exam",
+      "summary": {
+        "de": "Zentrale Aufnahmeprüfung (ZAP) in Deutsch und Mathematik; Langgymnasium nach der 6. Klasse mit Erfahrungsnoten der Primarschule, Kurzgymnasium nach der 2. oder 3. Sek. Probezeit ein Semester."
+      },
+      "source": "MSG § 11 ff.; Aufnahmereglement für die Gymnasien (LS 413.250.1)",
+      "notes": "Gewichtung der Erfahrungsnoten und Paragrafen vor Einsatz prüfen"
+    },
+    {
+      "id": "einteilung-sek",
+      "kind": "transition",
+      "label": {
+        "de": "Einteilung in die Sekundarschule"
+      },
+      "applies_to": {
+        "from_grade": "h8",
+        "to_program": "sek1"
+      },
+      "mode": "binding-recommendation",
+      "summary": {
+        "de": "Zuteilung zu Abteilung A oder B und zu Anforderungsstufen nach Gesamtbeurteilung der 6. Klasse im Gespräch Lehrperson–Eltern–Kind; bei Uneinigkeit entscheidet die Schulpflege. Umstufungen sind semesterweise möglich."
+      },
+      "source": "VSG § 27 ff.; VSV",
+      "notes": "Paragrafen vor Einsatz prüfen"
+    },
+    {
+      "id": "schulpflicht",
+      "kind": "compulsory-schooling",
+      "label": {
+        "de": "Schulpflicht"
+      },
+      "summary": {
+        "de": "11 Jahre obligatorisch: 2 Jahre Kindergarten, 6 Jahre Primarschule, 3 Jahre Sekundarschule. Eintritt in den Kindergarten, wenn das Kind bis zum 31. Juli das 4. Altersjahr vollendet."
+      },
+      "source": "VSG §§ 3–5; HarmoS-Konkordat"
+    },
+    {
+      "id": "zeugnis",
+      "kind": "other",
+      "label": {
+        "de": "Zeugnis und Noten"
+      },
+      "mode": "reporting",
+      "summary": {
+        "de": "1. Klasse ohne Notenzeugnis; ab der 2. Klasse Noten, in der 2. und 3. Klasse nur am Schuljahresende, ab der 4. Klasse am Ende jedes Semesters. Halbe Noten ab der Sekundarschule."
+      },
+      "source": "Zeugnisreglement der Volksschule (LS 412.121.31)",
+      "notes": "Stand vor Einsatz prüfen"
+    }
+  ],
+  "exams": [
+    {
+      "id": "zap",
+      "label": {
+        "de": "Zentrale Aufnahmeprüfung Gymnasium"
+      },
+      "qualification": "gym-matura",
+      "mode": "central",
+      "at_grade": "h8",
+      "components": [
+        {
+          "id": "written",
+          "count": 2,
+          "label": {
+            "de": "Deutsch und Mathematik"
+          }
+        }
+      ],
+      "summary": {
+        "de": "Kantonsweit einheitliche Prüfung für Lang- und Kurzgymnasium (Kurzgymnasium: at_grade h10/h11)."
+      },
+      "source": "Aufnahmereglement für die Gymnasien (LS 413.250.1)"
+    },
+    {
+      "id": "matura-zh",
+      "label": {
+        "de": "Maturitätsprüfung"
+      },
+      "qualification": "gym-matura",
+      "mode": "internal",
+      "at_grade": "s2-4",
+      "components": [
+        {
+          "id": "written",
+          "count": 5
+        },
+        {
+          "id": "oral",
+          "count": 4
+        },
+        {
+          "id": "thesis",
+          "count": 1,
+          "label": {
+            "de": "Maturitätsarbeit"
+          }
+        }
+      ],
+      "summary": {
+        "de": "Prüfung an der Schule nach MAR; Grundlagen-, Schwerpunkt- und Ergänzungsfach, Maturitätsarbeit als Voraussetzung."
+      },
+      "source": "MAR; Maturitätsreglement Kanton Zürich",
+      "notes": "Anzahl der Prüfungsfächer je Schule prüfen"
+    }
+  ],
+  "legal": [
+    {
+      "id": "volksschulgesetz",
+      "kind": "school-act",
+      "label": {
+        "de": "Volksschulgesetz des Kantons Zürich (VSG)"
+      },
+      "url": "https://www.zh.ch/de/politik-staat/gesetze-beschluesse/gesetzessammlung.html",
+      "sections": {
+        "schulpflicht": "§§ 3–5",
+        "privatschulen": "§§ 68–70",
+        "elternrechte": "§§ 55–58"
+      },
+      "notes": "LS 412.100; Paragrafen prüfen"
+    },
+    {
+      "id": "mittelschulgesetz",
+      "kind": "school-act",
+      "label": {
+        "de": "Mittelschulgesetz (MSG)"
+      },
+      "notes": "LS 413.21"
+    },
+    {
+      "id": "datenschutz",
+      "kind": "data-protection",
+      "label": {
+        "de": "Gesetz über die Information und den Datenschutz (IDG, LS 170.4)"
+      },
+      "summary": {
+        "de": "Für öffentliche Schulen gilt das kantonale IDG, nicht das eidgenössische DSG; Aufsicht durch die Datenschutzbeauftragte des Kantons Zürich. Private Schulen: revDSG."
+      }
+    },
+    {
+      "id": "aufsicht",
+      "kind": "authority",
+      "label": {
+        "de": "Bildungsdirektion Kanton Zürich – Volksschulamt (VSA), Mittelschul- und Berufsbildungsamt (MBA); Schulpflege der Gemeinde"
+      },
+      "url": "https://www.zh.ch/de/bildungsdirektion.html"
+    },
+    {
+      "id": "privatschulen",
+      "kind": "private-school",
+      "label": {
+        "de": "Bewilligung von Privatschulen"
+      },
+      "summary": {
+        "de": "Privatschulen brauchen eine Bewilligung der Bildungsdirektion; sie müssen einen der öffentlichen Volksschule gleichwertigen Unterricht gewährleisten."
+      },
+      "source": "VSG §§ 68–70",
+      "notes": "Paragrafen prüfen"
+    }
+  ]
+}

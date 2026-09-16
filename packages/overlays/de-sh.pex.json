@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/PEX-Prilog-Education-Exchange/main/schema/pex.schema.json",
+    "id": "de-sh",
+    "version": "0.1.0",
+    "kind": "overlay",
+    "extends": "de",
+    "country": "DE",
+    "region": "SH",
+    "languages": ["de"],
+    "name": { "de": "Schleswig-Holstein" },
+    "source": "Schleswig-Holsteinisches Schulgesetz (SchulG), Grundschulverordnung (GrVO), Gemeinschaftsschulverordnung (GemVO), Schulartverordnung Gymnasien (SAVOGym), Oberstufen- und Abiturprüfungsverordnung (OAPVO)",
+    "notes": "Zweigliedrig: Gemeinschaftsschule (mit oder ohne Oberstufe) und Gymnasium (G9 seit 2019/20, Abitur nach 13). Regional-, Real- und Hauptschule aufgelöst. Profiloberstufe mit Kernfächern und Profilfach. Struktur nach Fachkenntnis; Regeln, Prüfungen und Paragrafen vor dem Einsatz an einer Schule gegen den aktuellen Verordnungstext lesen.",
+    "license": "CC-BY-4.0",
+    "maintainer": "info@prilog.team"
+  },
+  "terminology": {
+    "class_teacher": { "de": "Klassenlehrkraft" },
+    "report_midyear": { "de": "Halbjahreszeugnis" }
+  },
+  "grades": [
+    { "id": "g11", "label": { "de": "Jahrgang 11" }, "aliases": ["Einführungsphase", "E"] },
+    { "id": "g12", "label": { "de": "Jahrgang 12" }, "aliases": ["Q1"] },
+    { "id": "g13", "label": { "de": "Jahrgang 13" }, "aliases": ["Q2"] }
+  ],
+  "programs": [
+    { "id": "realschule", "disabled": true },
+    { "id": "hauptschule", "disabled": true },
+    { "id": "gesamtschule", "disabled": true },
+    { "id": "gemeinschaftsschule", "label": { "de": "Gemeinschaftsschule" }, "stages": ["sec1", "sec2"],
+      "grades": ["g5", "g6", "g7", "g8", "g9", "g10", "g11", "g12", "g13"], "class_model": "class",
+      "tracks": ["ge-kurs", "oberstufe"], "qualifications": ["esa", "msa", "fhr", "abitur"], "aliases": ["GemS"],
+      "notes": "Gemeinsames Lernen bis Jg. 10, Abschlüsse ESA/MSA; Oberstufe nur an Gemeinschaftsschulen mit Oberstufe, Abitur nach 13" },
+    { "id": "gymnasium", "label": { "de": "Gymnasium" }, "grades": ["g5", "g6", "g7", "g8", "g9", "g10", "g11", "g12", "g13"],
+      "qualifications": ["msa", "fhr", "abitur"], "notes": "G9 für alle Jahrgänge seit 2019/20; Orientierungsstufe 5–6; Profiloberstufe ab Jg. 11 (E-Phase), Qualifikationsphase 12–13" },
+    { "id": "foerderschule", "label": { "de": "Förderzentrum" }, "aliases": ["Förderzentrum", "FöZ"],
+      "notes": "In SH heißen Förderschulen Förderzentren; sie arbeiten überwiegend inklusiv an Regelschulen" },
+    { "id": "waldorf-ersatzschule", "label": { "de": "Freie Waldorfschule (Ersatzschule)" }, "stages": ["primar", "sec1", "sec2"],
+      "grades": ["g1", "g2", "g3", "g4", "g5", "g6", "g7", "g8", "g9", "g10", "g11", "g12", "g13"], "class_model": "class",
+      "qualifications": ["esa", "msa", "abitur"], "approval": "private-approved",
+      "notes": "Genehmigte Ersatzschule. Ob ESA/MSA/Abitur im Haus unter staatlichem Vorsitz oder als Externenprüfung abgelegt werden, ist je Schule an der Anerkennung festzumachen – vor Einsatz prüfen (siehe exams)." }
+  ],
+  "tracks": [
+    { "id": "oberstufe", "label": { "de": "Profiloberstufe" }, "scope": "enrollment",
+      "levels": [ { "id": "lk", "disabled": true }, { "id": "gk", "disabled": true },
+                  { "id": "ea", "label": { "de": "erhöhtes Anforderungsniveau (Kernfächer, Profilfach)" } },
+                  { "id": "ga", "label": { "de": "grundlegendes Anforderungsniveau" } } ],
+      "notes": "Kein LK/GK-System: Kernfächer und Profilfach auf erhöhtem Niveau, profilergänzende Fächer grundlegend" }
+  ],
+  "qualifications": [
+    { "id": "esa", "label": { "de": "Erster allgemeinbildender Schulabschluss (ESA)" }, "after_grade": "g9", "programs": ["gemeinschaftsschule", "waldorf-ersatzschule"] },
+    { "id": "msa", "label": { "de": "Mittlerer Schulabschluss (MSA)" }, "after_grade": "g10", "programs": ["gemeinschaftsschule", "gymnasium", "waldorf-ersatzschule"] },
+    { "id": "fhr", "label": { "de": "Fachhochschulreife (schulischer Teil)" }, "after_grade": "g12", "programs": ["gemeinschaftsschule", "gymnasium"] },
+    { "id": "abitur", "label": { "de": "Abitur" }, "after_grade": "g13", "programs": ["gymnasium", "gemeinschaftsschule", "waldorf-ersatzschule"] }
+  ],
+  "subjects": [
+    { "id": "pol", "label": { "de": "Wirtschaft/Politik" }, "domain": "social", "aliases": ["WiPo"], "grades": ["g8", "g9", "g10", "g11", "g12", "g13"] },
+    { "id": "weltkunde", "label": { "de": "Weltkunde" }, "domain": "social", "grades": ["g5", "g6", "g7", "g8", "g9", "g10"], "programs": ["gemeinschaftsschule"],
+      "aliases": ["Gesellschaftswissenschaften"], "notes": "Fächerverbund Geschichte/Geografie/Wirtschaft-Politik an Gemeinschaftsschulen" },
+    { "id": "eth", "label": { "de": "Philosophie" }, "domain": "religion", "grades": ["g5", "g6", "g7", "g8", "g9", "g10", "g11", "g12", "g13"], "optional": true, "notes": "Alternative zum Religionsunterricht" },
+    { "id": "da", "label": { "de": "Dänisch" }, "domain": "lang", "grades": ["g7", "g8", "g9", "g10", "g11", "g12", "g13"], "kind": "elective", "optional": true, "notes": "Landesspezifisches Angebot, verbreitet im Landesteil Schleswig" },
+    { "id": "nawi", "label": { "de": "Naturwissenschaften" }, "domain": "science", "grades": ["g5", "g6"], "aliases": ["NaWi"] },
+    { "id": "profil", "label": { "de": "Profilfach" }, "domain": "cross", "grades": ["g11", "g12", "g13"], "kind": "core", "tracked": true,
+      "aliases": ["Profilgebendes Fach", "Profilergänzendes Fach"], "notes": "Sprachliches, naturwissenschaftliches, gesellschaftswissenschaftliches, ästhetisches oder sportliches Profil" }
+  ],
+  "grading": {
+    "by_program": [ { "program": "grundschule", "grades": ["g1", "g2"], "scale": "text" } ]
+  },
+  "calendar": {
+    "holiday_authority": { "level": "state", "label": { "de": "Ministerium für Allgemeine und Berufliche Bildung, Wissenschaft, Forschung und Kultur (MBWFK)" }, "url": "https://www.schleswig-holstein.de/" }
+  },
+  "rules": [
+    { "id": "uebertritt-5", "kind": "transition", "label": { "de": "Übergang nach Klasse 4" }, "applies_to": { "from_grade": "g4" }, "mode": "parent-choice",
+      "summary": { "de": "Die Grundschule gibt eine Schulartempfehlung ab; die Eltern entscheiden zwischen Gemeinschaftsschule und Gymnasium. Weicht die Wahl von der Empfehlung ab, ist ein Beratungsgespräch vorgesehen. Am Gymnasium entscheidet die Orientierungsstufe (Jg. 5–6) über den Verbleib." },
+      "source": "SchulG SH; GrVO; SAVOGym", "notes": "Paragrafen vor Einsatz nachtragen" },
+    { "id": "schulpflicht", "kind": "compulsory-schooling", "label": { "de": "Schulpflicht" },
+      "summary": { "de": "9 Jahre Vollzeitschulpflicht, anschließend Berufsschulpflicht; Einschulungsstichtag 30. Juni, auf Antrag vorzeitige Einschulung." },
+      "source": "SchulG SH §§ 20–22" },
+    { "id": "versetzung", "kind": "promotion", "label": { "de": "Aufsteigen und Versetzung" },
+      "summary": { "de": "Grundschule und Gemeinschaftsschule Sek I: Aufsteigen ohne Versetzungsentscheidung, Wiederholung auf Antrag oder Beschluss; Gymnasium: Versetzung nach Leistung ab Jg. 7." },
+      "source": "SchulG SH; GrVO; GemVO; SAVOGym", "notes": "Paragrafen vor Einsatz nachtragen" }
+  ],
+  "exams": [
+    { "id": "abitur-sh", "label": { "de": "Abiturprüfung Schleswig-Holstein" }, "qualification": "abitur", "mode": "central", "at_grade": "g13",
+      "components": [ { "id": "written", "count": 3 }, { "id": "oral", "count": 1 } ],
+      "summary": { "de": "Zentrale schriftliche Aufgaben in den Kernfächern und im Profilfach; vierte Prüfung mündlich, auf Antrag als Präsentationsprüfung." },
+      "source": "OAPVO" },
+    { "id": "msa-sh", "label": { "de": "Prüfung zum Mittleren Schulabschluss" }, "qualification": "msa", "mode": "central", "at_grade": "g10",
+      "components": [ { "id": "written", "count": 3 }, { "id": "oral", "count": 1 } ],
+      "summary": { "de": "Zentrale schriftliche Prüfungen in Deutsch, Mathematik und Englisch; mündliche Prüfung bzw. Projektprüfung." }, "source": "GemVO" },
+    { "id": "esa-sh", "label": { "de": "Prüfung zum Ersten allgemeinbildenden Schulabschluss" }, "qualification": "esa", "mode": "central", "at_grade": "g9",
+      "components": [ { "id": "written", "count": 3 }, { "id": "practical", "count": 1, "label": { "de": "Projektprüfung" } } ],
+      "summary": { "de": "Zentrale schriftliche Prüfungen in Deutsch, Mathematik und Englisch; Projektprüfung." }, "source": "GemVO" },
+    { "id": "abitur-waldorf-sh", "label": { "de": "Abitur an Waldorfschulen" }, "qualification": "abitur", "mode": "external", "at_grade": "g13",
+      "summary": { "de": "Genehmigte Ersatzschulen ohne eigene Prüfungsberechtigung führen zur Externenprüfung (Nichtschülerabitur); anerkannte Ersatzschulen prüfen im Haus unter staatlichem Vorsitz. Welcher Fall gilt, steht in der Anerkennung der jeweiligen Schule." },
+      "source": "SchulG SH (Ersatzschulen); Landesverordnung über die Abiturprüfung für Nichtschülerinnen und Nichtschüler", "notes": "Vor Einsatz je Schule klären" }
+  ],
+  "legal": [
+    { "id": "schulgesetz", "kind": "school-act", "label": { "de": "Schleswig-Holsteinisches Schulgesetz (SchulG)" }, "url": "https://www.gesetze-rechtsprechung.sh.juris.de/", "sections": { "schulpflicht": "§§ 20–29", "datenschutz": "§ 30", "ersatzschulen": "§§ 115–122", "elternrechte": "§§ 67–73" }, "notes": "Paragrafen gegen aktuellen Stand prüfen" },
+    { "id": "datenschutz", "kind": "data-protection", "label": { "de": "SchulG § 30, Schul-Datenschutzverordnung (SchulDSVO), LDSG SH, DSGVO" }, "summary": { "de": "Datenverarbeitung an Schulen nach SchulG und SchulDSVO; Auftragsverarbeitung nach Art. 28 DSGVO; Datenschutzbeauftragte Person je Schule." } },
+    { "id": "aufsicht", "kind": "authority", "label": { "de": "Ministerium für Allgemeine und Berufliche Bildung, Wissenschaft, Forschung und Kultur (MBWFK); Schulämter der Kreise und kreisfreien Städte für Grund-, Gemeinschafts- und Förderschulen" }, "url": "https://www.schleswig-holstein.de/" },
+    { "id": "aufbewahrung", "kind": "retention", "label": { "de": "Aufbewahrungsfristen Schülerunterlagen" }, "summary": { "de": "Schülerakten nach Abgang befristet aufbewahren, Abschlusszeugnisse und Zeugnislisten langfristig; konkrete Fristen nach Verwaltungsvorschrift des Landes." }, "source": "Aufbewahrungsbestimmungen für Schulen SH", "notes": "Fristen vor Einsatz nachtragen" },
+    { "id": "meldung-ifsg", "kind": "reporting", "label": { "de": "Meldepflicht nach § 34 IfSG" }, "summary": { "de": "Meldung an das Gesundheitsamt bei meldepflichtigen Erkrankungen; Belehrung der Eltern bei Aufnahme." }, "source": "IfSG § 34" }
+  ]
+}
