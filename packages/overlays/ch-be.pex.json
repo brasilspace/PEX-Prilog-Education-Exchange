@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/prilog-pex/main/schema/pex.schema.json",
+    "license": "CC-BY-4.0",
+    "maintainer": "info@prilog.team",
+    "id": "ch-be", "version": "0.1.0", "kind": "overlay", "extends": "ch-de",
+    "country": "CH", "region": "BE", "languages": ["de"],
+    "name": { "de": "Kanton Bern (deutschsprachiger Kantonsteil)" },
+    "source": "Volksschulgesetz VSG (BSG 432.210), Direktionsverordnung über Beurteilung und Schullaufbahnentscheide DVBS, Mittelschulgesetz MiSG, Lehrplan 17 Gymnasium, Aufnahmeverfahren Gymnasium BKD (Stand 2026)",
+    "notes": "Nur deutschsprachiger Kantonsteil. Der Berner Jura und Biel (französischsprachig) folgen dem Plan d'études romand und gehören auf ch-fr. Sek I: Real- und Sekundarschulniveau mit Niveaufächern Deutsch, Französisch, Mathematik; Gemeinden wählen ein Zusammenarbeitsmodell (Modell 1–4, in der Stadt Bern Manuel/Spiegel/Twann). Gymnasium: 4 Jahre (GYM1–GYM4), Eintritt aus dem 8. oder 9. Schuljahr. Fremdsprachenfolge Passepartout: Französisch ab 3., Englisch ab 5. Klasse."
+  },
+  "terminology": {
+    "teacher": { "de": "Lehrperson" },
+    "class_teacher": { "de": "Klassenlehrperson" },
+    "report": { "de": "Beurteilungsbericht" },
+    "report_midyear": { "de": "Zwischenbericht" },
+    "parent_conference": { "de": "Standortgespräch" },
+    "track": { "de": "Niveau" }
+  },
+  "calendar": {
+    "report_points_by_program": [
+      { "program": "primar", "report_points": ["s2"] },
+      { "program": "sek1", "report_points": ["s1", "s2"] },
+      { "program": "gym", "report_points": ["s1", "s2"] }
+    ],
+    "holiday_authority": { "level": "canton", "label": { "de": "Bildungs- und Kulturdirektion des Kantons Bern (Rahmen); Gemeinden legen Ferien innerhalb des kantonalen Rahmens fest" }, "url": "https://www.bkd.be.ch/de/start/themen/bildung-im-kanton-bern/volksschule/schulferien.html" }
+  },
+  "grading": {
+    "by_program": [
+      { "program": "primar", "grades": ["h3", "h4"], "scale": "text" }
+    ]
+  },
+  "grades": [
+    { "id": "h9", "label": { "de": "7. Klasse" }, "aliases": ["7. Schuljahr", "1. Sek/Real"] },
+    { "id": "h10", "label": { "de": "8. Klasse" }, "aliases": ["8. Schuljahr", "2. Sek/Real"] },
+    { "id": "h11", "label": { "de": "9. Klasse" }, "aliases": ["9. Schuljahr", "3. Sek/Real"] },
+    { "id": "s2-1", "label": { "de": "GYM1" }, "aliases": ["Quarta", "1. Jahr Gymnasium", "9. Schuljahr (bei Eintritt aus der 8.)"] },
+    { "id": "s2-2", "label": { "de": "GYM2" }, "aliases": ["Tertia", "2. Jahr Gymnasium"] },
+    { "id": "s2-3", "label": { "de": "GYM3" }, "aliases": ["Sekunda", "3. Jahr Gymnasium"] },
+    { "id": "s2-4", "label": { "de": "GYM4" }, "aliases": ["Prima", "4. Jahr Gymnasium", "Maturjahr"] }
+  ],
+  "tracks": [
+    { "id": "sek-level", "label": { "de": "Schultyp Sekundarstufe I" }, "scope": "learning_group",
+      "levels": [
+        { "id": "a", "label": { "de": "Sekundarschule (Sek)" } },
+        { "id": "b", "label": { "de": "Realschule (Real)" } },
+        { "id": "c", "label": { "de": "–" }, "disabled": true }
+      ] },
+    { "id": "sek-subject-level", "label": { "de": "Niveaufach (Deutsch, Französisch, Mathematik)" }, "scope": "enrollment",
+      "levels": [
+        { "id": "e", "label": { "de": "Sekundarschulniveau" } },
+        { "id": "g", "label": { "de": "Realschulniveau" } }
+      ] },
+    { "id": "sek-modell", "label": { "de": "Zusammenarbeitsmodell Sek I (Gemeindewahl)" }, "scope": "program",
+      "levels": [
+        { "id": "m1", "label": { "de": "Modell 1 – getrennte Real- und Sekundarklassen (Manuel)" } },
+        { "id": "m2", "label": { "de": "Modell 2 – getrennte Klassen, gemeinsamer Unterricht in Nicht-Niveaufächern" } },
+        { "id": "m3a", "label": { "de": "Modell 3a – Stammklassen gemischt, Niveaufächer getrennt (Spiegel)" } },
+        { "id": "m3b", "label": { "de": "Modell 3b – Stammklassen gemischt, Niveaufächer teilweise gemeinsam" } },
+        { "id": "m4", "label": { "de": "Modell 4 – vollständig integriert, Niveaus innerhalb der Klasse (Twann)" } }
+      ] },
+    { "id": "gym-variant", "label": { "de": "Gymnasialer Bildungsgang" }, "scope": "program",
+      "levels": [
+        { "id": "kurz", "label": { "de": "4 Jahre ab GYM1 (einziger Bildungsgang)" } },
+        { "id": "lang", "label": { "de": "–" }, "disabled": true }
+      ] }
+  ],
+  "programs": [
+    { "id": "basisstufe", "label": { "de": "Basisstufe" }, "stages": ["kg", "primar"], "grades": [], "age_range": [4, 8], "class_model": "mixed-age",
+      "notes": "Kindergarten und 1./2. Klasse altersgemischt; Gemeindewahl statt Kindergarten + Primar 1–2" },
+    { "id": "sek1", "label": { "de": "Sekundarstufe I (Real/Sek)" }, "class_model": "homeroom",
+      "tracks": ["sek-level", "sek-subject-level", "sek-modell"], "qualifications": ["sek1-abschluss"],
+      "aliases": ["Oberstufe", "Oberstufenzentrum", "OSZ", "Realschule", "Sekundarschule"],
+      "notes": "Schultyp ergibt sich aus den Niveaufächern: Wer mindestens 2 der 3 Fächer (D, F, M) im Sekundarschulniveau besucht, ist dem Schultyp Sekundarschule zugeteilt. Wechsel der Niveauzuteilung per Schullaufbahnentscheid auf die nächste Promotion hin." },
+    { "id": "gym", "label": { "de": "Gymnasium" }, "grades": ["s2-1", "s2-2", "s2-3", "s2-4"], "class_model": "class", "tracks": ["gym-variant"],
+      "aliases": ["Gymnasium Kirchenfeld", "Gymnasium Neufeld", "Gymnasium Hofwil", "Gymnasium Thun", "Gymnasium Burgdorf", "Gymnasium Interlaken", "Gymnasium Lerbermatt", "Gymnasium Bern-Kirchenfeld"],
+      "notes": "Vierjähriger gymnasialer Bildungsgang nach Lehrplan 17 (inkl. obligatorisches Fach Informatik ab 2019/20). Eintritt in GYM1 aus dem 8. oder 9. Schuljahr; Eintritt in GYM3 nur unter Bedingungen. Kein Langzeitgymnasium." },
+    { "id": "fms", "label": { "de": "Fachmittelschule" }, "notes": "Berufsfelder Gesundheit, Soziale Arbeit, Pädagogik; Aufnahme mit Empfehlung oder Prüfung" },
+    { "id": "bvs", "label": { "de": "Berufsvorbereitendes Schuljahr (BVS)" }, "stages": ["sec2"], "grades": ["s2-1"], "class_model": "class",
+      "aliases": ["Brückenangebot", "10. Schuljahr"], "notes": "Kantonales Brückenangebot nach der 9. Klasse" }
+  ],
+  "subjects": [
+    { "id": "fr", "label": { "de": "Französisch" }, "domain": "lang", "grades": ["h5", "h6", "h7", "h8", "h9", "h10", "h11"], "programs": ["primar", "sek1"], "tracked": true,
+      "notes": "Erste Fremdsprache ab 3. Klasse (Passepartout)" },
+    { "id": "en", "label": { "de": "Englisch" }, "domain": "lang", "grades": ["h7", "h8", "h9", "h10", "h11"], "programs": ["primar", "sek1"], "tracked": false,
+      "notes": "Zweite Fremdsprache ab 5. Klasse; kein Niveaufach in Bern" },
+    { "id": "de", "label": { "de": "Deutsch" }, "domain": "lang", "grades": ["h3","h4","h5","h6","h7","h8","h9","h10","h11"], "programs": ["primar","sek1"], "tracked": true },
+    { "id": "math", "label": { "de": "Mathematik" }, "domain": "math", "grades": ["h3","h4","h5","h6","h7","h8","h9","h10","h11"], "programs": ["primar","sek1"], "tracked": true },
+    { "id": "gym-inf", "label": { "de": "Informatik" }, "domain": "gym-core", "grades": ["s2-1", "s2-2"], "programs": ["gym"], "notes": "Obligatorisch seit Lehrplan 17 (2019)" },
+    { "id": "gym-ma", "label": { "de": "Maturaarbeit" }, "domain": "gym-core", "grades": ["s2-3", "s2-4"], "programs": ["gym"], "kind": "project" },
+    { "id": "spf-bc", "label": { "de": "Schwerpunkt Biologie und Chemie" }, "domain": "gym-major", "grades": ["s2-1", "s2-2", "s2-3", "s2-4"], "programs": ["gym"], "kind": "elective", "optional": true },
+    { "id": "spf-pam", "label": { "de": "Schwerpunkt Physik und Anwendungen der Mathematik" }, "domain": "gym-major", "grades": ["s2-1", "s2-2", "s2-3", "s2-4"], "programs": ["gym"], "kind": "elective", "optional": true },
+    { "id": "spf-wr", "label": { "de": "Schwerpunkt Wirtschaft und Recht" }, "domain": "gym-major", "grades": ["s2-1", "s2-2", "s2-3", "s2-4"], "programs": ["gym"], "kind": "elective", "optional": true },
+    { "id": "spf-ppp", "label": { "de": "Schwerpunkt Philosophie, Pädagogik, Psychologie" }, "domain": "gym-major", "grades": ["s2-1", "s2-2", "s2-3", "s2-4"], "programs": ["gym"], "kind": "elective", "optional": true },
+    { "id": "spf-bg", "label": { "de": "Schwerpunkt Bildnerisches Gestalten" }, "domain": "gym-major", "grades": ["s2-1", "s2-2", "s2-3", "s2-4"], "programs": ["gym"], "kind": "elective", "optional": true },
+    { "id": "spf-mu", "label": { "de": "Schwerpunkt Musik" }, "domain": "gym-major", "grades": ["s2-1", "s2-2", "s2-3", "s2-4"], "programs": ["gym"], "kind": "elective", "optional": true }
+  ],
+  "rules": [
+    { "id": "uebertritt-sek1", "kind": "transition", "label": { "de": "Übertrittsverfahren Primarstufe → Sekundarstufe I" },
+      "applies_to": { "from_grade": "h8", "to_program": "sek1" }, "mode": "recommendation-with-probation",
+      "summary": { "de": "In der 6. Klasse: Beurteilung durch die Lehrpersonen, Übertrittsgespräch mit den Eltern, Zuweisung zum Real- oder Sekundarschulniveau je Niveaufach (Deutsch, Französisch, Mathematik) und zum Schultyp. Bei Uneinigkeit zwischen Schule und Eltern entscheidet eine kantonale Kontrollprüfung. Die Zuteilung wird auf jede Promotion hin überprüft (durchlässig)." },
+      "source": "VSG Art. 33 ff.; DVBS Art. 32–46", "url": "https://www.akvb-unterricht.bkd.be.ch/de/start/unterricht/beurteilung-uebertritte.html" },
+    { "id": "aufnahme-gym", "kind": "admission", "label": { "de": "Aufnahme in den gymnasialen Bildungsgang (GYM1)" },
+      "applies_to": { "to_program": "gym" }, "mode": "recommendation-or-exam",
+      "summary": { "de": "Eintritt in GYM1 aus dem 8. oder 9. Schuljahr. Weg 1: Empfehlung der abgebenden Schule (Sekundarschulniveau in allen Niveaufächern, Beurteilung der überfachlichen Kompetenzen). Weg 2: kantonale Aufnahmeprüfung in Deutsch, Französisch, Mathematik – mit zwei Prüfungsserien je nach Vorbildung (8. bzw. 9. Schuljahr). Die Qualifikation gilt nur für den nächstmöglichen Eintritt. Eintritt in GYM3 nur unter besonderen Bedingungen." },
+      "source": "MiSG; Mittelschulverordnung MiSV; Aufnahmeverfahren Gymnasium BKD", "url": "https://www.bkd.be.ch/de/start/themen/bildung-im-kanton-bern/mittelschulen/gymnasium/aufnahmeverfahren-gymnasium.html" },
+    { "id": "aufnahme-fms", "kind": "admission", "label": { "de": "Aufnahme in die Fachmittelschule" },
+      "applies_to": { "to_program": "fms" }, "mode": "recommendation-or-exam",
+      "summary": { "de": "Aus dem 9. Schuljahr mit Empfehlung der abgebenden Schule oder kantonaler Aufnahmeprüfung." },
+      "source": "MiSG; MiSV" },
+    { "id": "schulpflicht", "kind": "compulsory-schooling", "label": { "de": "Obligatorische Schulzeit" },
+      "summary": { "de": "11 Jahre: 2 Jahre Kindergarten (oder Basisstufe) und 9 Jahre Volksschule. Eintritt in den Kindergarten für Kinder, die bis 31. Juli das 4. Altersjahr vollendet haben." },
+      "source": "VSG Art. 22 ff." },
+    { "id": "niveauwechsel", "kind": "promotion", "label": { "de": "Wechsel von Niveau und Schultyp" },
+      "applies_to": { "programs": ["sek1"] }, "mode": "per-promotion",
+      "summary": { "de": "Auf Empfehlung der Lehrpersonen kann die Zuteilung in den Niveaufächern oder des Schultyps per Schullaufbahnentscheid auf die nächste Promotion (Semesterende) hin geändert werden – in beide Richtungen." },
+      "source": "DVBS; Weisungen Zusammenarbeitsformen Sek I" }
+  ],
+  "exams": [
+    { "id": "matura-be", "label": { "de": "Maturitätsprüfung" }, "qualification": "gym-matura", "mode": "internal", "at_grade": "s2-4",
+      "components": [ { "id": "written", "count": 5 }, { "id": "oral", "count": 4 }, { "id": "thesis", "count": 1, "label": { "de": "Maturaarbeit" } } ],
+      "summary": { "de": "Kantonal geregelte Maturitätsprüfung nach MAR an den Gymnasien; Maturaarbeit zählt als Maturitätsfach. Private Gymnasien mit kantonal anerkannter Maturität führen die Prüfung nach demselben Reglement durch." },
+      "source": "Maturitätsprüfungsverordnung Kanton Bern; MAR" },
+    { "id": "aufnahmepruefung-gym", "label": { "de": "Kantonale Aufnahmeprüfung Gymnasium" }, "qualification": "sek1-abschluss", "mode": "central", "at_grade": "h10",
+      "components": [ { "id": "written", "count": 3 }, { "id": "oral", "count": 1, "label": { "de": "Französisch mündlich" } } ],
+      "summary": { "de": "Kantonsweit einheitliche Aufgaben in Deutsch, Französisch (schriftlich und mündlich) und Mathematik; zwei Serien für Kandidierende aus dem 8. bzw. 9. Schuljahr." },
+      "source": "Aufnahmeverfahren Gymnasium BKD", "url": "https://www.bkd.be.ch/de/start/themen/bildung-im-kanton-bern/mittelschulen/gymnasium/aufnahmeverfahren-gymnasium/aufgaben-und-loesungen-aufnahmepruefungen-gymnasium.html" },
+    { "id": "kontrollpruefung-sek1", "label": { "de": "Kontrollprüfung Übertritt Sek I" }, "qualification": "sek1-abschluss", "mode": "central", "at_grade": "h8",
+      "summary": { "de": "Kantonale Prüfung bei Uneinigkeit zwischen Schule und Eltern über die Niveauzuteilung beim Übertritt in die Sekundarstufe I." },
+      "source": "DVBS" }
+  ],
+  "legal": [
+    { "id": "volksschulgesetz", "kind": "school-act", "label": { "de": "Volksschulgesetz des Kantons Bern (VSG, BSG 432.210)" }, "url": "https://www.belex.sites.be.ch/",
+      "sections": { "schulpflicht": "Art. 22 ff.", "uebertritt": "Art. 33 ff.", "privatschulen": "Art. 66 ff.", "elternrechte": "Art. 31 ff." } },
+    { "id": "mittelschulgesetz", "kind": "school-act", "label": { "de": "Mittelschulgesetz (MiSG, BSG 433.12) und Mittelschulverordnung (MiSV)" },
+      "summary": { "de": "Gymnasien, Fachmittelschulen; Aufnahme, Promotion, Maturität; kantonale Anerkennung privater Gymnasien" } },
+    { "id": "dvbs", "kind": "school-act", "label": { "de": "Direktionsverordnung über Beurteilung und Schullaufbahnentscheide (DVBS)" },
+      "summary": { "de": "Beurteilungsbericht, Noten, Übertrittsverfahren, Kontrollprüfung, Niveauwechsel" } },
+    { "id": "datenschutz", "kind": "data-protection", "label": { "de": "Kantonales Datenschutzgesetz (KDSG, BSG 152.04) und Datenschutzverordnung" },
+      "summary": { "de": "Öffentliche Schulen unterstehen dem kantonalen Datenschutzrecht, nicht dem eidgenössischen DSG; Aufsicht durch die Datenschutzaufsichtsstelle des Kantons Bern. Private Schulen unterstehen dem eidgenössischen DSG." } },
+    { "id": "aufsicht", "kind": "authority", "label": { "de": "Bildungs- und Kulturdirektion des Kantons Bern (BKD); Amt für Kindergarten, Volksschule und Beratung (AKVB); Mittelschul- und Berufsbildungsamt (MBA)" }, "url": "https://www.bkd.be.ch/" },
+    { "id": "privatschulen", "kind": "private-school", "label": { "de": "Bewilligung von Privatschulen" },
+      "summary": { "de": "Privatschulen der Volksschulstufe brauchen eine Bewilligung der BKD (Art. 66 ff. VSG); private Gymnasien können eine kantonal anerkannte Maturität führen (MiSG). Unterrichtsziele der Volksschule sind einzuhalten, Lehrplan 21 gilt als Referenz." },
+      "source": "VSG Art. 66–70; MiSG" },
+    { "id": "aufbewahrung", "kind": "retention", "label": { "de": "Aufbewahrung von Schülerdaten" },
+      "summary": { "de": "Beurteilungsberichte und Schullaufbahnentscheide nach kantonaler Aktenordnung; Details in der DVBS und im Archivgesetz (ArchG)." },
+      "source": "DVBS; ArchG BSG 108.1" },
+    { "id": "sprache", "kind": "other", "label": { "de": "Zweisprachiger Kanton" },
+      "summary": { "de": "Deutsch und Französisch sind Amtssprachen. Der französischsprachige Kantonsteil (Berner Jura, Biel/Bienne teilweise) folgt dem Plan d'études romand und ist nicht Teil dieses Overlays." } }
+  ]
+}
