@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/prilog-pex/main/schema/pex.schema.json",
+    "license": "CC-BY-4.0",
+    "maintainer": "info@prilog.team",
+    "id": "montessori",
+    "version": "0.2.0",
+    "kind": "overlay",
+    "extends": [
+      "de",
+      "ch-de",
+      "at"
+    ],
+    "country": "XX",
+    "languages": [
+      "de"
+    ],
+    "name": {
+      "de": "Montessori (altersgemischte Lerngruppen)"
+    },
+    "notes": "Beispiel für Programme ohne feste Jahrgangsstufe. Legt sich über de oder ch-de; Jahrgänge des Basis-Pakets bleiben für Zeugnis und Übertritt verfügbar, tragen aber nicht die Gruppe."
+  },
+  "terminology": {
+    "class": {
+      "de": "Lerngruppe"
+    },
+    "class_teacher": {
+      "de": "Lernbegleiter:in"
+    },
+    "report": {
+      "de": "Entwicklungsbericht"
+    }
+  },
+  "programs": [
+    {
+      "id": "kinderhaus",
+      "label": {
+        "de": "Kinderhaus"
+      },
+      "stages": [],
+      "grades": [],
+      "age_range": [
+        3,
+        6
+      ],
+      "class_model": "mixed-age"
+    },
+    {
+      "id": "mont-primar",
+      "label": {
+        "de": "Primarstufe (altersgemischt)"
+      },
+      "stages": [
+        "primar"
+      ],
+      "grades": [],
+      "age_range": [
+        6,
+        12
+      ],
+      "class_model": "mixed-age",
+      "notes": "Typisch zwei Gruppen: 6–9 und 9–12; die Aufteilung ist Sache der Lerngruppe, nicht des Programms"
+    },
+    {
+      "id": "mont-sek",
+      "label": {
+        "de": "Sekundarstufe (altersgemischt)"
+      },
+      "stages": [
+        "sec1"
+      ],
+      "grades": [],
+      "age_range": [
+        12,
+        16
+      ],
+      "class_model": "mixed-age"
+    }
+  ],
+  "grading": {
+    "default_scale": "text",
+    "scales": [
+      {
+        "id": "text",
+        "label": {
+          "de": "Entwicklungsbericht"
+        },
+        "kind": "text"
+      }
+    ]
+  }
+}

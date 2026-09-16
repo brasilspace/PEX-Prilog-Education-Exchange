@@ -1,0 +1,1419 @@
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/prilog-pex/main/schema/pex.schema.json",
+    "license": "CC-BY-4.0",
+    "maintainer": "info@prilog.team",
+    "id": "at",
+    "version": "0.2.0",
+    "kind": "base",
+    "country": "AT",
+    "languages": [
+      "de"
+    ],
+    "name": {
+      "de": "Österreich"
+    },
+    "source": "Schulorganisationsgesetz (SchOG), Lehrpläne BMBWF 2023 (Volksschule, Mittelschule, AHS), Reifeprüfungsverordnung",
+    "notes": "Bundesweit einheitlich; Bundesländer-Overlays nur für Bezeichnungen und Schulversuche. Schulstufen 1–13 zählen ab Volksschule; AHS zählt intern 1.–8. Klasse."
+  },
+  "terminology": {
+    "teacher": {
+      "de": "Lehrperson"
+    },
+    "class_teacher": {
+      "de": "Klassenvorstand"
+    },
+    "head": {
+      "de": "Direktion"
+    },
+    "class": {
+      "de": "Klasse"
+    },
+    "grade": {
+      "de": "Schulstufe"
+    },
+    "student": {
+      "de": "Schülerin / Schüler"
+    },
+    "parents": {
+      "de": "Erziehungsberechtigte"
+    },
+    "report": {
+      "de": "Zeugnis"
+    },
+    "report_midyear": {
+      "de": "Schulnachricht"
+    },
+    "parent_conference": {
+      "de": "Elternsprechtag"
+    },
+    "parent_evening": {
+      "de": "Elternabend"
+    },
+    "holidays": {
+      "de": "Ferien"
+    },
+    "lesson": {
+      "de": "Unterrichtsstunde"
+    },
+    "subject": {
+      "de": "Unterrichtsgegenstand"
+    },
+    "track": {
+      "de": "Leistungsniveau"
+    }
+  },
+  "calendar": {
+    "year_start_month": 9,
+    "periods": [
+      {
+        "id": "ws",
+        "label": {
+          "de": "Wintersemester"
+        },
+        "months": [
+          9,
+          2
+        ]
+      },
+      {
+        "id": "ss",
+        "label": {
+          "de": "Sommersemester"
+        },
+        "months": [
+          2,
+          7
+        ]
+      }
+    ],
+    "report_points": [
+      "ws",
+      "ss"
+    ]
+  },
+  "grading": {
+    "default_scale": "at-5",
+    "scales": [
+      {
+        "id": "at-5",
+        "label": {
+          "de": "Noten 1–5"
+        },
+        "kind": "numeric",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "step": 1,
+        "best": 1,
+        "pass": 4
+      },
+      {
+        "id": "text",
+        "label": {
+          "de": "Verbale Beurteilung"
+        },
+        "kind": "text"
+      }
+    ]
+  },
+  "stages": [
+    {
+      "id": "elementar",
+      "label": {
+        "de": "Elementarstufe"
+      },
+      "ordinal": 0,
+      "grades": [
+        "kg"
+      ]
+    },
+    {
+      "id": "primar",
+      "label": {
+        "de": "Primarstufe"
+      },
+      "ordinal": 1,
+      "grades": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ]
+    },
+    {
+      "id": "sec1",
+      "label": {
+        "de": "Sekundarstufe I"
+      },
+      "ordinal": 2,
+      "grades": [
+        "s5",
+        "s6",
+        "s7",
+        "s8"
+      ]
+    },
+    {
+      "id": "sec2",
+      "label": {
+        "de": "Sekundarstufe II"
+      },
+      "ordinal": 3,
+      "grades": [
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13"
+      ]
+    }
+  ],
+  "grades": [
+    {
+      "id": "kg",
+      "label": {
+        "de": "Verpflichtendes Kindergartenjahr"
+      },
+      "ordinal": 0,
+      "stage": "elementar",
+      "typical_age": 5
+    },
+    {
+      "id": "s1",
+      "label": {
+        "de": "1. Schulstufe"
+      },
+      "ordinal": 1,
+      "stage": "primar",
+      "typical_age": 6,
+      "aliases": [
+        "1. Klasse VS"
+      ]
+    },
+    {
+      "id": "s2",
+      "label": {
+        "de": "2. Schulstufe"
+      },
+      "ordinal": 2,
+      "stage": "primar",
+      "typical_age": 7,
+      "aliases": [
+        "2. Klasse VS"
+      ]
+    },
+    {
+      "id": "s3",
+      "label": {
+        "de": "3. Schulstufe"
+      },
+      "ordinal": 3,
+      "stage": "primar",
+      "typical_age": 8,
+      "aliases": [
+        "3. Klasse VS"
+      ]
+    },
+    {
+      "id": "s4",
+      "label": {
+        "de": "4. Schulstufe"
+      },
+      "ordinal": 4,
+      "stage": "primar",
+      "typical_age": 9,
+      "aliases": [
+        "4. Klasse VS"
+      ]
+    },
+    {
+      "id": "s5",
+      "label": {
+        "de": "5. Schulstufe"
+      },
+      "ordinal": 5,
+      "stage": "sec1",
+      "typical_age": 10,
+      "aliases": [
+        "1. Klasse MS/AHS"
+      ]
+    },
+    {
+      "id": "s6",
+      "label": {
+        "de": "6. Schulstufe"
+      },
+      "ordinal": 6,
+      "stage": "sec1",
+      "typical_age": 11,
+      "aliases": [
+        "2. Klasse MS/AHS"
+      ]
+    },
+    {
+      "id": "s7",
+      "label": {
+        "de": "7. Schulstufe"
+      },
+      "ordinal": 7,
+      "stage": "sec1",
+      "typical_age": 12,
+      "aliases": [
+        "3. Klasse MS/AHS"
+      ]
+    },
+    {
+      "id": "s8",
+      "label": {
+        "de": "8. Schulstufe"
+      },
+      "ordinal": 8,
+      "stage": "sec1",
+      "typical_age": 13,
+      "aliases": [
+        "4. Klasse MS/AHS"
+      ]
+    },
+    {
+      "id": "s9",
+      "label": {
+        "de": "9. Schulstufe"
+      },
+      "ordinal": 9,
+      "stage": "sec2",
+      "typical_age": 14,
+      "aliases": [
+        "5. Klasse AHS",
+        "1. Jahrgang BHS",
+        "PTS"
+      ]
+    },
+    {
+      "id": "s10",
+      "label": {
+        "de": "10. Schulstufe"
+      },
+      "ordinal": 10,
+      "stage": "sec2",
+      "typical_age": 15,
+      "aliases": [
+        "6. Klasse AHS",
+        "2. Jahrgang BHS"
+      ]
+    },
+    {
+      "id": "s11",
+      "label": {
+        "de": "11. Schulstufe"
+      },
+      "ordinal": 11,
+      "stage": "sec2",
+      "typical_age": 16,
+      "aliases": [
+        "7. Klasse AHS",
+        "3. Jahrgang BHS"
+      ]
+    },
+    {
+      "id": "s12",
+      "label": {
+        "de": "12. Schulstufe"
+      },
+      "ordinal": 12,
+      "stage": "sec2",
+      "typical_age": 17,
+      "aliases": [
+        "8. Klasse AHS",
+        "4. Jahrgang BHS"
+      ]
+    },
+    {
+      "id": "s13",
+      "label": {
+        "de": "13. Schulstufe"
+      },
+      "ordinal": 13,
+      "stage": "sec2",
+      "typical_age": 18,
+      "aliases": [
+        "5. Jahrgang BHS"
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "id": "ms-niveau",
+      "label": {
+        "de": "Leistungsniveau Mittelschule"
+      },
+      "scope": "enrollment",
+      "levels": [
+        {
+          "id": "ahs",
+          "label": {
+            "de": "Standard AHS"
+          }
+        },
+        {
+          "id": "standard",
+          "label": {
+            "de": "Standard"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ahs-typ",
+      "label": {
+        "de": "AHS-Schulform"
+      },
+      "scope": "program",
+      "levels": [
+        {
+          "id": "g",
+          "label": {
+            "de": "Gymnasium (Sprachen)"
+          }
+        },
+        {
+          "id": "rg",
+          "label": {
+            "de": "Realgymnasium (Naturwissenschaft/Technik)"
+          }
+        },
+        {
+          "id": "org",
+          "label": {
+            "de": "Oberstufenrealgymnasium (nur Oberstufe)"
+          }
+        },
+        {
+          "id": "wrg",
+          "label": {
+            "de": "Wirtschaftskundliches Realgymnasium"
+          }
+        }
+      ]
+    }
+  ],
+  "programs": [
+    {
+      "id": "kindergarten",
+      "label": {
+        "de": "Kindergarten"
+      },
+      "stages": [
+        "elementar"
+      ],
+      "grades": [],
+      "age_range": [
+        3,
+        6
+      ],
+      "class_model": "mixed-age"
+    },
+    {
+      "id": "vs",
+      "label": {
+        "de": "Volksschule"
+      },
+      "stages": [
+        "primar"
+      ],
+      "grades": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "class_model": "class"
+    },
+    {
+      "id": "ms",
+      "label": {
+        "de": "Mittelschule"
+      },
+      "stages": [
+        "sec1"
+      ],
+      "grades": [
+        "s5",
+        "s6",
+        "s7",
+        "s8"
+      ],
+      "class_model": "homeroom",
+      "tracks": [
+        "ms-niveau"
+      ],
+      "qualifications": [
+        "ms-abschluss"
+      ],
+      "aliases": [
+        "Neue Mittelschule",
+        "NMS",
+        "Hauptschule"
+      ],
+      "notes": "Ab 7. Schulstufe Leistungsniveaus Standard / Standard AHS in Deutsch, Mathematik, Englisch – je Gegenstand, daher scope enrollment."
+    },
+    {
+      "id": "ahs-u",
+      "label": {
+        "de": "AHS-Unterstufe"
+      },
+      "stages": [
+        "sec1"
+      ],
+      "grades": [
+        "s5",
+        "s6",
+        "s7",
+        "s8"
+      ],
+      "class_model": "class",
+      "tracks": [
+        "ahs-typ"
+      ],
+      "qualifications": [
+        "ahs-u-abschluss"
+      ],
+      "aliases": [
+        "Gymnasium Unterstufe",
+        "Realgymnasium Unterstufe"
+      ]
+    },
+    {
+      "id": "ahs-o",
+      "label": {
+        "de": "AHS-Oberstufe"
+      },
+      "stages": [
+        "sec2"
+      ],
+      "grades": [
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "class_model": "class",
+      "tracks": [
+        "ahs-typ"
+      ],
+      "qualifications": [
+        "matura"
+      ],
+      "aliases": [
+        "Gymnasium Oberstufe",
+        "ORG",
+        "BORG"
+      ],
+      "notes": "Klassenverband bleibt; Wahlpflichtgegenstände ab 6. Klasse als Kurse. Semestrierte Oberstufe ist Schulautonomie-Sache – Overlay."
+    },
+    {
+      "id": "bhs",
+      "label": {
+        "de": "Berufsbildende höhere Schule"
+      },
+      "stages": [
+        "sec2"
+      ],
+      "grades": [
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13"
+      ],
+      "class_model": "class",
+      "qualifications": [
+        "rdp"
+      ],
+      "aliases": [
+        "HTL",
+        "HAK",
+        "HLW",
+        "HLT",
+        "BAfEP",
+        "BASOP"
+      ],
+      "notes": "Fünf Jahrgänge, Reife- und Diplomprüfung. Fachrichtungen (HTL Elektrotechnik, HAK, HLW) als schuleigene Programme im Overlay."
+    },
+    {
+      "id": "bms",
+      "label": {
+        "de": "Berufsbildende mittlere Schule"
+      },
+      "stages": [
+        "sec2"
+      ],
+      "grades": [
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "class_model": "class",
+      "qualifications": [
+        "bms-abschluss"
+      ],
+      "aliases": [
+        "Fachschule",
+        "Handelsschule"
+      ],
+      "notes": "Ein bis vier Jahre je Fachrichtung."
+    },
+    {
+      "id": "pts",
+      "label": {
+        "de": "Polytechnische Schule"
+      },
+      "stages": [
+        "sec2"
+      ],
+      "grades": [
+        "s9"
+      ],
+      "class_model": "class",
+      "qualifications": [
+        "pflichtschulabschluss"
+      ],
+      "notes": "Neuntes Pflichtschuljahr mit Berufsorientierung."
+    },
+    {
+      "id": "lehre",
+      "label": {
+        "de": "Lehre mit Berufsschule"
+      },
+      "stages": [
+        "sec2"
+      ],
+      "grades": [
+        "s10",
+        "s11",
+        "s12",
+        "s13"
+      ],
+      "class_model": "course",
+      "qualifications": [
+        "lap",
+        "brp"
+      ],
+      "notes": "Duale Ausbildung; Berufsschule geblockt oder ganzjährig. Nur als Anschluss."
+    },
+    {
+      "id": "sonderschule",
+      "label": {
+        "de": "Sonderschule / Inklusive Klasse"
+      },
+      "stages": [
+        "primar",
+        "sec1"
+      ],
+      "grades": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9"
+      ],
+      "class_model": "class",
+      "aliases": [
+        "Allgemeine Sonderschule",
+        "ASO",
+        "Integrationsklasse"
+      ]
+    }
+  ],
+  "qualifications": [
+    {
+      "id": "ms-abschluss",
+      "label": {
+        "de": "Abschluss der Mittelschule"
+      },
+      "after_grade": "s8",
+      "programs": [
+        "ms"
+      ],
+      "grants_access": [
+        "ahs-o",
+        "bhs",
+        "bms",
+        "pts"
+      ],
+      "notes": "Berechtigung für AHS/BHS abhängig vom Niveau Standard AHS in D/M/E"
+    },
+    {
+      "id": "ahs-u-abschluss",
+      "label": {
+        "de": "Abschluss der AHS-Unterstufe"
+      },
+      "after_grade": "s8",
+      "programs": [
+        "ahs-u"
+      ],
+      "grants_access": [
+        "ahs-o",
+        "bhs",
+        "bms"
+      ]
+    },
+    {
+      "id": "pflichtschulabschluss",
+      "label": {
+        "de": "Pflichtschulabschluss"
+      },
+      "after_grade": "s9",
+      "programs": [
+        "pts",
+        "ms"
+      ],
+      "grants_access": [
+        "lehre",
+        "bms"
+      ]
+    },
+    {
+      "id": "matura",
+      "label": {
+        "de": "Reifeprüfung (Matura)"
+      },
+      "after_grade": "s12",
+      "programs": [
+        "ahs-o"
+      ],
+      "grants_access": [
+        "universitaet",
+        "fh",
+        "ph",
+        "kolleg"
+      ]
+    },
+    {
+      "id": "rdp",
+      "label": {
+        "de": "Reife- und Diplomprüfung"
+      },
+      "after_grade": "s13",
+      "programs": [
+        "bhs"
+      ],
+      "grants_access": [
+        "universitaet",
+        "fh",
+        "ph",
+        "beruf"
+      ]
+    },
+    {
+      "id": "bms-abschluss",
+      "label": {
+        "de": "Abschlussprüfung BMS"
+      },
+      "after_grade": "s11",
+      "programs": [
+        "bms"
+      ],
+      "grants_access": [
+        "beruf",
+        "aufbaulehrgang"
+      ]
+    },
+    {
+      "id": "lap",
+      "label": {
+        "de": "Lehrabschlussprüfung"
+      },
+      "after_grade": "s12",
+      "programs": [
+        "lehre"
+      ],
+      "grants_access": [
+        "beruf",
+        "meister"
+      ]
+    },
+    {
+      "id": "brp",
+      "label": {
+        "de": "Berufsreifeprüfung"
+      },
+      "after_grade": "s13",
+      "programs": [
+        "lehre",
+        "bms"
+      ],
+      "grants_access": [
+        "universitaet",
+        "fh",
+        "ph"
+      ],
+      "aliases": [
+        "Lehre mit Matura"
+      ]
+    }
+  ],
+  "subject_domains": [
+    {
+      "id": "lang",
+      "label": {
+        "de": "Sprachen"
+      }
+    },
+    {
+      "id": "math",
+      "label": {
+        "de": "Mathematik"
+      }
+    },
+    {
+      "id": "science",
+      "label": {
+        "de": "Naturwissenschaften"
+      }
+    },
+    {
+      "id": "social",
+      "label": {
+        "de": "Geschichte, Geographie, Politische Bildung"
+      }
+    },
+    {
+      "id": "arts",
+      "label": {
+        "de": "Kreativität und Gestaltung"
+      }
+    },
+    {
+      "id": "sport",
+      "label": {
+        "de": "Bewegung und Sport"
+      }
+    },
+    {
+      "id": "religion",
+      "label": {
+        "de": "Religion / Ethik"
+      }
+    },
+    {
+      "id": "media",
+      "label": {
+        "de": "Digitale Grundbildung / Informatik"
+      }
+    },
+    {
+      "id": "cross",
+      "label": {
+        "de": "Übergreifend / Wahlpflicht"
+      }
+    },
+    {
+      "id": "vocational",
+      "label": {
+        "de": "Fachtheorie und Fachpraxis (BHS/BMS)"
+      }
+    }
+  ],
+  "subjects": [
+    {
+      "id": "de",
+      "label": {
+        "de": "Deutsch"
+      },
+      "domain": "lang",
+      "grades": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13"
+      ],
+      "tracked": true
+    },
+    {
+      "id": "en",
+      "label": {
+        "de": "Englisch"
+      },
+      "domain": "lang",
+      "grades": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13"
+      ],
+      "tracked": true,
+      "aliases": [
+        "Lebende Fremdsprache Englisch"
+      ]
+    },
+    {
+      "id": "fs2",
+      "label": {
+        "de": "Zweite lebende Fremdsprache"
+      },
+      "domain": "lang",
+      "grades": [
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "programs": [
+        "ahs-u",
+        "ahs-o",
+        "bhs"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "aliases": [
+        "Französisch",
+        "Italienisch",
+        "Spanisch"
+      ]
+    },
+    {
+      "id": "la",
+      "label": {
+        "de": "Latein"
+      },
+      "domain": "lang",
+      "grades": [
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "programs": [
+        "ahs-u",
+        "ahs-o"
+      ],
+      "kind": "elective",
+      "optional": true
+    },
+    {
+      "id": "gr",
+      "label": {
+        "de": "Griechisch"
+      },
+      "domain": "lang",
+      "grades": [
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "programs": [
+        "ahs-o"
+      ],
+      "kind": "elective",
+      "optional": true
+    },
+    {
+      "id": "math",
+      "label": {
+        "de": "Mathematik"
+      },
+      "domain": "math",
+      "grades": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13"
+      ],
+      "tracked": true
+    },
+    {
+      "id": "su",
+      "label": {
+        "de": "Sachunterricht"
+      },
+      "domain": "science",
+      "grades": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "programs": [
+        "vs"
+      ]
+    },
+    {
+      "id": "bu",
+      "label": {
+        "de": "Biologie und Umweltbildung"
+      },
+      "domain": "science",
+      "grades": [
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "aliases": [
+        "Biologie und Umweltkunde"
+      ]
+    },
+    {
+      "id": "ph",
+      "label": {
+        "de": "Physik"
+      },
+      "domain": "science",
+      "grades": [
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ]
+    },
+    {
+      "id": "ch",
+      "label": {
+        "de": "Chemie"
+      },
+      "domain": "science",
+      "grades": [
+        "s8",
+        "s11",
+        "s12"
+      ]
+    },
+    {
+      "id": "gpb",
+      "label": {
+        "de": "Geschichte und Politische Bildung"
+      },
+      "domain": "social",
+      "grades": [
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "aliases": [
+        "Geschichte und Sozialkunde"
+      ]
+    },
+    {
+      "id": "gw",
+      "label": {
+        "de": "Geographie und Wirtschaftliche Bildung"
+      },
+      "domain": "social",
+      "grades": [
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "aliases": [
+        "Geographie und Wirtschaftskunde",
+        "GW"
+      ]
+    },
+    {
+      "id": "kg",
+      "label": {
+        "de": "Kunst und Gestaltung"
+      },
+      "domain": "arts",
+      "grades": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "aliases": [
+        "Bildnerische Erziehung",
+        "BE"
+      ]
+    },
+    {
+      "id": "td",
+      "label": {
+        "de": "Technik und Design"
+      },
+      "domain": "arts",
+      "grades": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8"
+      ],
+      "aliases": [
+        "Werken",
+        "Technisches und textiles Werken"
+      ]
+    },
+    {
+      "id": "mu",
+      "label": {
+        "de": "Musik"
+      },
+      "domain": "arts",
+      "grades": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "aliases": [
+        "Musikerziehung",
+        "ME"
+      ]
+    },
+    {
+      "id": "bsp",
+      "label": {
+        "de": "Bewegung und Sport"
+      },
+      "domain": "sport",
+      "grades": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13"
+      ],
+      "aliases": [
+        "Leibesübungen"
+      ]
+    },
+    {
+      "id": "rel",
+      "label": {
+        "de": "Religion"
+      },
+      "domain": "religion",
+      "grades": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13"
+      ],
+      "optional": true
+    },
+    {
+      "id": "eth",
+      "label": {
+        "de": "Ethik"
+      },
+      "domain": "religion",
+      "grades": [
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13"
+      ],
+      "optional": true,
+      "notes": "Pflicht für Abgemeldete ab 9. Schulstufe"
+    },
+    {
+      "id": "dgb",
+      "label": {
+        "de": "Digitale Grundbildung"
+      },
+      "domain": "media",
+      "grades": [
+        "s5",
+        "s6",
+        "s7",
+        "s8"
+      ]
+    },
+    {
+      "id": "inf",
+      "label": {
+        "de": "Informatik"
+      },
+      "domain": "media",
+      "grades": [
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "programs": [
+        "ahs-o"
+      ],
+      "optional": true
+    },
+    {
+      "id": "eh",
+      "label": {
+        "de": "Ernährung und Haushalt"
+      },
+      "domain": "cross",
+      "grades": [
+        "s5",
+        "s6",
+        "s7",
+        "s8"
+      ],
+      "programs": [
+        "ms"
+      ],
+      "optional": true
+    },
+    {
+      "id": "bo",
+      "label": {
+        "de": "Berufsorientierung"
+      },
+      "domain": "cross",
+      "grades": [
+        "s7",
+        "s8",
+        "s9"
+      ],
+      "programs": [
+        "ms",
+        "pts"
+      ]
+    },
+    {
+      "id": "psy",
+      "label": {
+        "de": "Psychologie und Philosophie"
+      },
+      "domain": "cross",
+      "grades": [
+        "s11",
+        "s12"
+      ],
+      "programs": [
+        "ahs-o"
+      ],
+      "aliases": [
+        "PP",
+        "PuP"
+      ]
+    },
+    {
+      "id": "wpg",
+      "label": {
+        "de": "Wahlpflichtgegenstand"
+      },
+      "domain": "cross",
+      "grades": [
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "programs": [
+        "ahs-o"
+      ],
+      "kind": "elective",
+      "optional": true
+    },
+    {
+      "id": "vwa",
+      "label": {
+        "de": "Vorwissenschaftliche Arbeit"
+      },
+      "domain": "cross",
+      "grades": [
+        "s11",
+        "s12"
+      ],
+      "programs": [
+        "ahs-o"
+      ],
+      "kind": "project",
+      "aliases": [
+        "Abschließende Arbeit"
+      ]
+    },
+    {
+      "id": "rw",
+      "label": {
+        "de": "Rechnungswesen und Controlling"
+      },
+      "domain": "vocational",
+      "grades": [
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13"
+      ],
+      "programs": [
+        "bhs",
+        "bms"
+      ],
+      "optional": true
+    },
+    {
+      "id": "bw",
+      "label": {
+        "de": "Betriebswirtschaft"
+      },
+      "domain": "vocational",
+      "grades": [
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13"
+      ],
+      "programs": [
+        "bhs",
+        "bms"
+      ],
+      "optional": true
+    },
+    {
+      "id": "fachtheorie",
+      "label": {
+        "de": "Fachtheorie"
+      },
+      "domain": "vocational",
+      "grades": [
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13"
+      ],
+      "programs": [
+        "bhs",
+        "bms"
+      ],
+      "optional": true,
+      "aliases": [
+        "Elektrotechnik",
+        "Maschinenbau",
+        "Bautechnik",
+        "Ernährung"
+      ]
+    },
+    {
+      "id": "fachpraxis",
+      "label": {
+        "de": "Fachpraxis / Werkstätte / Praktikum"
+      },
+      "domain": "vocational",
+      "grades": [
+        "s9",
+        "s10",
+        "s11",
+        "s12",
+        "s13"
+      ],
+      "programs": [
+        "bhs",
+        "bms"
+      ],
+      "optional": true
+    },
+    {
+      "id": "diplomarbeit",
+      "label": {
+        "de": "Diplomarbeit"
+      },
+      "domain": "vocational",
+      "grades": [
+        "s13"
+      ],
+      "programs": [
+        "bhs"
+      ],
+      "kind": "project"
+    }
+  ]
+}

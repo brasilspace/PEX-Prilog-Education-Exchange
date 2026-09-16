@@ -1,0 +1,537 @@
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/prilog-pex/main/schema/pex.schema.json",
+    "license": "CC-BY-4.0",
+    "maintainer": "info@prilog.team",
+    "id": "de-hh",
+    "version": "0.1.0",
+    "kind": "overlay",
+    "extends": "de",
+    "country": "DE",
+    "region": "HH",
+    "languages": [
+      "de"
+    ],
+    "name": {
+      "de": "Hamburg"
+    },
+    "source": "Hamburgisches Schulgesetz (HmbSG), APO-GrundStGy, APO-AH, Zeugnisordnung",
+    "notes": "Zweigliedrig: Stadtteilschule und Gymnasium. Profiloberstufe. Abitur nach 12 (Gy) bzw. 13 (StS). Real-/Haupt-/Gesamtschule seit 2010 abgeschafft."
+  },
+  "terminology": {
+    "parent_conference": {
+      "de": "Elternsprechtag"
+    },
+    "report_midyear": {
+      "de": "Halbjahreszeugnis"
+    }
+  },
+  "grades": [
+    {
+      "id": "g11",
+      "label": {
+        "de": "Jahrgang 11"
+      },
+      "aliases": [
+        "Vorstufe (StS)",
+        "S1/S2 (Gy)"
+      ]
+    },
+    {
+      "id": "g12",
+      "label": {
+        "de": "Jahrgang 12"
+      },
+      "aliases": [
+        "S1/S2 (StS)",
+        "S3/S4 (Gy)"
+      ]
+    },
+    {
+      "id": "g13",
+      "label": {
+        "de": "Jahrgang 13"
+      },
+      "aliases": [
+        "S3/S4 (StS)"
+      ]
+    }
+  ],
+  "programs": [
+    {
+      "id": "realschule",
+      "label": {
+        "de": "Realschule"
+      },
+      "disabled": true
+    },
+    {
+      "id": "hauptschule",
+      "label": {
+        "de": "Hauptschule"
+      },
+      "disabled": true
+    },
+    {
+      "id": "gesamtschule",
+      "label": {
+        "de": "Gesamtschule"
+      },
+      "disabled": true
+    },
+    {
+      "id": "stadtteilschule",
+      "label": {
+        "de": "Stadtteilschule"
+      },
+      "stages": [
+        "sec1",
+        "sec2"
+      ],
+      "grades": [
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "class_model": "class",
+      "tracks": [
+        "ge-kurs",
+        "oberstufe"
+      ],
+      "qualifications": [
+        "esa",
+        "msa",
+        "fhr",
+        "abitur"
+      ],
+      "aliases": [
+        "StS"
+      ],
+      "notes": "Alle Abschlüsse; Abitur nach 13 Jahren; Profiloberstufe ab Jg. 12"
+    },
+    {
+      "id": "gymnasium",
+      "label": {
+        "de": "Gymnasium"
+      },
+      "grades": [
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12"
+      ],
+      "notes": "G8: Abitur nach 12; Beobachtungsstufe 5–6; Profiloberstufe ab Jg. 11"
+    },
+    {
+      "id": "waldorf-ersatzschule",
+      "label": {
+        "de": "Freie Waldorfschule (Ersatzschule)"
+      },
+      "stages": [
+        "primar",
+        "sec1",
+        "sec2"
+      ],
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "class_model": "class",
+      "qualifications": [
+        "esa",
+        "msa",
+        "fhr",
+        "abitur"
+      ],
+      "approval": "private-recognized",
+      "notes": "Staatlich anerkannte Ersatzschule; Abschlüsse als Prüfung an der Schule unter staatlichem Vorsitz"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "oberstufe",
+      "label": {
+        "de": "Profiloberstufe"
+      },
+      "scope": "enrollment",
+      "levels": [
+        {
+          "id": "ea",
+          "label": {
+            "de": "erhöhtes Anforderungsniveau (eA)"
+          }
+        },
+        {
+          "id": "ga",
+          "label": {
+            "de": "grundlegendes Anforderungsniveau (gA)"
+          }
+        }
+      ]
+    }
+  ],
+  "qualifications": [
+    {
+      "id": "esa",
+      "label": {
+        "de": "Erster allgemeinbildender Schulabschluss (ESA)"
+      },
+      "after_grade": "g9",
+      "programs": [
+        "stadtteilschule",
+        "waldorf-ersatzschule"
+      ]
+    },
+    {
+      "id": "msa",
+      "label": {
+        "de": "Mittlerer Schulabschluss (MSA)"
+      },
+      "after_grade": "g10",
+      "programs": [
+        "stadtteilschule",
+        "gymnasium",
+        "waldorf-ersatzschule"
+      ]
+    },
+    {
+      "id": "abitur",
+      "label": {
+        "de": "Abitur"
+      },
+      "after_grade": "g12",
+      "programs": [
+        "gymnasium",
+        "stadtteilschule",
+        "waldorf-ersatzschule"
+      ],
+      "notes": "StS und Waldorf nach g13"
+    },
+    {
+      "id": "fhr",
+      "label": {
+        "de": "Fachhochschulreife (schulischer Teil)"
+      },
+      "after_grade": "g12",
+      "programs": [
+        "stadtteilschule",
+        "gymnasium"
+      ]
+    }
+  ],
+  "subjects": [
+    {
+      "id": "pol",
+      "label": {
+        "de": "Politik/Gesellschaft/Wirtschaft"
+      },
+      "domain": "social",
+      "aliases": [
+        "PGW"
+      ]
+    },
+    {
+      "id": "rel",
+      "label": {
+        "de": "Religion (für alle)"
+      },
+      "domain": "religion",
+      "optional": false,
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10"
+      ]
+    },
+    {
+      "id": "eth",
+      "label": {
+        "de": "Philosophie"
+      },
+      "domain": "religion",
+      "grades": [
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "optional": true
+    },
+    {
+      "id": "nawi",
+      "label": {
+        "de": "Naturwissenschaften/Technik"
+      },
+      "domain": "science",
+      "grades": [
+        "g5",
+        "g6"
+      ]
+    },
+    {
+      "id": "profil",
+      "label": {
+        "de": "Profilbereich"
+      },
+      "domain": "cross",
+      "grades": [
+        "g11",
+        "g12",
+        "g13"
+      ],
+      "kind": "core",
+      "tracked": true,
+      "aliases": [
+        "Profilgebendes Fach",
+        "Profilbegleitfach",
+        "Seminar"
+      ]
+    },
+    {
+      "id": "lernentwicklung",
+      "label": {
+        "de": "Lernentwicklungsgespräch"
+      },
+      "domain": "cross",
+      "grades": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10"
+      ],
+      "kind": "core"
+    }
+  ],
+  "grading": {
+    "by_program": [
+      {
+        "program": "grundschule",
+        "grades": [
+          "g1",
+          "g2"
+        ],
+        "scale": "text"
+      },
+      {
+        "program": "waldorf-ersatzschule",
+        "grades": [
+          "g1",
+          "g2",
+          "g3",
+          "g4",
+          "g5",
+          "g6",
+          "g7",
+          "g8",
+          "g9",
+          "g10",
+          "g11"
+        ],
+        "scale": "text"
+      }
+    ]
+  },
+  "calendar": {
+    "holiday_authority": {
+      "level": "state",
+      "label": {
+        "de": "Behörde für Schule und Berufsbildung Hamburg"
+      },
+      "url": "https://www.hamburg.de/bsb/ferien/"
+    }
+  },
+  "rules": [
+    {
+      "id": "uebertritt-5",
+      "kind": "transition",
+      "label": {
+        "de": "Übergang nach Klasse 4"
+      },
+      "applies_to": {
+        "from_grade": "g4"
+      },
+      "mode": "parent-choice",
+      "summary": {
+        "de": "Eltern wählen zwischen Stadtteilschule und Gymnasium; die Grundschule gibt eine Einschätzung ab, die nicht bindend ist. Am Gymnasium entscheidet die Beobachtungsstufe (Jg. 5–6) über den Verbleib."
+      },
+      "source": "HmbSG § 42, APO-GrundStGy § 8"
+    },
+    {
+      "id": "schulpflicht",
+      "kind": "compulsory-schooling",
+      "label": {
+        "de": "Schulpflicht"
+      },
+      "summary": {
+        "de": "11 Jahre Vollzeitschulpflicht (inkl. Vorschule) oder bis zum Ende des Schuljahres, in dem das 18. Lebensjahr vollendet wird; Einschulungsstichtag 1. Juli."
+      },
+      "source": "HmbSG §§ 37–39"
+    },
+    {
+      "id": "lernentwicklungsgespraech",
+      "kind": "attendance",
+      "label": {
+        "de": "Lernentwicklungsgespräche"
+      },
+      "summary": {
+        "de": "Einmal pro Halbjahr verpflichtendes Gespräch Lehrkraft–Schüler–Eltern mit Lernvereinbarung, ersetzt teilweise den klassischen Elternsprechtag."
+      },
+      "source": "HmbSG § 44 Abs. 3; Zeugnisordnung"
+    }
+  ],
+  "exams": [
+    {
+      "id": "abitur-hh",
+      "label": {
+        "de": "Abiturprüfung Hamburg"
+      },
+      "qualification": "abitur",
+      "mode": "central",
+      "at_grade": "g12",
+      "components": [
+        {
+          "id": "written",
+          "count": 3
+        },
+        {
+          "id": "oral",
+          "count": 1
+        },
+        {
+          "id": "presentation",
+          "count": 1,
+          "label": {
+            "de": "Präsentationsprüfung"
+          }
+        }
+      ],
+      "summary": {
+        "de": "Zentrale schriftliche Prüfungen in den Kernfächern; Präsentationsprüfung als 5. Komponente."
+      },
+      "source": "APO-AH §§ 20–26"
+    },
+    {
+      "id": "abitur-waldorf-hh",
+      "label": {
+        "de": "Abitur an anerkannten Ersatzschulen"
+      },
+      "qualification": "abitur",
+      "mode": "state-recognized",
+      "at_grade": "g13",
+      "summary": {
+        "de": "Anerkannte Ersatzschulen (u. a. Waldorf) führen die Abiturprüfung selbst durch, mit zentralen Aufgaben und staatlichem Prüfungsvorsitz; keine Schulfremdenprüfung."
+      },
+      "source": "HmbSG § 113; APO-AH"
+    },
+    {
+      "id": "msa-hh",
+      "label": {
+        "de": "Prüfung zum Mittleren Schulabschluss"
+      },
+      "qualification": "msa",
+      "mode": "central",
+      "at_grade": "g10",
+      "components": [
+        {
+          "id": "written",
+          "count": 3
+        },
+        {
+          "id": "oral",
+          "count": 1
+        }
+      ],
+      "source": "APO-GrundStGy §§ 22 ff."
+    }
+  ],
+  "legal": [
+    {
+      "id": "schulgesetz",
+      "kind": "school-act",
+      "label": {
+        "de": "Hamburgisches Schulgesetz (HmbSG)"
+      },
+      "url": "https://www.landesrecht-hamburg.de/",
+      "sections": {
+        "schulpflicht": "§§ 37–41",
+        "datenschutz": "§§ 98–100",
+        "ersatzschulen": "§§ 112–119",
+        "elternrechte": "§§ 68–76"
+      }
+    },
+    {
+      "id": "datenschutz",
+      "kind": "data-protection",
+      "label": {
+        "de": "HmbSG §§ 98–100, HmbDSG, DSGVO"
+      },
+      "summary": {
+        "de": "Schulen verarbeiten nach HmbSG; Auftragsverarbeitung nach Art. 28 DSGVO; Datenschutzbeauftragter je Schule."
+      }
+    },
+    {
+      "id": "aufsicht",
+      "kind": "authority",
+      "label": {
+        "de": "Behörde für Schule und Berufsbildung (BSB)"
+      },
+      "url": "https://www.hamburg.de/bsb/"
+    },
+    {
+      "id": "aufbewahrung",
+      "kind": "retention",
+      "label": {
+        "de": "Aufbewahrungsfristen Schülerakte"
+      },
+      "summary": {
+        "de": "Schülerbogen 10 Jahre nach Abgang; Zeugnislisten/Abschlusszeugnisse 50 Jahre; Klassenbücher 5 Jahre"
+      },
+      "source": "Aktenordnung BSB"
+    },
+    {
+      "id": "meldung-ifsg",
+      "kind": "reporting",
+      "label": {
+        "de": "Meldepflicht nach § 34 IfSG"
+      },
+      "summary": {
+        "de": "Meldung an das Gesundheitsamt des Bezirks bei meldepflichtigen Erkrankungen; Belehrung der Eltern bei Aufnahme."
+      },
+      "source": "IfSG § 34"
+    }
+  ]
+}
