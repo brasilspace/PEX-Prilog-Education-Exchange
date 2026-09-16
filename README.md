@@ -1,278 +1,436 @@
 PEX – Prilog Education Exchange
 Guide: Structure, Logic, and Writing Packages
-Schema version 2.1 · As of 16 September 2026
----
-1. What PEX Is – and What It Is Not
-PEX is a JSON format that describes what an education system knows: which stages, grades, and programs exist, which subjects, tracks, and qualifications, how grading works, how the school year is structured, what things are called – and which rules and legal bases apply.
-PEX does not describe how a specific school is organized. No class 7b, no course taught by Ms Meier, no individual student, no holiday date. That belongs to the tenant (see Organization Model and Enrollment).
-The one rule that supports everything else:
-> **A PEX never contains an instance.** It describes types, not things.
-If, while writing a package, you want to enter something that exists exactly once (a specific school, a date, a person), it does not belong in PEX.
+Schema Version 2.1 · As of September 16, 2026
+
+
+1. What PEX Is—and What It Isn’t
+PEX is a JSON format that describes what an education system encompasses: what levels, grade levels, and programs exist; what subjects, tracks, and degrees are offered; how grading works; how the school year is structured; what things are called—and what rules and legal foundations underpin them.
+
+PEX does not describe how a specific school is organized. No Class 7b, no course taught by Ms. Meier, no student, no vacation dates. That is the client’s responsibility (see Organizational Model and Enrollment).
+
+The one rule that underpins everything else:
+
+A PEX never contains an instance. It describes types, not things.
+
+If, while writing a package, you want to include something that exists exactly once (a specific school, a date, a person), it does not belong in the PEX.
+
 Second rule:
-> **PEX does not calculate.** Rules, examinations, and legal references are stored as text with a source. Prilog reads them, displays them, and links to them. If someone wants to turn a rule into logic, they build a module that reads the rule.
----
+
+PEX does not perform calculations. Rules, checks, and legal references are provided as text with a source. Prilog reads them, displays them, and links to them. Anyone who wants to turn a rule into logic builds a module that reads the rule.
+
+
 2. The Files
-File	Role
-`pex.schema.json`	JSON Schema (Draft 2020-12) against which every PEX file is validated. `$id: https://prilog.chat/schemas/pex/v2.1`
-`<id>.pex.json`	A package. `<id>` is the `meta.id`: `de`, `ch-de`, `de-hh`, `waldorf`
+File
+Role
+pex.schema.json
+JSON schema (Draft 2020-12) against which every PEX file is validated. $id: https://prilog.chat/schemas/pex/v2.1
+<id>.pex.json
+A package. <id> is the meta.id: de, ch-de, de-hh, waldorf
+
+
 Every PEX file begins with the same two fields:
-```json
+
 {
+
   "meta": {
+
     "format": "pex",
+
     "schema": "https://prilog.chat/schemas/pex/v2.1",
+
     ...
-```
-This allows a loader to recognize the file by its contents rather than by its filename. A file without `format: "pex"` is rejected.
----
+
+This allows a loader to recognize the file by its content, not by its name. A file without `format: "pex"` will be rejected.
+
+
 3. The Three Layers
-A tenant never uses a single PEX, but rather a stack:
-```
-  Base PEX             de          ch-de        at          us
-      ↓
-  Regional overlay     de-hh       ch-zh        at-w        us-ca
-      ↓
-  Pedagogy overlay     waldorf / montessori   (can be placed on any base)
-      ↓
-  Tenant overrides     (the school itself, in the admin UI – technically the same format)
-      ↓
-  = effective PEX      (materialized, validated against the schema, read by the code)
-```
-All layers have the same structure. An overlay is a PEX with `meta.kind: "overlay"` and `meta.extends`, containing only what it changes or adds.
+A client never uses a single PEX, but rather a stack:
+
+  Base PEX          de          ch-de        at          us
+
+       ↓
+
+  Regional overlay de-hh       ch-zh        at-w        us-ca
+
+       ↓
+
+  Educational Overlay  Waldorf / Montessori   (can be applied to any base)
+
+       ↓
+
+  Client Overrides   (the school itself, in the admin UI—technically the same format)
+
+       ↓
+
+  = effective PEX   (materialized, checked against the schema, read by the code)
+
+All layers have the same structure. An overlay is a PEX with meta.kind: "overlay" and meta.extends that contains only what it changes or adds.
 3.1 Merge Rules
 The stack is merged from bottom to top:
-Scalar fields (strings, numbers, booleans) – the higher layer overrides.
-Objects without `id` (`terminology`, `calendar`, `grading` as a whole) – deep merge; keys from the higher layer override individually, missing keys remain.
-Lists with `id` (`stages`, `grades`, `programs`, `tracks`, `qualifications`, `subjects`, `subject_domains`, `rules`, `exams`, `legal`, `scales`, `periods`) – merge by `id`, not append:
-same `id` in both layers → the element is deep-merged (fields from the higher layer win, missing fields remain)
-`id` only in the higher layer → the element is added
-`id` only in the lower layer → the element remains
-Hiding is possible only through `"disabled": true` on the element. There is no deletion – this keeps it traceable that Hamburg has abolished the Realschule rather than forgotten it.
-Lists without `id` (`grades` on a subject, `aliases`, `levels`? – no, `levels` have `id`) – the higher layer replaces the list completely. If you want to extend a subject by one grade, you rewrite the entire `grades` list.
-Example – an overlay changes only one field of a program:
-```json
-// Base de:
+
+Scalar fields (strings, numbers, Booleans)—the higher layer overrides.
+Objects without an ID (terminology, calendar, grading as a whole) – deep merge; keys from the higher layer overwrite individual entries, while missing keys remain.
+Lists with IDs (stages, grades, programs, tracks, qualifications, subjects, subject_domains, rules, exams, legal, scales, periods) – Merge by ID, do not append:
+same id in both layers → the element is merged deeply (fields from the higher layer take precedence; missing fields remain)
+ID only in the higher layer → element is added
+ID only in the lower layer → element remains
+Hiding is only possible via "disabled": true on the element. There is no delete function—this ensures it remains clear that Hamburg has abolished the Realschule and that this fact is not forgotten.
+Lists without an ID (grades for a subject, aliases, levels?—no, levels have IDs)—the higher layer completely replaces the list. If you want to add a grade level to a subject, you must rewrite the entire grades list.
+
+Example – Overlay changes only one field of a program:
+
+// Base:
+
 { "id": "gymnasium", "label": {"de": "Gymnasium"}, "grades": ["g5",…,"g12"], "tracks": ["oberstufe"], … }
 
 // Overlay de-by:
+
 { "id": "gymnasium", "grades": ["g5",…,"g13"], "tracks": ["gym-zweig", "oberstufe"] }
 
-// Effective:
+// effective:
+
 { "id": "gymnasium", "label": {"de": "Gymnasium"}, "grades": ["g5",…,"g13"], "tracks": ["gym-zweig", "oberstufe"], … }
-```
-The label came from the base; `grades` and `tracks` were replaced (lists without `id`); everything else remained.
-3.2 Pedagogy Overlays with `extends: "*"`
-`waldorf` and `montessori` can be placed on any base. They may therefore only reference things that have the same IDs in all bases – or bring their own things. The Waldorf overlay includes its own subjects (`eu`, `gartenbau`, `ep-*`) and references grades as `g1`…`g13`; this works on `de`, but not on `ch-de` (`h3`…`h11`). This is a known issue: for Switzerland, Waldorf needs either a `waldorf-ch` overlay or a grade translation in the loader. Until that is resolved, the validator checks the stack and reports missing references.
+
+The label came from the base; "grades" and "tracks" were replaced (lists without "id"), everything else remained the same.
+3.2 Pedagogical Overlays with extends: "*"
+Waldorf and Montessori are applied to every base. Therefore, they may only reference items that have the same names in all bases—or bring their own items. The Waldorf overlay brings its own subjects (eu, horticulture, ep-*) and references grade levels as g1…g13; this works on de, but not on ch-de (h3…h11). This is a known issue: For Switzerland, Waldorf needs either a waldorf-ch overlay or a grade-level translation in the loader. As long as this remains unresolved, the validator checks for this during stacking and reports missing references.
 3.3 Validation
 Two stages:
-File validation against `pex.schema.json` – structure, required fields, allowed values. Each file individually.
-Stack validation after the merge – referential validation: every `id` that is referenced (`stage`, `grades[]`, `programs[]`, `tracks[]`, `qualifications[]`, `domain`, `qualification`, `scale`) must exist in the effective PEX and must not be `disabled`. Only then is the effective PEX materialized.
-An overlay by itself cannot be validated referentially – it is allowed to reference its base.
----
-4. The Building Blocks, in the Order You Read Them
-All IDs are lowercase slugs (`^[a-z0-9][a-z0-9-]*$`), stable, and English or neutral (`sek1`, `gym`, `math`, `g7`). Code reads IDs.
-All labels are objects such as `{ "de": "…", "fr": "…", "en": "…" }` – with at least one language from `meta.languages`. Humans read labels.
-Aliases are free-form strings – alternative names under which the same thing appears in practice. They are used for search and display ("also known as"), never for references.
-4.1 `meta` – Package Identity
-```json
+
+File validation against pex.schema.json—structure, required fields, allowed values. Each file individually.
+Stack validation after the merge – referential check: Every ID referenced (stage, grades[], programs[], tracks[], qualifications[], domain, qualification, scale) must exist in the effective PEX and must not be disabled. Only then is the effective PEX materialized.
+
+An overlay alone cannot be checked for referential integrity—it may reference the base.
+
+
+4. The building blocks, in the order in which they are read
+All IDs are lowercase slugs (^[a-z0-9][a-z0-9-]*$), stable, and in English or neutral (sek1, gym, math, g7). Code reads IDs. All labels are objects { "de": "…", "fr": "…", "en": "…" }—at least one language from meta.languages. People read labels. Aliases are arbitrary strings—other names under which the same thing appears in practice. They are used for searching and display (“also known as”), never for reference.
+4.1 meta – Package Identity
 "meta": {
+
   "format": "pex", "schema": "…/pex/v2.1",
+
   "id": "de-hh", "version": "0.1.0",
+
   "kind": "overlay", "extends": "de",
+
   "country": "DE", "region": "HH",
+
   "languages": ["de"],
+
   "name": { "de": "Hamburg" },
+
   "source": "HmbSG, APO-GrundStGy …",
-  "notes": "Zweigliedrig …"
+
+  "notes": "Two-tier …"
+
 }
-```
-`id` = filename without `.pex.json`. Convention: `<country>` for bases, `<country>-<region>` for regional overlays (ISO-3166-2 suffix), one word for pedagogy overlays.
-`version` uses semver. Tenants pin a version; an update is a deliberate step with a diff.
-`kind` = `base` or `overlay`; `extends` only for overlays.
-`source` is the source reference for the whole package; individual `rules`/`exams`/`legal` entries have their own.
-4.2 `terminology` – What Things Are Called
+
+id = filename without .pex.json. Convention: <country> for bases, <country>-<region> for regional overlays (ISO-3166-2 suffix), one word for educational overlays.
+version: semver. Clients pin a version; an update is a deliberate step with a diff.
+kind = base or overlay; extends applies only to overlays.
+source is the source reference for the entire package; individual rules/exams/legal files have their own.
+4.2 Terminology – What Things Are Called
 A flat object: stable key → multilingual label.
-```json
+
 "terminology": {
+
   "teacher": { "de": "Lehrperson" },
-  "class_teacher": { "de": "Klassenlehrperson" },
-  "parent_conference": { "de": "Elterngespräch" },
-  "report_midyear": { "de": "Schulnachricht" }
+
+  "class_teacher": { "de": "Class teacher" },
+
+  "parent_conference": { "de": "Parent-teacher conference" },
+
+  "report_midyear": { "de": "Midyear report" }
+
 }
-```
-The user interface asks for `terminology.class_teacher` and gets "Klassenleitung" in Hamburg, "Klassenlehrperson" in Zurich, "Klassenvorstand" in Vienna, and "Homeroom Teacher" in Ohio. If a key is missing, the platform default is used. Every package may introduce new keys; the interface uses them as soon as a module asks for them.
-4.3 `calendar` – The Rhythm
-```json
+
+The interface queries `terminology.class_teacher` and returns “Klassenleitung” in Hamburg, “Klassenlehrperson” in Zurich, “Klassenvorstand” in Vienna, and “Homeroom Teacher” in Ohio. If a key is missing, the platform default is used. Any package may introduce new keys; the interface uses them as soon as a module requests them.
+4.3 calendar – the rhythm
 "calendar": {
+
   "year_start_month": 8,
-  "periods": [ { "id": "s1", "label": {"de": "1. Semester"}, "months": [8, 1] }, … ],
+
+  "periods": [ { "id": "s1", "label": {"de": "1st Semester"}, "months": [8, 1] }, … ],
+
   "report_points": ["s1", "s2"],
+
   "report_points_by_program": [ { "program": "primar", "report_points": ["s2"] } ],
+
   "holiday_authority": { "level": "canton", "label": {…}, "url": "…" }
+
 }
-```
-Only the rhythm, never a specific date. `report_points` states when reports are produced; `holiday_authority` states who determines the holidays and where – the dates themselves are entered by the tenant, and Prilog can suggest them from that source.
-4.4 `grading` – How Assessment Works
-```json
+
+Just the schedule, never a specific date. `report_points` specifies when report cards are generated; `holiday_authority` specifies who sets the holidays and where—the client enters the dates themselves, and Prilog can suggest them based on that information.
+4.4 grading – how grades are assigned
 "grading": {
+
   "default_scale": "ch-6",
+
   "scales": [
+
     { "id": "ch-6", "kind": "numeric", "values": [1,1.5,…,6], "step": 0.5, "best": 6, "pass": 4, "tendencies": false },
+
     { "id": "letter", "kind": "letter", "values": ["A","B","C","D","F"], "best": "A", "pass": "D", "gpa": {"A": 4.0, …} },
+
     { "id": "text", "kind": "text" }
+
   ],
-  "head_marks": [ { "id": "sozial", "label": {"de": "Sozialverhalten"}, "scale": "de-6" } ],
-  "by_program": [ { "program": "grundschule", "grades": ["g1","g2"], "scale": "text" } ]
+
+  "head_marks": [ { "id": "social", "label": {"de": "Social Behavior"}, "scale": "de-6" } ],
+
+  "by_program": [ { "program": "elementary school", "grades": ["g1", "g2"], "scale": "text" } ]
+
 }
-```
-`best` and `pass` are the two values a report module needs in order not to hard-code 6: in Germany, 1 is best; in Switzerland, 6 is best; in Austria, there is no grade 6. `by_program` handles the narrative-report case (text up to grade 2, grades thereafter).
-4.5 `stages` and `grades` – The Vertical Axis
-```json
+
+"best" and "pass" are the two numbers a report card module needs to avoid hard-coding the number 6: In Germany, 1 is "best"; in Switzerland, 6 is "best"; and in Austria, there is no 6. "by_program" handles the case of descriptive report cards (text up to 2nd grade, grades thereafter).
+4.5 Stages and Grades – The Vertical Axis
 "stages": [ { "id": "sec1", "label": {"de": "Sekundarstufe I"}, "ordinal": 3, "grades": ["h9","h10","h11"] } ],
-"grades": [ { "id": "h9", "label": {"de": "7. Klasse"}, "ordinal": 9, "stage": "sec1", "typical_age": 12, "aliases": ["1. Sek"] } ]
-```
-The `id` is the system's stable numbering (`h1`–`h11` under HarmoS in Switzerland, school levels `s1`–`s13` in Austria, `k`,`g1`–`g12` in the USA). The `label` is the everyday numbering. Keeping these separate is intentional: Zurich says "1. Sek", Bern says "7. Klasse"; both refer to `h9`.
-`ordinal` is used for sorting and is the only way to compare grades – never parse the `id`.
-4.6 `programs` – Education Programs
-```json
+
+"grades": [ { "id": "h9", "label": {"de": "7th grade"}, "ordinal": 9, "stage": "sec1", "typical_age": 12, "aliases": ["1st Sec"] } ]
+
+The `id` is the system’s stable designation (HarmoS h1–h11 in Switzerland, school levels s1–s13 in Austria, k, g1–g12 in the U.S.). The `label` is the everyday designation. Separating the two is intentional: Zurich says “1. Sek,” Bern says “7th grade,” but both refer to h9.
+
+"ordinal" refers to the sorting order and is the only way to compare cohorts—never parse the "id."
+4.6 Programs – Educational Pathways
 { "id": "sek1", "label": {"de": "Sekundarschule"},
+
   "stages": ["sec1"], "grades": ["h9","h10","h11"],
+
   "class_model": "homeroom",
+
   "tracks": ["sek-level", "sek-subject-level"],
-  "qualifications": ["sek1-abschluss"],
+
+  "qualifications": ["sek1-graduation"],
+
   "approval": "state",
-  "aliases": ["Oberstufe", "Realschule", "Bezirksschule"] }
-```
-A program is an education pathway known to the system – not a school. A tenant can offer several programs.
-`class_model` is the most important field: it tells the organization model what form of learning group this program usually creates.
-Value	Meaning
-`class`	fixed grade-based class, instruction mainly takes place in the class group
-`homeroom`	homeroom group + courses with changing composition
-`course`	no homeroom group, courses only
-`mixed-age`	mixed-age, no fixed grade
-`grades` may be empty – in that case the program has an `age_range`, and the grade level belongs to the individual person (report, transition), not to the group. This is how Montessori and kindergarten work without requiring a special case.
-`approval` (relevant only for independent schools) states whether a program is state-run, recognized, approved, or authorized – this determines whether qualifications are examined internally or externally (see `exams`).
-4.7 `tracks` – Tracks and Levels
-```json
-{ "id": "sek-subject-level", "label": {"de": "Niveaufach"},
+
+  "aliases": ["Upper School", "Realschule", "District School"] }
+
+A program is an educational track recognized by the system—not a school. A client can manage multiple programs.
+
+`class_model` is the most important specification: It tells the organizational model what type of learning group this program typically forms.
+
+Value
+Meaning
+class
+Fixed grade-level class; instruction primarily in a group setting
+homeroom
+Core group + courses with varying compositions
+course
+No core group, only courses
+mixed-age
+mixed-age, no fixed grade level
+
+
+grades may be left blank—in that case, the program has an age_range, and the grade level is determined by the individual (report card, transition), not the group. This is how Montessori and kindergarten operate without special exceptions.
+
+approval (relevant only for independent schools) indicates whether a program is state-run, recognized, approved, or authorized—this determines whether credentials are assessed internally or externally (see exams).
+4.7 Tracks – Streams and Levels
+{ "id": "sek-subject-level", "label": {"de": "Level Subject"},
+
   "scope": "enrollment",
-  "levels": [ {"id": "e", "label": {"de": "erweitert"}}, {"id": "g", "label": {"de": "grundlegend"}} ] }
-```
-A track is a form of differentiation. What it attaches to is defined by `scope` – this is where PEX goes beyond a German class model:
-`scope`	attaches to …	Examples
-`learning_group`	the group – everyone in it is in the same track	Sek A/B/C as classes, M-Zug at the Mittelschule
-`enrollment`	a person's participation in a course	Math level A, Leistungskurs, Honors/AP, Standard AHS (Austria)
-`learner`	the person, independent of group and course	special education focus, accommodation, IEP
-`program`	the program variant	long-term/short-term Gymnasium, NTG/SG/WSG in Bavaria
-A program lists the tracks it knows. A subject with `tracked: true` states that an `enrollment` track applies to courses in this subject.
-Rule of thumb: if two students in the same class can have different levels in one subject, it is `enrollment`. If the level defines the class, it is `learning_group`.
-4.8 `qualifications` – Qualifications
-```json
-{ "id": "matura", "label": {"de": "Reifeprüfung (Matura)"},
+
+  "levels": [ {"id": "e", "label": {"de": "advanced"}}, {"id": "g", "label": {"de": "basic"}} ] }
+
+A track is a differentiation. The `scope` attribute specifies what it is linked to—this is where PEX offers more capabilities than a traditional German class model:
+
+scope
+is attached to …
+Examples
+learning_group
+of the group—everyone in it is in the same track
+Sek A/B/C as classes, M track at the middle school
+enrollment
+a person’s enrollment in a course
+Math Level A, Advanced Course, Honors/AP, Standard AHS (Austria)
+learner
+the individual, regardless of group or course
+Special educational needs, compensatory measures, IEP
+program
+the program variant
+Long-term/short-term high school, NTG/SG/WSG in Bavaria
+
+
+A program lists the tracks it recognizes. A subject with `tracked: true` indicates that an enrollment track applies to courses in that subject.
+
+Rule of thumb: If two students in the same class can have different levels in a subject, it is `enrollment`. If the level defines the class, it is `learning_group`.
+4.8 qualifications – Degrees
+{ "id": "matura", "label": {"de": "High School Graduation Exam (Matura)"},
+
   "after_grade": "s12", "programs": ["ahs-o"],
-  "grants_access": ["universitaet", "fh", "ph"],
-  "requirements": { … free-form … } }
-```
-`grants_access` is a free-form list of onward destinations – for guidance and display, not logic. `requirements` is a free-form object (credits per domain in the USA, subject requirements for the Abitur) – anything evaluating it must know what is stored there.
-4.9 `subject_domains` and `subjects` – Subjects
-```json
-{ "id": "nt", "label": {"de": "Natur und Technik"}, "domain": "science",
+
+  "grants_access": ["university", "university of applied sciences", "teacher training college"],
+
+  "requirements": { … free … } }
+
+`grants_access` is a free-form list of potential next steps—for advisory purposes and display only; no logic is applied. `requirements` is a free-form object (credits per domain in the U.S., subject requirements for the Abitur)—whoever evaluates it must understand its contents.
+4.9 subject_domains and subjects – the subject areas
+{ "id": "nt", "label": {"de": "Nature and Technology"}, "domain": "science",
+
   "grades": ["h9","h10","h11"], "programs": ["sek1"],
+
   "kind": "core", "tracked": true, "optional": false,
-  "credits": 1, "aliases": ["Naturlehre"] }
-```
-`domain` groups subjects (languages, sciences, etc.) – for timetables, reports, and qualification requirements.
-`grades` and `programs` state where the subject occurs. If `programs` is omitted, it applies to all programs containing those grades.
-`kind`: `core` (required), `elective` (elective / compulsory elective), `project` (annual project, Matura project, seminar), `remedial` (remedial/support course), `epoch` (Waldorf block/epoch).
-`optional: true` means not every person has to take it.
-`credits` only where the system uses credits (USA).
-The same thing may be one subject in one country and three in another (NT vs. Biology/Chemistry/Physics). This is intentional: PEX represents the system, not a normalized subject catalog. A module searching for "the subject Biology" will not find it in Switzerland – it must use `domain: science`.
-4.10 `rules` – Rules with Sources (v2.1)
-```json
+
+  "credits": 1, "aliases": ["Natural Sciences"] }
+
+Grouped by domain (languages, natural sciences, etc.)—for class schedules, report cards, and graduation requirements.
+"grades" and "programs" specify where the subject appears. If "programs" is omitted, it applies to all programs that include these grade levels.
+kind: core (required), elective (elective/required elective), project (year-long project, Matura thesis, seminar), remedial (remedial/support course), epoch (Waldorf epoch).
+optional: “true” means: Not everyone is required to take it.
+Credits are listed only where the system uses credits (e.g., the U.S.).
+
+What is considered a single subject in one country may be three separate subjects in another (New Testament vs. Biology/Chemistry/Physics). This is intentional: PEX maps the system, not a standardized list of subjects. A module searching for “the subject of Biology” will search in vain in Switzerland—it must use `domain: science` instead.
+4.10 rules – Rules with Source (v2.1)
 { "id": "uebertritt-5", "kind": "transition",
-  "label": {"de": "Übertritt nach Jahrgangsstufe 4"},
+
+  "label": {"de": "Transition to Grade 4"},
+
   "applies_to": { "from_grade": "g4" },
+
   "mode": "binding-recommendation",
-  "summary": {"de": "Übertrittszeugnis im Mai: Gymnasium bei Notenschnitt bis 2,33 …"},
+
+  "summary": {"de": "Transition report card in May: Gymnasium for students with a grade point average of up to 2.33 …"},
+
   "source": "BayEUG Art. 44; GrSO §§ 6–8", "url": "…" }
-```
-`kind` states what the rule concerns (`transition`, `admission`, `compulsory-schooling`, `promotion`, `subject-choice`, `attendance`, `other`). `mode` is a short keyword that makes the rule filterable without turning it into logic (`parent-choice`, `binding-recommendation`, `exam`, `grade-threshold`, etc.). `summary` is the text read by a human. `source` is required.
-Prilog displays rules in the appropriate place – in transition counseling, enrollment, or compliance reports. It does not calculate with them.
-4.11 `exams` – Examinations (v2.1)
-```json
-{ "id": "abitur-extern", "label": {"de": "Abitur für andere Bewerber"},
+
+"kind" specifies what the rule is about (transition, admission, compulsory schooling, promotion, subject choice, attendance, other). "mode" is a short keyword that makes the rule filterable without turning it into a logic rule (parent choice, binding recommendation, exam, grade threshold …). "summary" is the text that a human reads. "source" is required.
+
+Prilog displays rules in the appropriate place—during the transition meeting, during registration, in the verification report. It does not perform calculations based on them.
+4.11 exams – Exams (v2.1)
+{ "id": "abitur-extern", "label": {"de": "Abitur for Other Applicants"},
+
   "qualification": "abitur", "mode": "external", "at_grade": "g13",
+
   "components": [ {"id": "written", "count": 4}, {"id": "oral", "count": 4} ],
-  "summary": {"de": "Waldorfschüler an genehmigten Ersatzschulen legen das Abitur als Externe ab …"},
+
+  "summary": {"de": "Waldorf students at approved alternative schools take the Abitur as external candidates …"},
+
   "source": "GSO §§ 88 ff." }
-```
-`mode`: `internal` (in-house), `external` (external candidate examination), `central` (centrally set), `state-recognized` (in-house under state supervision). This is the block that captures the important distinction for independent schools – it determines annual planning and subjects in the final year.
-4.12 `legal` – Legal References (v2.1)
-```json
+
+mode: internal (in-school), external (external examination), central (centrally administered), state-recognized (in-school under state supervision). This is the section that makes the difference for independent schools—it determines the annual schedule and subjects for the graduating class.
+4.12 legal – Legal References (v2.1)
 { "id": "schulgesetz", "kind": "school-act",
-  "label": {"de": "Hamburgisches Schulgesetz"}, "url": "…",
-  "sections": { "schulpflicht": "§§ 37–41", "datenschutz": "§§ 98–100" } }
-```
-`kind`: `school-act`, `data-protection`, `authority`, `retention`, `reporting`, `private-school`, `other`. This is one place for legal references that would otherwise be repeated in every module – the data protection handbook, concept anchoring, and compliance report read from here.
----
+
+  "label": {"de": "Hamburg School Act"}, "url": "…",
+
+  "sections": { "compulsory-education": "§§ 37–41", "data-protection": "§§ 98–100" } }
+
+kind: school-act, data-protection, authority, retention, reporting, private-school, other. A central location for legal references that would otherwise appear anew in every module—read the Data Protection Manual, Concept Implementation, and Verification Report here.
+
+
 5. The Logic Behind the Decisions
-Why English IDs and multilingual labels? So code can ask the same question across countries (`grades` with `stage: sec1`) while the interface can still display "7. Klasse" or "1. Sek".
-Why overlays instead of variants? 16 German states × 26 Swiss cantons × Waldorf/Montessori would result in hundreds of packages. As a stack, there are 4 bases + around 50 small overlays + 2 pedagogy overlays. And if Bavaria introduces G9, one line changes in `de-by`, not in every Bavarian Waldorf package.
-Why `disabled` instead of deletion? Because the absence of something is itself a statement. "Hamburg has no Realschule" must remain visible.
-Why merge lists by `id`? Because an overlay should be able to extend a program by one field without rewriting the whole program – and because this makes it traceable which parts come from the base and which are regional.
-Why is `class_model` on the program rather than the school? Because a boarding school may offer Sek I (`homeroom`) and Gymnasium (`class`) at the same time. The form of the group follows the education program.
-Why track scopes instead of "track on subject"? Because a level is not a property of the subject Mathematics; it is a property of this student's participation in this course. Once stated that way, it becomes clear that an enrollment object is needed – on the tenant side.
-Why rules as text? Because a transition rule involving grade average, trial lessons, and parental choice differs by region and can change with each legislative term. As text with a source, it is maintainable; as logic, it would become a product of its own.
-Why no curriculum hour tables? Because weekly lesson hours per subject fluctuate from year to year, may be school-autonomous, and belong in the timetable. PEX says that Mathematics exists in grade 7 – not how often it is taught.
----
-6. Writing an Overlay – Step by Step
-Choose and read the base. Anything already correct there is not repeated.
-Write `meta`: `kind: overlay`, `extends`, `region`, `source`.
-What is different? Check in this order: programs (which exist, which do not → `disabled`), grade boundaries (G8/G9, primary school through grade 6), tracks, qualifications and their names, subjects (names as `aliases`, new subjects, different grades), grading scale and report rhythm, terminology.
-Rules, examinations, law – one entry each with `source`. Transition, compulsory schooling, qualification exam (internal/external), school act, data protection, supervision, retention.
+Why are IDs in English and labels multilingual? So that code can ask the same question across countries (grades with stage: sec1) while the interface still displays “7th grade” or “1st secondary.”
+
+Why overlays instead of variants? 16 federal states × 26 cantons × Waldorf/Montessori would mean hundreds of packages. As a stack, it’s 4 bases + ~50 small overlays + 2 pedagogy overlays. And: If Bavaria introduces G9, one line changes in de-by, not in every Bavarian Waldorf package.
+
+Why “disabled” instead of “delete”? Because the absence of something makes a statement. You need to be able to see that “Hamburg has no Realschule.”
+
+Why merge lists by ID? Because an overlay is meant to extend a program by adding a field without having to rewrite it entirely—and because this makes it possible to track what comes from the base and what is region-specific.
+
+Why is `class_model` tied to the program and not to the school? Because a boarding school operates both lower secondary (homeroom) and upper secondary (class) levels simultaneously. The group structure follows the educational track.
+
+Why “course-scopes” instead of “course in the subject”? Because a level is not a property of the subject of mathematics, but rather of this student’s participation in this course. Once you put it that way, it’s clear that an enrollment object is needed—on the client side.
+
+Why rules as text? Because a promotion rule based on grade point average, trial classes, and parental preference would differ logically from state to state and changes with every legislative session. As text with a source, it’s maintainable; as logic, it would be a separate product.
+
+Why no class schedules? Because the number of weekly class hours per subject varies from year to year, is determined by each school, and belongs in the class schedule. PEX states that math is taught in 7th grade—it does not specify how often.
+
+
+6. Writing an overlay—step by step
+Select a base and read it. Anything that’s already correct there won’t be repeated.
+Write the meta: kind: overlay, extends, region, source.
+What’s different? Check in this order: programs (which ones exist, which don’t → disabled), grade level boundaries (G8/G9, elementary school 6), tracks, diplomas and their names, subjects (names as aliases, new subjects, different grade levels), grading scale and report card frequency, terms.
+Rules, exams, legal provisions—one line each with “source.” Transition to secondary school, compulsory education, final exams (internal/external), school law, data protection, supervision, record retention.
 Change only what changes. An overlay with 300 lines is usually a copied base.
-Validate: first the file against the schema, then the stack referentially.
-Version it and commit it to the `prilog-pex` repository with review.
-Checklist before merge:
-[ ] Every `id` that is referenced exists in the base or overlay
-[ ] No element with `disabled: true` is still referenced
-[ ] Every `rule`, `exam`, and `legal` entry has a `source`
-[ ] No instances (school names, dates, persons)
-[ ] Labels in all languages from `meta.languages`
-[ ] `notes` explains what is not obvious to humans from the structure itself
----
-7. How Prilog Reads the Effective PEX
-Module	asks for
-Tenant setup	`programs`, `class_model`, `grades` → suggestion for learning groups
-Create learning group	`programs`, `grades` (or `age_range`), `tracks` with `scope: learning_group`
-Enrollment	`tracks` with `scope: enrollment`, `subjects.tracked`
-Subject catalog / timetable	`subjects` filtered by program and grade
-Report	`grading` (scale, `best`, `pass`, `by_program`, `head_marks`), `calendar.report_points`, `qualifications`, `exams`
-User interface	`terminology.*`
-Annual cycle	`calendar.periods`
-Parent-teacher conference	`terminology.parent_conference`; teachers from enrollments
-Transition counseling, admissions	`rules` with `kind: transition
-Data protection handbook, compliance report	`legal`
-Concept anchoring	`meta.country/region` → editorial team
-The code always reads the tenant's materialized effective PEX (`tenant_pex.effective_json`), never the individual files. A tenant sees a package change only after explicitly adopting the new version.
----
-8. Common Mistakes
-Mistake	Why it is wrong	Correct approach
-Searching for the subject "Biology" in the Swiss package	In Switzerland it is called NT and combines three subjects	use `domain: science`
-"Extending" `grades` on a subject	Lists without `id` are replaced, not merged	write the entire list in the overlay
-Omitting Realschule in Hamburg	The base contains it; omission changes nothing	`{"id": "realschule", "disabled": true}`
-Writing the grade average 2.33 as a number in `rules`	PEX does not calculate; the number belongs in the `summary` text	text + `source`
-Waldorf overlay references `g7` on `ch-de`	Swiss grades use IDs such as `h9`	separate `waldorf-ch` or grade translation
-Holiday dates in the package	Instance	tenant; `holiday_authority.url` as source
-`id` with uppercase letters or umlaut	The schema rejects it	`sek-level`, not `Sek_A`
-Overlay with 300 lines	copied base	only the changes
----
+Validate: Check the file against the schema, then the batch referentially.
+Create a version and commit it to the prilog-pex repository with a review.
+
+Checklist before merging:
+
+Every ID referenced exists in the base or overlay
+No element with `disabled: true` is still referenced
+Every `rule`, `exam`, and `legal` has a `source`
+No instances (school names, dates, people)
+Labels in all languages from `meta.languages`
+notes explain what is not apparent to humans from the structure
+
+
+7. How Prilog reads the effective PEX
+Module
+asks
+Client Setup
+programs, class_model, grades → Suggestion for learning groups
+Create a learning group
+programs, grades (or age_range), tracks with scope: learning_group
+Enrollment
+tracks with scope: enrollment, subjects.tracked
+Course Catalog / Schedule
+Subjects filtered by program and grade level
+Report Card
+Grading (scale, best, pass, by_program, head_marks), calendar.report_points, qualifications, exams
+Interface
+terminology.*
+Academic Year
+calendar.periods
+Parent-Teacher Conference
+terminology.parent_conference; Teachers from Enrollment Records
+Transition counseling, registration
+rules with `kind: transition
+Privacy Policy, Audit Report
+legal
+Concept Implementation
+meta.country/region → Editorial Team
+
+
+The code always reads the tenant's materialized effective PEX (tenant_pex.effective_json), never the individual files. A tenant does not see a change to a package until it explicitly applies the new version.
+
+
+8. Common Errors
+Error
+Why it’s wrong
+Correct
+Search for the subject “Biology” in the Swiss package
+In Switzerland, it’s called NT and includes three subjects
+Go to the “Science” section
+"Add" a subject at the grade level
+Lists without an ID are replaced, not merged
+Write the entire list in the overlay
+Omit "Realschule" in Hamburg
+It has a basis; omitting it changes nothing
+{"id": "realschule", "disabled": true}
+Grade point average of 2.33 as a number in rules
+PEX doesn't calculate this; the number belongs in the summary text
+Text + source
+Waldorf overlay references g7 on ch-de
+Swiss grade levels are called h9
+Custom "waldorf-ch" or grade-level translation
+Holiday dates included in the package
+Instance
+Client; holiday_authority.url as source
+ID with uppercase letters or umlauts
+Schema rejects
+sek-level, not Sek_A
+Overlay with 300 lines
+Copied base
+only the changes
+
+
+
 9. Versions
-Schema	Change
-v1	`school_types`, track scopes `class`/`subject`
-v2	`programs`, optional `grades` + `age_range`, `class_model` with `mixed-age`, track scopes `learning_group`/`enrollment`/`learner`/`program`, required `meta.format`
-v2.1	`rules`, `exams`, `legal`; `grading.tendencies`/`head_marks`/`by_program`; `calendar.report_points_by_program`/`holiday_authority`; `programs.approval`
-A package names the schema version it was written against in `meta.schema`. The loader accepts v2 and v2.1; v1 is translated during loading.
+Schema
+Change
+v1
+school_types, Track-Scopes class/subject
+v2
+programs, grades (optional) + age_range, class_model with mixed-age, Track-Scopes learning_group/enrollment/learner/program, meta.format (required)
+v2.1
+rules, exams, legal; grading.tendencies/head_marks/by_program; calendar.report_points_by_program/holiday_authority; programs.approval
+
+
+A package specifies in `meta.schema` the version it is written for. The loader accepts v2 and v2.1; v1 is translated during loading.
+
+
 
 
 
