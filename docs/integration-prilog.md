@@ -51,6 +51,10 @@ Das effektive PEX ist `effective([...systeme, overrides])`, gegen Schema und `ch
 
 **Vorgabe hält den Bestand.** Leere Liste = „noch nicht gesagt“, keine laufende Installation verschiebt sich. Erst eine gewählte Liste liefert Jahrgänge, Fächer, Begriffe – und auch dann nur an Module, die danach fragen.
 
+**Ein Override liegt über jeder gewählten Basis** (`extends: "*"`). Für ein Haus mit zwei Systemen gilt deshalb dieselbe Regel wie für Pädagogik-Overlays: Fächer über `age_from`/`age_to` binden, nicht über Jahrgangs-IDs, und `domain` nur, wenn es sie in beiden Basen gibt. Anpassungen, die nur ein System betreffen, brauchen Overrides je Basis – erst bauen, wenn eine Schule es braucht.
+
+**Ehrlich zum Pin:** Prilog trägt je Paket genau eine Version (die gesyncte). Der Pin sagt, welchen Stand die Schule bestätigt hat, nicht, welcher zurückgehalten wird; ein Sync mit neuer Version erscheint als `abweichungen` in `GET …/schulsystem/effective`, die Karte zeigt sie und lässt per `PUT …/schulsystem/pin` bestätigen. Ein Versionsarchiv ist eine spätere Entscheidung.
+
 **Update ist ein bewusster Schritt.** Neuer Sync bringt neue Versionen in `pex/`. Der Mandant bleibt auf seinem Pin. Die Stammdaten-Karte zeigt „neu: `de-sh` 0.2.0 – Abitur-Komponenten korrigiert“ mit Diff; ein Klick übernimmt. Kein stiller Austausch.
 
 ---
@@ -59,8 +63,8 @@ Das effektive PEX ist `effective([...systeme, overrides])`, gegen Schema und `ch
 
 | Etappe | Inhalt | Ergebnis |
 |---|---|---|
-| **E0 – Sync** | `tools/sync-to-prilog.sh` einmal laufen lassen; `pakete.service.ts` liest `pex/packages` und nutzt `pex.mjs` statt `pakete-pruefen.ts`; `hinweis`→`remark`; Overlay-Schlüssel `waldorf.overlay`→`waldorf`, `montessori.overlay`→`montessori` einmalig in `schulsystem.systeme` umschreiben; alte `pakete/` und `pakete-pruefen.ts` entfernen, Tests auf `pex.mjs` umziehen | Backend und Repo haben eine Wahrheit. Oberfläche unverändert |
-| **E1 – Effektiv + Pin** | `schulsystem.pin` und `schulsystem.overrides`; `GET /platform/v1/schulsystem/effective` liefert das effektive PEX (oder zwei); `PUT …/overrides` validiert gegen Schema + `checkRefs`; Cache | Ein Modul kann fragen: „Welche Fächer hat Jahrgang 8 in diesem Haus?“ |
+| **E0 – Sync** ✅ 16.09. (Backend `0602a3c`, hermes) | `tools/sync-to-prilog.sh` einmal laufen lassen; `pakete.service.ts` liest `pex/packages` und nutzt `pex.mjs` statt `pakete-pruefen.ts`; `hinweis`→`remark`; Overlay-Schlüssel `waldorf.overlay`→`waldorf`, `montessori.overlay`→`montessori` einmalig in `schulsystem.systeme` umschreiben; alte `pakete/` und `pakete-pruefen.ts` entfernen, Tests auf `pex.mjs` umziehen | Backend und Repo haben eine Wahrheit. Oberfläche unverändert |
+| **E1 – Effektiv + Pin** ✅ 16.09. (Backend `fbbeb3e`, hermes) | `schulsystem.pin` und `schulsystem.overrides`; `GET /platform/v1/schulsystem/effective` liefert das effektive PEX (oder zwei); `PUT …/overrides` validiert gegen Schema + `checkRefs`; Cache | Ein Modul kann fragen: „Welche Fächer hat Jahrgang 8 in diesem Haus?“ |
 | **E2 – Verbraucher** | `terminology.*` im Web-Client (Klassenleitung / Klassenlehrperson / Klassenvorstand); Fächer-Matrix seedet `SchoolSubject` aus `subjectsOfProgram`; Klassen-Generator liest `programs`, `grades`, `class_model`; Kalender liest `periods`, `report_points`; Rechtsraum-Karte liest `legal`; Zeugnis liest `grading` | Das Land steckt in den Daten, nicht im Code |
 | **E3 – Update-Fluss** | Registry-Diff je Mandant, Übernahme mit Bestätigung, Protokoll | Ein Paket-Update ist ein Vorgang, kein Deploy |
 | **E4 – Onboarding** | Setup-Assistent: Land → Region → Pädagogik → Stapel; Vorschlag der Lerngruppen aus `programs × grades`; Fächer vorbelegt; Begriffe sofort richtig | Eine neue Schule ist in einer Sitzung eingerichtet |
