@@ -508,10 +508,24 @@
         }
       },
       "unevaluatedProperties": false,
-      "required": [
-        "scope",
-        "levels"
-      ]
+      "if": {
+        "properties": {
+          "disabled": {
+            "const": true
+          }
+        },
+        "required": [
+          "disabled"
+        ]
+      },
+      "then": {},
+      "else": {
+        "required": [
+          "scope",
+          "levels"
+        ]
+      },
+      "description": "Ein ausgeblendeter Zug ({id, disabled: true}) braucht weder scope noch levels – wie jedes ausgeblendete Element nur seine id."
     },
     "qualification": {
       "allOf": [

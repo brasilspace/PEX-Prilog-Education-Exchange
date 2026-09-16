@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.2 – 2026-09-17
+- Schema: ein ausgeblendeter Zug braucht weder `scope` noch `levels` (gefunden an `ch-be`: ein Kanton mit nur einem gymnasialen Weg blendet `gym-variant` aus)
+- Paket: `ch-be` (Kanton Bern, deutschsprachiger Teil) vom Owner beigesteuert – Real/Sek mit Niveaufächern und drei Zusammenarbeitsmodellen, GYM1–4 mit Schwerpunktfächern, Basisstufe, BVS, Übertritt/Aufnahme/Niveauwechsel als Regeln, Recht (VSG, DVBS, MiSG, KDSG). Nachgezogen: `gym-variant` ausgeblendet (nur ein gymnasialer Weg), Schema-URL, `remark` an Basisstufe und BVS
+
 ## 2.2.1 – 2026-09-16
 - Prüfung: Listen-Verweise (`grades[]`, `programs[]`, `tracks[]`, `qualifications[]`) dürfen auf ausgeblendete Elemente zeigen und werden beim Lesen gefiltert; Anker (`stage`, `domain`, `after_grade`, `scale`, `period` …) nicht. Grund: Ein Mandanten-Override, das einen Bildungsgang ausblendet, sollte nicht jeden Abschluss umschreiben müssen, der ihn nennt (gefunden bei der Prilog-Anbindung E1)
 

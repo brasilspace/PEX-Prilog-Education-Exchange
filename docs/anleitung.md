@@ -121,7 +121,7 @@ Geprüft werden alle **Standard-Stapel**: jede Basis allein, jede Basis mit jede
 Alle **IDs** sind kleingeschriebene Slugs (`^[a-z0-9][a-z0-9-]*$`), stabil und englisch oder neutral (`sek1`, `gym`, `math`, `g7`). Code liest IDs.
 Alle **Labels** sind Objekte `{ "de": "…", "fr": "…", "en": "…" }` – mindestens eine Sprache aus `meta.languages`. Menschen lesen Labels.
 **Aliases** sind freie Strings – andere Namen, unter denen dasselbe Ding in der Praxis vorkommt. Sie dienen der Suche und der Anzeige („auch bekannt als"), nie der Referenz.
-Jedes benannte Element darf zwei Arten von Anmerkung tragen: **`notes`** (String) ist für die Menschen, die das Paket pflegen; **`remark`** (mehrsprachig) ist der Satz, den die Schule in der Oberfläche liest – etwa warum ein Bildungsgang absichtlich ohne Fächer geführt wird. Ein Element mit `"disabled": true` braucht kein `label`.
+Jedes benannte Element darf zwei Arten von Anmerkung tragen: **`notes`** (String) ist für die Menschen, die das Paket pflegen; **`remark`** (mehrsprachig) ist der Satz, den die Schule in der Oberfläche liest – etwa warum ein Bildungsgang absichtlich ohne Fächer geführt wird. Ein Element mit `"disabled": true` braucht nur seine `id` – kein `label`, bei einem Zug auch kein `scope` und keine `levels`.
 
 ### 4.1 `meta` – Identität des Pakets
 

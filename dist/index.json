@@ -68,6 +68,24 @@
       "sha256": "sha256:78b11344fc5a1b4a32db13e90d535949fee8531bdd71506a5202e8a284bfdb4a"
     },
     {
+      "id": "ch-be",
+      "kind": "overlay",
+      "version": "0.1.1",
+      "extends": [
+        "ch-de"
+      ],
+      "country": "CH",
+      "region": "BE",
+      "languages": [
+        "de"
+      ],
+      "name": {
+        "de": "Kanton Bern (deutschsprachiger Kantonsteil)"
+      },
+      "file": "packages/overlays/ch-be.pex.json",
+      "sha256": "sha256:c90cbd9271608fa2087ab6054525073a7cac1afbbd11e10da32be9db528cc34e"
+    },
+    {
       "id": "ch-zh",
       "kind": "overlay",
       "version": "0.1.0",
@@ -264,6 +282,22 @@
       "hints": 0
     },
     {
+      "id": "ch-de+ch-be",
+      "layers": [
+        {
+          "id": "ch-de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "ch-be",
+          "version": "0.1.1"
+        }
+      ],
+      "file": "dist/effective/ch-de+ch-be.json",
+      "sha256": "sha256:03569632e20c753086d18b83bbeee88644956ce35f9fc0d43d362c8d48b9f4ba",
+      "hints": 0
+    },
+    {
       "id": "ch-de+ch-zh",
       "layers": [
         {
@@ -309,6 +343,46 @@
       ],
       "file": "dist/effective/ch-de+waldorf.json",
       "sha256": "sha256:c41ad37f45240e4ca7165f0ba464e1cdd6924a61716254acef9c34696878e9c0",
+      "hints": 0
+    },
+    {
+      "id": "ch-de+ch-be+montessori",
+      "layers": [
+        {
+          "id": "ch-de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "ch-be",
+          "version": "0.1.1"
+        },
+        {
+          "id": "montessori",
+          "version": "0.3.0"
+        }
+      ],
+      "file": "dist/effective/ch-de+ch-be+montessori.json",
+      "sha256": "sha256:1e93aa3cc175e267e202200f7896c94e02038fb269d80c165e7adbbf9000f653",
+      "hints": 0
+    },
+    {
+      "id": "ch-de+ch-be+waldorf",
+      "layers": [
+        {
+          "id": "ch-de",
+          "version": "0.3.0"
+        },
+        {
+          "id": "ch-be",
+          "version": "0.1.1"
+        },
+        {
+          "id": "waldorf",
+          "version": "0.4.0"
+        }
+      ],
+      "file": "dist/effective/ch-de+ch-be+waldorf.json",
+      "sha256": "sha256:1c7e91f39e0b7f5ffe08a9ff89778318896568afdb3ded7b0ed246dd76f4c7f5",
       "hints": 0
     },
     {

@@ -1,0 +1,2129 @@
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/PEX-Prilog-Education-Exchange/main/schema/pex.schema.json",
+    "id": "ch-de",
+    "version": "0.3.0",
+    "kind": "base",
+    "country": "CH",
+    "languages": [
+      "de"
+    ],
+    "name": {
+      "de": "Schweiz – Deutschschweiz (Lehrplan 21)"
+    },
+    "source": "Lehrplan 21 (D-EDK), Maturitätsanerkennungsreglement MAR",
+    "notes": "Kantonale Bezeichnungen und Zugmodelle über Overlays ch-<kanton>. Fremdsprachenfolge der Basis (Englisch ab 3., Französisch ab 5. Klasse) ist das Modell der Zentral- und Ostschweiz; Westkantone (BE, BS, SO …) drehen sie im Overlay.",
+    "license": "CC-BY-4.0",
+    "maintainer": "info@prilog.team",
+    "layers": [
+      {
+        "id": "ch-de",
+        "version": "0.3.0"
+      },
+      {
+        "id": "ch-be",
+        "version": "0.1.1"
+      },
+      {
+        "id": "waldorf",
+        "version": "0.4.0"
+      }
+    ]
+  },
+  "terminology": {
+    "teacher": {
+      "de": "Lehrperson"
+    },
+    "class_teacher": {
+      "de": "Klassenlehrer:in / Klassenbetreuer:in ab der Oberstufe",
+      "fr": "Professeur·e de classe / référent·e au secondaire",
+      "en": "Class Teacher / Class Guardian from upper school"
+    },
+    "head": {
+      "de": "Schulführungskonferenz / Geschäftsführung",
+      "fr": "Conférence de direction / administration",
+      "en": "College of Teachers / Administration"
+    },
+    "class": {
+      "de": "Klasse"
+    },
+    "grade": {
+      "de": "Klassenstufe"
+    },
+    "student": {
+      "de": "Schülerin / Schüler"
+    },
+    "parents": {
+      "de": "Erziehungsberechtigte"
+    },
+    "report": {
+      "de": "Zeugnis (Textzeugnis)",
+      "fr": "Bulletin (appréciation rédigée)",
+      "en": "Report (written narrative)"
+    },
+    "parent_conference": {
+      "de": "Standortgespräch"
+    },
+    "parent_evening": {
+      "de": "Elternabend",
+      "fr": "Soirée des parents",
+      "en": "Parent Evening"
+    },
+    "holidays": {
+      "de": "Ferien"
+    },
+    "lesson": {
+      "de": "Stunde",
+      "fr": "Heure de cours",
+      "en": "Lesson"
+    },
+    "subject": {
+      "de": "Fach"
+    },
+    "track": {
+      "de": "Niveau"
+    },
+    "report_midyear": {
+      "de": "Zwischenbericht"
+    }
+  },
+  "calendar": {
+    "year_start_month": 8,
+    "periods": [
+      {
+        "id": "s1",
+        "label": {
+          "de": "1. Semester"
+        },
+        "months": [
+          8,
+          1
+        ]
+      },
+      {
+        "id": "s2",
+        "label": {
+          "de": "2. Semester"
+        },
+        "months": [
+          2,
+          7
+        ]
+      }
+    ],
+    "report_points": [
+      "s1",
+      "s2"
+    ],
+    "report_points_by_program": [
+      {
+        "program": "primar",
+        "report_points": [
+          "s2"
+        ]
+      },
+      {
+        "program": "sek1",
+        "report_points": [
+          "s1",
+          "s2"
+        ]
+      },
+      {
+        "program": "gym",
+        "report_points": [
+          "s1",
+          "s2"
+        ]
+      }
+    ],
+    "holiday_authority": {
+      "level": "canton",
+      "label": {
+        "de": "Bildungs- und Kulturdirektion des Kantons Bern (Rahmen); Gemeinden legen Ferien innerhalb des kantonalen Rahmens fest"
+      },
+      "url": "https://www.bkd.be.ch/de/start/themen/bildung-im-kanton-bern/volksschule/schulferien.html"
+    }
+  },
+  "grading": {
+    "default_scale": "text",
+    "scales": [
+      {
+        "id": "ch-6",
+        "label": {
+          "de": "Noten 1–6"
+        },
+        "kind": "numeric",
+        "values": [
+          1,
+          1.5,
+          2,
+          2.5,
+          3,
+          3.5,
+          4,
+          4.5,
+          5,
+          5.5,
+          6
+        ],
+        "step": 0.5,
+        "best": 6,
+        "pass": 4
+      },
+      {
+        "id": "text",
+        "label": {
+          "de": "Textzeugnis",
+          "fr": "Bulletin rédigé",
+          "en": "Written report"
+        },
+        "kind": "text"
+      }
+    ],
+    "by_program": [
+      {
+        "program": "primar",
+        "grades": [
+          "h3",
+          "h4"
+        ],
+        "scale": "text"
+      }
+    ]
+  },
+  "stages": [
+    {
+      "id": "kg",
+      "label": {
+        "de": "Kindergarten"
+      },
+      "ordinal": 1,
+      "grades": [
+        "h1",
+        "h2"
+      ]
+    },
+    {
+      "id": "primar",
+      "label": {
+        "de": "Primarstufe"
+      },
+      "ordinal": 2,
+      "grades": [
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8"
+      ]
+    },
+    {
+      "id": "sec1",
+      "label": {
+        "de": "Sekundarstufe I"
+      },
+      "ordinal": 3,
+      "grades": [
+        "h9",
+        "h10",
+        "h11"
+      ]
+    },
+    {
+      "id": "sec2",
+      "label": {
+        "de": "Sekundarstufe II"
+      },
+      "ordinal": 4,
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ]
+    }
+  ],
+  "grades": [
+    {
+      "id": "h1",
+      "label": {
+        "de": "1. Kindergarten"
+      },
+      "ordinal": 1,
+      "stage": "kg",
+      "typical_age": 4
+    },
+    {
+      "id": "h2",
+      "label": {
+        "de": "2. Kindergarten"
+      },
+      "ordinal": 2,
+      "stage": "kg",
+      "typical_age": 5
+    },
+    {
+      "id": "h3",
+      "label": {
+        "de": "1. Klasse"
+      },
+      "ordinal": 3,
+      "stage": "primar",
+      "typical_age": 6
+    },
+    {
+      "id": "h4",
+      "label": {
+        "de": "2. Klasse"
+      },
+      "ordinal": 4,
+      "stage": "primar",
+      "typical_age": 7
+    },
+    {
+      "id": "h5",
+      "label": {
+        "de": "3. Klasse"
+      },
+      "ordinal": 5,
+      "stage": "primar",
+      "typical_age": 8
+    },
+    {
+      "id": "h6",
+      "label": {
+        "de": "4. Klasse"
+      },
+      "ordinal": 6,
+      "stage": "primar",
+      "typical_age": 9
+    },
+    {
+      "id": "h7",
+      "label": {
+        "de": "5. Klasse"
+      },
+      "ordinal": 7,
+      "stage": "primar",
+      "typical_age": 10
+    },
+    {
+      "id": "h8",
+      "label": {
+        "de": "6. Klasse"
+      },
+      "ordinal": 8,
+      "stage": "primar",
+      "typical_age": 11
+    },
+    {
+      "id": "h9",
+      "label": {
+        "de": "7. Klasse"
+      },
+      "ordinal": 9,
+      "stage": "sec1",
+      "typical_age": 12,
+      "aliases": [
+        "7. Schuljahr",
+        "1. Sek/Real"
+      ]
+    },
+    {
+      "id": "h10",
+      "label": {
+        "de": "8. Klasse"
+      },
+      "ordinal": 10,
+      "stage": "sec1",
+      "typical_age": 13,
+      "aliases": [
+        "8. Schuljahr",
+        "2. Sek/Real"
+      ]
+    },
+    {
+      "id": "h11",
+      "label": {
+        "de": "9. Klasse"
+      },
+      "ordinal": 11,
+      "stage": "sec1",
+      "typical_age": 14,
+      "aliases": [
+        "9. Schuljahr",
+        "3. Sek/Real"
+      ]
+    },
+    {
+      "id": "s2-1",
+      "label": {
+        "de": "GYM1"
+      },
+      "ordinal": 12,
+      "stage": "sec2",
+      "typical_age": 15,
+      "aliases": [
+        "Quarta",
+        "1. Jahr Gymnasium",
+        "9. Schuljahr (bei Eintritt aus der 8.)"
+      ]
+    },
+    {
+      "id": "s2-2",
+      "label": {
+        "de": "GYM2"
+      },
+      "ordinal": 13,
+      "stage": "sec2",
+      "typical_age": 16,
+      "aliases": [
+        "Tertia",
+        "2. Jahr Gymnasium"
+      ]
+    },
+    {
+      "id": "s2-3",
+      "label": {
+        "de": "GYM3"
+      },
+      "ordinal": 14,
+      "stage": "sec2",
+      "typical_age": 17,
+      "aliases": [
+        "Sekunda",
+        "3. Jahr Gymnasium"
+      ]
+    },
+    {
+      "id": "s2-4",
+      "label": {
+        "de": "GYM4"
+      },
+      "ordinal": 15,
+      "stage": "sec2",
+      "typical_age": 18,
+      "aliases": [
+        "Prima",
+        "4. Jahr Gymnasium",
+        "Maturjahr"
+      ]
+    }
+  ],
+  "programs": [
+    {
+      "id": "kg",
+      "label": {
+        "de": "Kindergarten"
+      },
+      "stages": [
+        "kg"
+      ],
+      "grades": [
+        "h1",
+        "h2"
+      ],
+      "class_model": "class"
+    },
+    {
+      "id": "primar",
+      "label": {
+        "de": "Primarschule"
+      },
+      "stages": [
+        "primar"
+      ],
+      "grades": [
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8"
+      ],
+      "class_model": "class"
+    },
+    {
+      "id": "sek1",
+      "label": {
+        "de": "Sekundarstufe I (Real/Sek)"
+      },
+      "stages": [
+        "sec1"
+      ],
+      "grades": [
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "tracks": [
+        "sek-level",
+        "sek-subject-level",
+        "sek-modell"
+      ],
+      "qualifications": [
+        "sek1-abschluss"
+      ],
+      "aliases": [
+        "Oberstufe",
+        "Oberstufenzentrum",
+        "OSZ",
+        "Realschule",
+        "Sekundarschule"
+      ],
+      "class_model": "homeroom",
+      "notes": "Schultyp ergibt sich aus den Niveaufächern: Wer mindestens 2 der 3 Fächer (D, F, M) im Sekundarschulniveau besucht, ist dem Schultyp Sekundarschule zugeteilt. Wechsel der Niveauzuteilung per Schullaufbahnentscheid auf die nächste Promotion hin."
+    },
+    {
+      "id": "gym",
+      "label": {
+        "de": "Gymnasium"
+      },
+      "stages": [
+        "sec2"
+      ],
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "qualifications": [
+        "gym-matura"
+      ],
+      "aliases": [
+        "Gymnasium Kirchenfeld",
+        "Gymnasium Neufeld",
+        "Gymnasium Hofwil",
+        "Gymnasium Thun",
+        "Gymnasium Burgdorf",
+        "Gymnasium Interlaken",
+        "Gymnasium Lerbermatt",
+        "Gymnasium Bern-Kirchenfeld"
+      ],
+      "notes": "Vierjähriger gymnasialer Bildungsgang nach Lehrplan 17 (inkl. obligatorisches Fach Informatik ab 2019/20). Eintritt in GYM1 aus dem 8. oder 9. Schuljahr; Eintritt in GYM3 nur unter Bedingungen. Kein Langzeitgymnasium.",
+      "class_model": "class",
+      "tracks": []
+    },
+    {
+      "id": "fms",
+      "label": {
+        "de": "Fachmittelschule"
+      },
+      "stages": [
+        "sec2"
+      ],
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "qualifications": [
+        "fms-ausweis",
+        "fachmatura"
+      ],
+      "class_model": "class",
+      "notes": "Berufsfelder Gesundheit, Soziale Arbeit, Pädagogik; Aufnahme mit Empfehlung oder Prüfung"
+    },
+    {
+      "id": "berufslehre",
+      "label": {
+        "de": "Berufliche Grundbildung"
+      },
+      "stages": [
+        "sec2"
+      ],
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "qualifications": [
+        "efz",
+        "eba",
+        "berufsmatura"
+      ],
+      "notes": "Nur als Anschlussziel; Prilog führt keine Berufsfachschule",
+      "class_model": "course",
+      "remark": {
+        "de": "Wird als Anschluss geführt, nicht als Schule: Prilog kennt den Abschluss, den Unterricht machen Berufsschule und Lehrbetrieb.",
+        "en": "Carried as a follow-on path, not as a school: Prilog knows the qualification, the teaching belongs to the vocational school and the training company.",
+        "fr": "Suivi comme voie de raccordement, non comme école : Prilog connaît le diplôme, l'enseignement relève de l'école professionnelle et de l'entreprise formatrice."
+      }
+    },
+    {
+      "id": "basisstufe",
+      "label": {
+        "de": "Basisstufe"
+      },
+      "stages": [
+        "kg",
+        "primar"
+      ],
+      "grades": [],
+      "age_range": [
+        4,
+        8
+      ],
+      "class_model": "mixed-age",
+      "notes": "Kindergarten und 1./2. Klasse altersgemischt; Gemeindewahl statt Kindergarten + Primar 1–2",
+      "remark": {
+        "de": "Altersgemischt Kindergarten bis 2. Klasse; die Fächer der Basis gelten über das Alter der Gruppe."
+      }
+    },
+    {
+      "id": "bvs",
+      "label": {
+        "de": "Berufsvorbereitendes Schuljahr (BVS)"
+      },
+      "stages": [
+        "sec2"
+      ],
+      "grades": [
+        "s2-1"
+      ],
+      "class_model": "class",
+      "aliases": [
+        "Brückenangebot",
+        "10. Schuljahr"
+      ],
+      "notes": "Kantonales Brückenangebot nach der 9. Klasse",
+      "remark": {
+        "de": "Brückenangebot ohne festen Fächerkanon; Prilog kennt den Bildungsgang, den Stundenplan macht die Schule."
+      }
+    }
+  ],
+  "tracks": [
+    {
+      "id": "sek-level",
+      "label": {
+        "de": "Schultyp Sekundarstufe I"
+      },
+      "scope": "learning_group",
+      "levels": [
+        {
+          "id": "a",
+          "label": {
+            "de": "Sekundarschule (Sek)"
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "de": "Realschule (Real)"
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "de": "–"
+          },
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "id": "sek-subject-level",
+      "label": {
+        "de": "Niveaufach (Deutsch, Französisch, Mathematik)"
+      },
+      "scope": "enrollment",
+      "levels": [
+        {
+          "id": "e",
+          "label": {
+            "de": "Sekundarschulniveau"
+          }
+        },
+        {
+          "id": "g",
+          "label": {
+            "de": "Realschulniveau"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gym-variant",
+      "label": {
+        "de": "Gymnasialtyp"
+      },
+      "scope": "program",
+      "levels": [
+        {
+          "id": "kurz",
+          "label": {
+            "de": "Kurzzeitgymnasium (ab Sek I)"
+          }
+        },
+        {
+          "id": "lang",
+          "label": {
+            "de": "Langzeitgymnasium (ab 6. Klasse)"
+          }
+        }
+      ],
+      "disabled": true,
+      "notes": "Bern kennt nur den vierjährigen Bildungsgang ab GYM1; ein Zug mit einer einzigen Wahl ist keiner."
+    },
+    {
+      "id": "sek-modell",
+      "label": {
+        "de": "Zusammenarbeitsmodell Sek I (Gemeindewahl)"
+      },
+      "scope": "program",
+      "levels": [
+        {
+          "id": "m1",
+          "label": {
+            "de": "Modell 1 – getrennte Real- und Sekundarklassen (Manuel)"
+          }
+        },
+        {
+          "id": "m2",
+          "label": {
+            "de": "Modell 2 – getrennte Klassen, gemeinsamer Unterricht in Nicht-Niveaufächern"
+          }
+        },
+        {
+          "id": "m3a",
+          "label": {
+            "de": "Modell 3a – Stammklassen gemischt, Niveaufächer getrennt (Spiegel)"
+          }
+        },
+        {
+          "id": "m3b",
+          "label": {
+            "de": "Modell 3b – Stammklassen gemischt, Niveaufächer teilweise gemeinsam"
+          }
+        },
+        {
+          "id": "m4",
+          "label": {
+            "de": "Modell 4 – vollständig integriert, Niveaus innerhalb der Klasse (Twann)"
+          }
+        }
+      ]
+    }
+  ],
+  "qualifications": [
+    {
+      "id": "sek1-abschluss",
+      "label": {
+        "de": "Abschluss der obligatorischen Schule"
+      },
+      "after_grade": "h11",
+      "grants_access": [
+        "berufslehre",
+        "fms",
+        "gym"
+      ],
+      "programs": [
+        "sek1"
+      ]
+    },
+    {
+      "id": "gym-matura",
+      "label": {
+        "de": "Gymnasiale Maturität"
+      },
+      "after_grade": "s2-4",
+      "grants_access": [
+        "universitaet",
+        "eth",
+        "fh",
+        "ph"
+      ],
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "fms-ausweis",
+      "label": {
+        "de": "Fachmittelschulausweis"
+      },
+      "after_grade": "s2-3",
+      "grants_access": [
+        "hf"
+      ],
+      "programs": [
+        "fms"
+      ]
+    },
+    {
+      "id": "fachmatura",
+      "label": {
+        "de": "Fachmaturität"
+      },
+      "after_grade": "s2-4",
+      "grants_access": [
+        "fh",
+        "ph"
+      ],
+      "programs": [
+        "fms"
+      ]
+    },
+    {
+      "id": "efz",
+      "label": {
+        "de": "Eidg. Fähigkeitszeugnis (EFZ)"
+      },
+      "after_grade": "s2-4",
+      "grants_access": [
+        "hf"
+      ],
+      "programs": [
+        "berufslehre"
+      ]
+    },
+    {
+      "id": "eba",
+      "label": {
+        "de": "Eidg. Berufsattest (EBA)"
+      },
+      "after_grade": "s2-2",
+      "grants_access": [
+        "efz"
+      ],
+      "programs": [
+        "berufslehre"
+      ]
+    },
+    {
+      "id": "berufsmatura",
+      "label": {
+        "de": "Berufsmaturität"
+      },
+      "after_grade": "s2-4",
+      "grants_access": [
+        "fh",
+        "passerelle"
+      ],
+      "programs": [
+        "berufslehre"
+      ]
+    }
+  ],
+  "subject_domains": [
+    {
+      "id": "lang",
+      "label": {
+        "de": "Sprachen"
+      }
+    },
+    {
+      "id": "math",
+      "label": {
+        "de": "Mathematik"
+      }
+    },
+    {
+      "id": "science",
+      "label": {
+        "de": "Natur, Mensch, Gesellschaft"
+      }
+    },
+    {
+      "id": "arts",
+      "label": {
+        "de": "Gestalten"
+      }
+    },
+    {
+      "id": "music",
+      "label": {
+        "de": "Musik"
+      }
+    },
+    {
+      "id": "sport",
+      "label": {
+        "de": "Bewegung und Sport"
+      }
+    },
+    {
+      "id": "media",
+      "label": {
+        "de": "Medien und Informatik"
+      }
+    },
+    {
+      "id": "cross",
+      "label": {
+        "de": "Überfachlich"
+      }
+    },
+    {
+      "id": "gym-core",
+      "label": {
+        "de": "Grundlagenfächer"
+      }
+    },
+    {
+      "id": "gym-major",
+      "label": {
+        "de": "Schwerpunktfächer"
+      }
+    },
+    {
+      "id": "gym-minor",
+      "label": {
+        "de": "Ergänzungsfächer"
+      }
+    },
+    {
+      "id": "waldorf",
+      "label": {
+        "de": "Waldorfspezifisch",
+        "fr": "Spécifique Waldorf",
+        "en": "Waldorf-specific"
+      }
+    },
+    {
+      "id": "epoch",
+      "label": {
+        "de": "Epochen (Hauptunterricht)",
+        "fr": "Périodes (cours principal)",
+        "en": "Main lesson blocks"
+      }
+    }
+  ],
+  "subjects": [
+    {
+      "id": "de",
+      "label": {
+        "de": "Deutsch"
+      },
+      "domain": "lang",
+      "grades": [
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "tracked": true,
+      "programs": [
+        "primar",
+        "sek1"
+      ]
+    },
+    {
+      "id": "fr",
+      "label": {
+        "de": "Französisch"
+      },
+      "domain": "lang",
+      "grades": [
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "tracked": true,
+      "programs": [
+        "primar",
+        "sek1"
+      ],
+      "notes": "Erste Fremdsprache ab 3. Klasse (Passepartout)"
+    },
+    {
+      "id": "en",
+      "label": {
+        "de": "Englisch"
+      },
+      "domain": "lang",
+      "grades": [
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "tracked": false,
+      "programs": [
+        "primar",
+        "sek1"
+      ],
+      "notes": "Zweite Fremdsprache ab 5. Klasse; kein Niveaufach in Bern"
+    },
+    {
+      "id": "math",
+      "label": {
+        "de": "Mathematik"
+      },
+      "domain": "math",
+      "grades": [
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "tracked": true,
+      "programs": [
+        "primar",
+        "sek1"
+      ]
+    },
+    {
+      "id": "nmg",
+      "label": {
+        "de": "Natur, Mensch, Gesellschaft"
+      },
+      "domain": "science",
+      "grades": [
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8"
+      ],
+      "programs": [
+        "primar"
+      ]
+    },
+    {
+      "id": "nt",
+      "label": {
+        "de": "Natur und Technik"
+      },
+      "domain": "science",
+      "grades": [
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "aliases": [
+        "Naturlehre"
+      ],
+      "programs": [
+        "sek1"
+      ]
+    },
+    {
+      "id": "wah",
+      "label": {
+        "de": "Wirtschaft, Arbeit, Haushalt"
+      },
+      "domain": "science",
+      "grades": [
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "aliases": [
+        "Hauswirtschaft"
+      ],
+      "programs": [
+        "sek1"
+      ]
+    },
+    {
+      "id": "rzg",
+      "label": {
+        "de": "Räume, Zeiten, Gesellschaften"
+      },
+      "domain": "science",
+      "grades": [
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "aliases": [
+        "Geografie/Geschichte"
+      ],
+      "programs": [
+        "sek1"
+      ]
+    },
+    {
+      "id": "erg",
+      "label": {
+        "de": "Ethik, Religionen, Gemeinschaft"
+      },
+      "domain": "science",
+      "grades": [
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "programs": [
+        "sek1"
+      ]
+    },
+    {
+      "id": "bg",
+      "label": {
+        "de": "Bildnerisches Gestalten"
+      },
+      "domain": "arts",
+      "grades": [
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "programs": [
+        "primar",
+        "sek1"
+      ]
+    },
+    {
+      "id": "ttg",
+      "label": {
+        "de": "Textiles und Technisches Gestalten"
+      },
+      "domain": "arts",
+      "grades": [
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "aliases": [
+        "Werken",
+        "Handarbeit"
+      ],
+      "programs": [
+        "primar",
+        "sek1"
+      ]
+    },
+    {
+      "id": "mu",
+      "label": {
+        "de": "Musik"
+      },
+      "domain": "music",
+      "grades": [
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "programs": [
+        "primar",
+        "sek1"
+      ]
+    },
+    {
+      "id": "sp",
+      "label": {
+        "de": "Bewegung und Sport"
+      },
+      "domain": "sport",
+      "grades": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "aliases": [
+        "Turnen"
+      ],
+      "programs": [
+        "kg",
+        "primar",
+        "sek1"
+      ]
+    },
+    {
+      "id": "mi",
+      "label": {
+        "de": "Medien und Informatik"
+      },
+      "domain": "media",
+      "grades": [
+        "h7",
+        "h9"
+      ],
+      "programs": [
+        "primar",
+        "sek1"
+      ]
+    },
+    {
+      "id": "bo",
+      "label": {
+        "de": "Berufliche Orientierung"
+      },
+      "domain": "cross",
+      "grades": [
+        "h10",
+        "h11"
+      ],
+      "programs": [
+        "sek1"
+      ]
+    },
+    {
+      "id": "pu",
+      "label": {
+        "de": "Projektunterricht"
+      },
+      "domain": "cross",
+      "grades": [
+        "h11"
+      ],
+      "kind": "project",
+      "programs": [
+        "sek1"
+      ]
+    },
+    {
+      "id": "it",
+      "label": {
+        "de": "Italienisch"
+      },
+      "domain": "lang",
+      "grades": [
+        "h10",
+        "h11"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "sek1"
+      ]
+    },
+    {
+      "id": "la",
+      "label": {
+        "de": "Latein"
+      },
+      "domain": "lang",
+      "grades": [
+        "h10",
+        "h11"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "sek1"
+      ]
+    },
+    {
+      "id": "tast",
+      "label": {
+        "de": "Tastaturschreiben"
+      },
+      "domain": "media",
+      "grades": [
+        "h9"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "sek1"
+      ]
+    },
+    {
+      "id": "chor",
+      "label": {
+        "de": "Chor"
+      },
+      "domain": "music",
+      "grades": [
+        "h9",
+        "h10",
+        "h11"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "sek1"
+      ]
+    },
+    {
+      "id": "gym-de",
+      "label": {
+        "de": "Deutsch"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "programs": [
+        "gym",
+        "fms"
+      ]
+    },
+    {
+      "id": "gym-fr",
+      "label": {
+        "de": "Französisch"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "programs": [
+        "gym",
+        "fms"
+      ]
+    },
+    {
+      "id": "gym-en",
+      "label": {
+        "de": "Englisch"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "programs": [
+        "gym",
+        "fms"
+      ]
+    },
+    {
+      "id": "gym-math",
+      "label": {
+        "de": "Mathematik"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "programs": [
+        "gym",
+        "fms"
+      ]
+    },
+    {
+      "id": "gym-bio",
+      "label": {
+        "de": "Biologie"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3"
+      ],
+      "programs": [
+        "gym",
+        "fms"
+      ]
+    },
+    {
+      "id": "gym-ch",
+      "label": {
+        "de": "Chemie"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3"
+      ],
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "gym-ph",
+      "label": {
+        "de": "Physik"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "gym-gs",
+      "label": {
+        "de": "Geschichte"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "programs": [
+        "gym",
+        "fms"
+      ]
+    },
+    {
+      "id": "gym-gg",
+      "label": {
+        "de": "Geografie"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3"
+      ],
+      "programs": [
+        "gym",
+        "fms"
+      ]
+    },
+    {
+      "id": "gym-wr",
+      "label": {
+        "de": "Wirtschaft und Recht"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-2",
+        "s2-3"
+      ],
+      "programs": [
+        "gym",
+        "fms"
+      ]
+    },
+    {
+      "id": "gym-bg",
+      "label": {
+        "de": "Bildnerisches Gestalten"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-1",
+        "s2-2"
+      ],
+      "programs": [
+        "gym",
+        "fms"
+      ]
+    },
+    {
+      "id": "gym-mu",
+      "label": {
+        "de": "Musik"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-1",
+        "s2-2"
+      ],
+      "programs": [
+        "gym",
+        "fms"
+      ]
+    },
+    {
+      "id": "gym-sp",
+      "label": {
+        "de": "Sport"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "programs": [
+        "gym",
+        "fms"
+      ]
+    },
+    {
+      "id": "gym-inf",
+      "label": {
+        "de": "Informatik"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-1",
+        "s2-2"
+      ],
+      "programs": [
+        "gym"
+      ],
+      "notes": "Obligatorisch seit Lehrplan 17 (2019)"
+    },
+    {
+      "id": "gym-ma",
+      "label": {
+        "de": "Maturaarbeit"
+      },
+      "domain": "gym-core",
+      "grades": [
+        "s2-3",
+        "s2-4"
+      ],
+      "kind": "project",
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "spf-la",
+      "label": {
+        "de": "Schwerpunkt Latein"
+      },
+      "domain": "gym-major",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "spf-it",
+      "label": {
+        "de": "Schwerpunkt Italienisch"
+      },
+      "domain": "gym-major",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "spf-sp",
+      "label": {
+        "de": "Schwerpunkt Spanisch"
+      },
+      "domain": "gym-major",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "spf-pam",
+      "label": {
+        "de": "Schwerpunkt Physik und Anwendungen der Mathematik"
+      },
+      "domain": "gym-major",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "spf-bc",
+      "label": {
+        "de": "Schwerpunkt Biologie und Chemie"
+      },
+      "domain": "gym-major",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "spf-wr",
+      "label": {
+        "de": "Schwerpunkt Wirtschaft und Recht"
+      },
+      "domain": "gym-major",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "spf-ppp",
+      "label": {
+        "de": "Schwerpunkt Philosophie, Pädagogik, Psychologie"
+      },
+      "domain": "gym-major",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "spf-bg",
+      "label": {
+        "de": "Schwerpunkt Bildnerisches Gestalten"
+      },
+      "domain": "gym-major",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "spf-mu",
+      "label": {
+        "de": "Schwerpunkt Musik"
+      },
+      "domain": "gym-major",
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3",
+        "s2-4"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "ef",
+      "label": {
+        "de": "Ergänzungsfach"
+      },
+      "domain": "gym-minor",
+      "grades": [
+        "s2-3",
+        "s2-4"
+      ],
+      "kind": "elective",
+      "optional": true,
+      "aliases": [
+        "Anwendungen der Mathematik",
+        "Biologie",
+        "Chemie",
+        "Physik",
+        "Geschichte",
+        "Geografie",
+        "Philosophie",
+        "Religionslehre",
+        "Wirtschaft und Recht",
+        "Pädagogik/Psychologie",
+        "Bildnerisches Gestalten",
+        "Musik",
+        "Sport",
+        "Informatik"
+      ],
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "eu",
+      "label": {
+        "de": "Eurythmie",
+        "fr": "Eurythmie",
+        "en": "Eurythmy"
+      },
+      "domain": "waldorf",
+      "age_from": 6,
+      "age_to": 18
+    },
+    {
+      "id": "gartenbau",
+      "label": {
+        "de": "Gartenbau",
+        "fr": "Jardinage",
+        "en": "Gardening"
+      },
+      "domain": "waldorf",
+      "age_from": 11,
+      "age_to": 15
+    },
+    {
+      "id": "handarbeit",
+      "label": {
+        "de": "Handarbeit",
+        "fr": "Travaux manuels textiles",
+        "en": "Handwork"
+      },
+      "domain": "waldorf",
+      "age_from": 6,
+      "age_to": 13
+    },
+    {
+      "id": "werken",
+      "label": {
+        "de": "Werken",
+        "fr": "Travaux manuels (bois, métal)",
+        "en": "Crafts (wood, metal)"
+      },
+      "domain": "waldorf",
+      "age_from": 10,
+      "age_to": 17
+    },
+    {
+      "id": "formenzeichnen",
+      "label": {
+        "de": "Formenzeichnen",
+        "fr": "Dessin de formes",
+        "en": "Form drawing"
+      },
+      "domain": "waldorf",
+      "age_from": 6,
+      "age_to": 10
+    },
+    {
+      "id": "ep-de",
+      "label": {
+        "de": "Epoche Deutsch",
+        "fr": "Période de langue",
+        "en": "Main lesson: Language"
+      },
+      "domain": "epoch",
+      "kind": "epoch",
+      "age_from": 6,
+      "age_to": 17
+    },
+    {
+      "id": "ep-math",
+      "label": {
+        "de": "Epoche Mathematik",
+        "fr": "Période de mathématiques",
+        "en": "Main lesson: Mathematics"
+      },
+      "domain": "epoch",
+      "kind": "epoch",
+      "age_from": 6,
+      "age_to": 17
+    },
+    {
+      "id": "ep-gs",
+      "label": {
+        "de": "Epoche Geschichte",
+        "fr": "Période d'histoire",
+        "en": "Main lesson: History"
+      },
+      "domain": "epoch",
+      "kind": "epoch",
+      "age_from": 10,
+      "age_to": 17
+    },
+    {
+      "id": "ep-geo",
+      "label": {
+        "de": "Epoche Geografie",
+        "fr": "Période de géographie",
+        "en": "Main lesson: Geography"
+      },
+      "domain": "epoch",
+      "kind": "epoch",
+      "age_from": 9,
+      "age_to": 17
+    },
+    {
+      "id": "ep-nawi",
+      "label": {
+        "de": "Epoche Naturkunde / Naturwissenschaft",
+        "fr": "Période de sciences de la nature",
+        "en": "Main lesson: Nature study / Science"
+      },
+      "domain": "epoch",
+      "kind": "epoch",
+      "aliases": [
+        "Tierkunde",
+        "Pflanzenkunde",
+        "Physik",
+        "Chemie",
+        "Astronomie"
+      ],
+      "age_from": 9,
+      "age_to": 17
+    },
+    {
+      "id": "ep-kunst",
+      "label": {
+        "de": "Epoche Kunstgeschichte / Ästhetik",
+        "fr": "Période d'histoire de l'art / esthétique",
+        "en": "Main lesson: Art history / Aesthetics"
+      },
+      "domain": "epoch",
+      "kind": "epoch",
+      "age_from": 14,
+      "age_to": 17
+    },
+    {
+      "id": "praktikum",
+      "label": {
+        "de": "Praktikum",
+        "fr": "Stage pratique",
+        "en": "Practicum"
+      },
+      "domain": "waldorf",
+      "kind": "project",
+      "aliases": [
+        "Landwirtschaftspraktikum",
+        "Feldmesspraktikum",
+        "Sozialpraktikum",
+        "Betriebspraktikum"
+      ],
+      "age_from": 14,
+      "age_to": 16
+    },
+    {
+      "id": "jahresarbeit",
+      "label": {
+        "de": "Jahresarbeit",
+        "fr": "Travail de fin d'année",
+        "en": "Year project"
+      },
+      "domain": "waldorf",
+      "kind": "project",
+      "age_years": [
+        13,
+        17
+      ]
+    },
+    {
+      "id": "klassenspiel",
+      "label": {
+        "de": "Klassenspiel",
+        "fr": "Pièce de théâtre de classe",
+        "en": "Class play"
+      },
+      "domain": "waldorf",
+      "kind": "project",
+      "age_years": [
+        13,
+        17
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "uebertritt-sek1",
+      "kind": "transition",
+      "label": {
+        "de": "Übertrittsverfahren Primarstufe → Sekundarstufe I"
+      },
+      "applies_to": {
+        "from_grade": "h8",
+        "to_program": "sek1"
+      },
+      "mode": "recommendation-with-probation",
+      "summary": {
+        "de": "In der 6. Klasse: Beurteilung durch die Lehrpersonen, Übertrittsgespräch mit den Eltern, Zuweisung zum Real- oder Sekundarschulniveau je Niveaufach (Deutsch, Französisch, Mathematik) und zum Schultyp. Bei Uneinigkeit zwischen Schule und Eltern entscheidet eine kantonale Kontrollprüfung. Die Zuteilung wird auf jede Promotion hin überprüft (durchlässig)."
+      },
+      "source": "VSG Art. 33 ff.; DVBS Art. 32–46",
+      "url": "https://www.akvb-unterricht.bkd.be.ch/de/start/unterricht/beurteilung-uebertritte.html"
+    },
+    {
+      "id": "aufnahme-gym",
+      "kind": "admission",
+      "label": {
+        "de": "Aufnahme in den gymnasialen Bildungsgang (GYM1)"
+      },
+      "applies_to": {
+        "to_program": "gym"
+      },
+      "mode": "recommendation-or-exam",
+      "summary": {
+        "de": "Eintritt in GYM1 aus dem 8. oder 9. Schuljahr. Weg 1: Empfehlung der abgebenden Schule (Sekundarschulniveau in allen Niveaufächern, Beurteilung der überfachlichen Kompetenzen). Weg 2: kantonale Aufnahmeprüfung in Deutsch, Französisch, Mathematik – mit zwei Prüfungsserien je nach Vorbildung (8. bzw. 9. Schuljahr). Die Qualifikation gilt nur für den nächstmöglichen Eintritt. Eintritt in GYM3 nur unter besonderen Bedingungen."
+      },
+      "source": "MiSG; Mittelschulverordnung MiSV; Aufnahmeverfahren Gymnasium BKD",
+      "url": "https://www.bkd.be.ch/de/start/themen/bildung-im-kanton-bern/mittelschulen/gymnasium/aufnahmeverfahren-gymnasium.html"
+    },
+    {
+      "id": "aufnahme-fms",
+      "kind": "admission",
+      "label": {
+        "de": "Aufnahme in die Fachmittelschule"
+      },
+      "applies_to": {
+        "to_program": "fms"
+      },
+      "mode": "recommendation-or-exam",
+      "summary": {
+        "de": "Aus dem 9. Schuljahr mit Empfehlung der abgebenden Schule oder kantonaler Aufnahmeprüfung."
+      },
+      "source": "MiSG; MiSV"
+    },
+    {
+      "id": "schulpflicht",
+      "kind": "compulsory-schooling",
+      "label": {
+        "de": "Obligatorische Schulzeit"
+      },
+      "summary": {
+        "de": "11 Jahre: 2 Jahre Kindergarten (oder Basisstufe) und 9 Jahre Volksschule. Eintritt in den Kindergarten für Kinder, die bis 31. Juli das 4. Altersjahr vollendet haben."
+      },
+      "source": "VSG Art. 22 ff."
+    },
+    {
+      "id": "niveauwechsel",
+      "kind": "promotion",
+      "label": {
+        "de": "Wechsel von Niveau und Schultyp"
+      },
+      "applies_to": {
+        "programs": [
+          "sek1"
+        ]
+      },
+      "mode": "per-promotion",
+      "summary": {
+        "de": "Auf Empfehlung der Lehrpersonen kann die Zuteilung in den Niveaufächern oder des Schultyps per Schullaufbahnentscheid auf die nächste Promotion (Semesterende) hin geändert werden – in beide Richtungen."
+      },
+      "source": "DVBS; Weisungen Zusammenarbeitsformen Sek I"
+    }
+  ],
+  "exams": [
+    {
+      "id": "matura-be",
+      "label": {
+        "de": "Maturitätsprüfung"
+      },
+      "qualification": "gym-matura",
+      "mode": "internal",
+      "at_grade": "s2-4",
+      "components": [
+        {
+          "id": "written",
+          "count": 5
+        },
+        {
+          "id": "oral",
+          "count": 4
+        },
+        {
+          "id": "thesis",
+          "count": 1,
+          "label": {
+            "de": "Maturaarbeit"
+          }
+        }
+      ],
+      "summary": {
+        "de": "Kantonal geregelte Maturitätsprüfung nach MAR an den Gymnasien; Maturaarbeit zählt als Maturitätsfach. Private Gymnasien mit kantonal anerkannter Maturität führen die Prüfung nach demselben Reglement durch."
+      },
+      "source": "Maturitätsprüfungsverordnung Kanton Bern; MAR"
+    },
+    {
+      "id": "aufnahmepruefung-gym",
+      "label": {
+        "de": "Kantonale Aufnahmeprüfung Gymnasium"
+      },
+      "qualification": "sek1-abschluss",
+      "mode": "central",
+      "at_grade": "h10",
+      "components": [
+        {
+          "id": "written",
+          "count": 3
+        },
+        {
+          "id": "oral",
+          "count": 1,
+          "label": {
+            "de": "Französisch mündlich"
+          }
+        }
+      ],
+      "summary": {
+        "de": "Kantonsweit einheitliche Aufgaben in Deutsch, Französisch (schriftlich und mündlich) und Mathematik; zwei Serien für Kandidierende aus dem 8. bzw. 9. Schuljahr."
+      },
+      "source": "Aufnahmeverfahren Gymnasium BKD",
+      "url": "https://www.bkd.be.ch/de/start/themen/bildung-im-kanton-bern/mittelschulen/gymnasium/aufnahmeverfahren-gymnasium/aufgaben-und-loesungen-aufnahmepruefungen-gymnasium.html"
+    },
+    {
+      "id": "kontrollpruefung-sek1",
+      "label": {
+        "de": "Kontrollprüfung Übertritt Sek I"
+      },
+      "qualification": "sek1-abschluss",
+      "mode": "central",
+      "at_grade": "h8",
+      "summary": {
+        "de": "Kantonale Prüfung bei Uneinigkeit zwischen Schule und Eltern über die Niveauzuteilung beim Übertritt in die Sekundarstufe I."
+      },
+      "source": "DVBS"
+    }
+  ],
+  "legal": [
+    {
+      "id": "volksschulgesetz",
+      "kind": "school-act",
+      "label": {
+        "de": "Volksschulgesetz des Kantons Bern (VSG, BSG 432.210)"
+      },
+      "url": "https://www.belex.sites.be.ch/",
+      "sections": {
+        "schulpflicht": "Art. 22 ff.",
+        "uebertritt": "Art. 33 ff.",
+        "privatschulen": "Art. 66 ff.",
+        "elternrechte": "Art. 31 ff."
+      }
+    },
+    {
+      "id": "mittelschulgesetz",
+      "kind": "school-act",
+      "label": {
+        "de": "Mittelschulgesetz (MiSG, BSG 433.12) und Mittelschulverordnung (MiSV)"
+      },
+      "summary": {
+        "de": "Gymnasien, Fachmittelschulen; Aufnahme, Promotion, Maturität; kantonale Anerkennung privater Gymnasien"
+      }
+    },
+    {
+      "id": "dvbs",
+      "kind": "school-act",
+      "label": {
+        "de": "Direktionsverordnung über Beurteilung und Schullaufbahnentscheide (DVBS)"
+      },
+      "summary": {
+        "de": "Beurteilungsbericht, Noten, Übertrittsverfahren, Kontrollprüfung, Niveauwechsel"
+      }
+    },
+    {
+      "id": "datenschutz",
+      "kind": "data-protection",
+      "label": {
+        "de": "Kantonales Datenschutzgesetz (KDSG, BSG 152.04) und Datenschutzverordnung"
+      },
+      "summary": {
+        "de": "Öffentliche Schulen unterstehen dem kantonalen Datenschutzrecht, nicht dem eidgenössischen DSG; Aufsicht durch die Datenschutzaufsichtsstelle des Kantons Bern. Private Schulen unterstehen dem eidgenössischen DSG."
+      }
+    },
+    {
+      "id": "aufsicht",
+      "kind": "authority",
+      "label": {
+        "de": "Bildungs- und Kulturdirektion des Kantons Bern (BKD); Amt für Kindergarten, Volksschule und Beratung (AKVB); Mittelschul- und Berufsbildungsamt (MBA)"
+      },
+      "url": "https://www.bkd.be.ch/"
+    },
+    {
+      "id": "privatschulen",
+      "kind": "private-school",
+      "label": {
+        "de": "Bewilligung von Privatschulen"
+      },
+      "summary": {
+        "de": "Privatschulen der Volksschulstufe brauchen eine Bewilligung der BKD (Art. 66 ff. VSG); private Gymnasien können eine kantonal anerkannte Maturität führen (MiSG). Unterrichtsziele der Volksschule sind einzuhalten, Lehrplan 21 gilt als Referenz."
+      },
+      "source": "VSG Art. 66–70; MiSG"
+    },
+    {
+      "id": "aufbewahrung",
+      "kind": "retention",
+      "label": {
+        "de": "Aufbewahrung von Schülerdaten"
+      },
+      "summary": {
+        "de": "Beurteilungsberichte und Schullaufbahnentscheide nach kantonaler Aktenordnung; Details in der DVBS und im Archivgesetz (ArchG)."
+      },
+      "source": "DVBS; ArchG BSG 108.1"
+    },
+    {
+      "id": "sprache",
+      "kind": "other",
+      "label": {
+        "de": "Zweisprachiger Kanton"
+      },
+      "summary": {
+        "de": "Deutsch und Französisch sind Amtssprachen. Der französischsprachige Kantonsteil (Berner Jura, Biel/Bienne teilweise) folgt dem Plan d'études romand und ist nicht Teil dieses Overlays."
+      }
+    }
+  ]
+}

@@ -7,7 +7,7 @@
 ```
 Basis-PEX          de · ch-de · at · us
    ↓
-Regional-Overlay   de-hh · de-by · de-sh · ch-zh …
+Regional-Overlay   de-hh · de-by · de-sh · ch-zh · ch-be …
    ↓
 Pädagogik-Overlay  waldorf · montessori          (am Alter verankert, passt über jede Basis)
    ↓
@@ -29,7 +29,7 @@ Mandanten-Overrides (die Schule selbst)
 |---|---|
 | `schema/pex.schema.json` | JSON-Schema (Draft 2020-12), **Version 2.2** |
 | `packages/base/` | Basis-Pakete: `de`, `ch-de`, `at`, `us` |
-| `packages/overlays/` | Regional: `de-hh`, `de-by`, `de-sh`, `ch-zh` · Pädagogik: `waldorf`, `montessori` |
+| `packages/overlays/` | Regional: `de-hh`, `de-by`, `de-sh`, `ch-zh`, `ch-be` · Pädagogik: `waldorf`, `montessori` |
 | `dist/index.json` | Registry aller Pakete und Standard-Stapel mit Versionen und Prüfsummen – das liest ein Loader zuerst |
 | `dist/effective/` | 25 materialisierte Stapel (`de+de-hh+waldorf.json` …), fertig zum Laden |
 | `tools/validate.py` | Referenz: Datei gegen Schema, Stapel referenziell und semantisch |
@@ -86,6 +86,7 @@ Ein minimales Paket:
 | `de-by` | 0.1.1 | Struktur + Regeln + Recht | nein |
 | `ch-de` | 0.3.0 | Lehrplan 21, Gymnasium nach MAR | nein |
 | `ch-zh` | 0.1.0 | Sek A/B + Anforderungsstufen, Lang-/Kurzgymnasium, ZAP | nein |
+| `ch-be` | 0.1.1 | Real/Sek mit Niveaufächern und Zusammenarbeitsmodellen, GYM1–4, Basisstufe, BVS; Regeln + Recht (VSG, DVBS, MiSG) | nein |
 | `at` | 0.3.0 | Lehrpläne 2023 | nein |
 | `us` | 0.2.1 | generisches K-12 | nein |
 | `waldorf` | 0.4.0 | Pädagogik-Overlay, Alter statt Jahrgang, de/fr/en | Waldorf: Bestandskunden |
