@@ -107,7 +107,11 @@ Schlüssel, die die Oberfläche kennt und über `term(pex, key, lang)` liest. Fe
 
 ---
 
-## 7. Was bewusst nicht in dieses Repo gehört
+## 7. Verbindung zur ersten Wahrheit
+
+Welcher PEX-Block welches Stammdatum speist (gelesen / Vorlage / Mandant), was an Schlüsseln fehlt und was beim Onboarding bleibt, steht in `prilog_docs/umsetzung/stammdaten/pex-verbindung-v1.md` (17.09.2026).
+
+## 8. Was bewusst nicht in dieses Repo gehört
 
 - Mandanten-Overrides (Instanzen einer Schule) – sie leben in `tenant_settings`.
 - Das Organisationsmodell (Lerngruppe, Angebot, Einschreibung) – es liest PEX, ist aber Prilog-Code.
