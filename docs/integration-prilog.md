@@ -109,6 +109,10 @@ Schlüssel, die die Oberfläche kennt und über `term(pex, key, lang)` liest. Fe
 
 ## 7. Verbindung zur ersten Wahrheit
 
+In Prilog zeigt `/settings/pex` (Gruppe Stammdaten) das effektive Paket des Hauses vollständig und lesbar – die Seite, an der ein Mensch prüft, was gilt, bevor er es in den eigenen Anpassungen ändert.
+
+### Punkte 1–8 der Übersicht (17.09.2026)
+
 Welcher PEX-Block welches Stammdatum speist (gelesen / Vorlage / Mandant), was an Schlüsseln fehlt und was beim Onboarding bleibt, steht in `prilog_docs/umsetzung/stammdaten/pex-verbindung-v1.md` (17.09.2026).
 
 ## 8. Was bewusst nicht in dieses Repo gehört
