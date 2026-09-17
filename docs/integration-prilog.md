@@ -115,6 +115,23 @@ In Prilog zeigt `/settings/pex` (Gruppe Stammdaten) das effektive Paket des Haus
 
 Welcher PEX-Block welches Stammdatum speist (gelesen / Vorlage / Mandant), was an Schlüsseln fehlt und was beim Onboarding bleibt, steht in `prilog_docs/umsetzung/stammdaten/pex-verbindung-v1.md` (17.09.2026).
 
+### E3 und E4 (18.09.2026)
+
+- **E4, Assistent:** Prilog hat unter Einstellungen → Stammdaten → „Schule
+  einrichten“ eine Schrittliste in Onboarding-Reihenfolge (System, Begriffe,
+  Rechtsraum, Behälter, Fächer, Klassen/Kurse, Gang, Fach × Klasse, Bausteine,
+  Skala je Vorlage, Zug, Niveau, Ferien, Stufen-Namen) mit Stand, Zahl und je
+  einem Knopf. Was danach Handarbeit bleibt, steht darunter.
+- **E3, Update-Fluss:** Beim Wählen und Bestätigen merkt sich ein Haus einen
+  Fingerabdruck seines effektiven Pakets; bei einem neuen Paketstand sagt die
+  Stammdaten-Karte in Worten, was sich für dieses Haus ändert (neu / entfällt /
+  geändert je Block). Der Abgleich dieses Repos ins Backend läuft täglich als
+  Workflow im Backend-Repo (Pull Request bei Änderung) oder von Hand mit
+  `scripts/pex-sync.sh` dort.
+- **Entwürfe:** `drafts/` enthält Overlays, die nach Fachkenntnis geschrieben,
+  aber nicht amtlich geprüft sind (de-nw, de-bw, ch-ag). Sync und Build sehen
+  sie nicht; Freigabe = Prüfung und Verschieben nach `packages/overlays/`.
+
 ## 8. Was bewusst nicht in dieses Repo gehört
 
 - Mandanten-Overrides (Instanzen einer Schule) – sie leben in `tenant_settings`.
