@@ -239,19 +239,31 @@
   "subjects": [
     {
       "id": "de",
-      "tracked": false
+      "tracked": false,
+      "label": {
+        "de": "Deutsch"
+      }
     },
     {
       "id": "fr",
-      "tracked": false
+      "tracked": false,
+      "label": {
+        "de": "Französisch"
+      }
     },
     {
       "id": "en",
-      "tracked": false
+      "tracked": false,
+      "label": {
+        "de": "Englisch"
+      }
     },
     {
       "id": "math",
-      "tracked": false
+      "tracked": false,
+      "label": {
+        "de": "Mathematik"
+      }
     },
     {
       "id": "projekt",
