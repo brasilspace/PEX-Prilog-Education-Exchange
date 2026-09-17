@@ -219,7 +219,10 @@
         "berufslehre",
         "wms",
         "ims"
-      ]
+      ],
+      "label": {
+        "de": "Eidg. Fähigkeitszeugnis (EFZ)"
+      }
     },
     {
       "id": "berufsmatura",
@@ -227,7 +230,10 @@
         "berufslehre",
         "wms",
         "ims"
-      ]
+      ],
+      "label": {
+        "de": "Berufsmaturität"
+      }
     }
   ],
   "subjects": [
