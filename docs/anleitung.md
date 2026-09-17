@@ -172,7 +172,7 @@ Die Schlüssel, die Prilog heute liest, stehen als Katalog in `docs/integration-
 }
 ```
 
-Nur der **Rhythmus**, nie ein Datum. `report_points` sagt, wann Zeugnisse entstehen; `holiday_authority` sagt, wer die Ferien festlegt und wo – die Termine selbst trägt der Mandant ein, Prilog kann sie von dort vorschlagen.
+Nur der **Rhythmus**, nie ein Datum. `report_points` sagt, wann Zeugnisse entstehen; `holiday_authority` sagt, wer die Ferien festlegt und wo – die Termine selbst trägt der Mandant ein, Prilog kann sie von dort vorschlagen. Nennt `holiday_authority.ics` einen ICS-Kalender der Behörde, zeigt Prilog daraus eine Vorschau; übernommen wird, was die Schule bestätigt.
 
 ### 4.4 `grading` – wie bewertet wird
 

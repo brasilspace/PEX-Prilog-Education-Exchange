@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.4 – 2026-09-17
+- Schema: `calendar.holiday_authority.ics` (optional) – ein ICS-Kalender der Behörde; Prilog zeigt daraus eine Vorschau, die Schule übernimmt. Die Termine bleiben Mandantendaten (Grundregel 1)
+- `examples/ferien-beispiel.ics`: ein erfundener Kalender zum Prüfen des Imports
+
 ## 2.2.3 – 2026-09-17
 - Mehrsystem-Haus: `stackHouse` (JS) / `stack_house` (Python) baut EIN effektives Paket für ein Haus mit mehreren Schulsystemen – Hauptsystem zuerst (gewinnt bei gleichen ids), weitere Basen dazu, Overlays, die über irgendeine Basis passen, in Reihenfolge; `meta.languages` als Vereinigung. Grund: Ecole (Schweizer Weg + US-Weg) verweist in einem Override auf Jahrgänge beider Systeme
 - Prüfung: Regeln und Prüfungen, deren `applies_to`/`qualification`/`at_grade` auf Ausgeblendetes zeigt, sind inaktiv (Hinweis), kein Fehler – wer das Gymnasium ausblendet, muss nicht jede Regel ausblenden, die es nennt

@@ -185,6 +185,11 @@
             "url": {
               "type": "string",
               "format": "uri"
+            },
+            "ics": {
+              "type": "string",
+              "format": "uri",
+              "description": "Optional: ein ICS-Kalender der Behörde mit den Ferienterminen – Prilog zeigt daraus eine Vorschau und die Schule übernimmt, was sie will. Die Termine selbst bleiben Mandantendaten"
             }
           },
           "additionalProperties": false
@@ -939,5 +944,5 @@
       "unevaluatedProperties": false
     }
   },
-  "$comment": "PEX – Prilog Education Exchange, schema v2.2. SPDX-License-Identifier: Apache-2.0. Copyright 2026 Prilog (prilog.chat), info@prilog.team"
+  "$comment": "PEX – Prilog Education Exchange, schema v2.2.4. SPDX-License-Identifier: Apache-2.0. Copyright 2026 Prilog (prilog.chat), info@prilog.team"
 }

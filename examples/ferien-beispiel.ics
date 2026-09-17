@@ -1,0 +1,34 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//PEX – Prilog Education Exchange//Beispielkalender//DE
+X-WR-CALNAME:Beispiel-Ferien (erfunden, zum Prüfen des Imports)
+BEGIN:VEVENT
+UID:pex-beispiel-herbst-2026@prilog.chat
+DTSTART;VALUE=DATE:20261005
+DTEND;VALUE=DATE:20261017
+SUMMARY:Herbstferien (Beispiel)
+END:VEVENT
+BEGIN:VEVENT
+UID:pex-beispiel-weihnachten-2026@prilog.chat
+DTSTART;VALUE=DATE:20261221
+DTEND;VALUE=DATE:20270103
+SUMMARY:Weihnachtsferien (Beispiel)
+END:VEVENT
+BEGIN:VEVENT
+UID:pex-beispiel-sport-2027@prilog.chat
+DTSTART;VALUE=DATE:20270208
+DTEND;VALUE=DATE:20270220
+SUMMARY:Sportferien (Beispiel)
+END:VEVENT
+BEGIN:VEVENT
+UID:pex-beispiel-fruehling-2027@prilog.chat
+DTSTART;VALUE=DATE:20270412
+DTEND;VALUE=DATE:20270424
+SUMMARY:Frühlingsferien (Beispiel)
+END:VEVENT
+BEGIN:VEVENT
+UID:pex-beispiel-tag-2027@prilog.chat
+DTSTART;VALUE=DATE:20270514
+SUMMARY:Beweglicher Ferientag (Beispiel)
+END:VEVENT
+END:VCALENDAR
