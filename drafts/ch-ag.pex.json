@@ -8,83 +8,397 @@
     "extends": "ch-de",
     "country": "CH",
     "region": "AG",
-    "languages": ["de"],
-    "name": { "de": "Kanton Aargau" },
+    "languages": [
+      "de"
+    ],
+    "name": {
+      "de": "Kanton Aargau"
+    },
     "source": "Schulgesetz des Kantons Aargau (SAR 401.100), Verordnung über die Volksschule (SAR 421.311), Verordnung über die Promotion und den Übertritt an der Volksschule, Verordnung über die Mittelschulen; Lehrplan Volksschule Aargau (auf Basis Lehrplan 21)",
     "notes": "ENTWURF, nicht amtlich geprüft. Volksschule: 2 Jahre Kindergarten, 6 Jahre Primarschule, 3 Jahre Oberstufe in drei Typen (Realschule, Sekundarschule, Bezirksschule). Anschliessend Kantonsschule (Gymnasium 4 Jahre), Fachmittelschule, Wirtschaftsmittelschule, Informatikmittelschule oder Berufslehre. Vor Einsatz Übertrittsverfahren, Abschlusszertifikat Volksschule und SAR-Nummern gegen den aktuellen Text lesen.",
     "license": "CC-BY-4.0",
     "maintainer": "info@prilog.team"
   },
   "terminology": {
-    "class_teacher": { "de": "Klassenlehrperson" },
-    "head": { "de": "Schulleitung" },
-    "report": { "de": "Zeugnis" },
-    "report_midyear": { "de": "Zwischenbericht" }
+    "class_teacher": {
+      "de": "Klassenlehrperson"
+    },
+    "head": {
+      "de": "Schulleitung"
+    },
+    "report": {
+      "de": "Zeugnis"
+    },
+    "report_midyear": {
+      "de": "Zwischenbericht"
+    }
   },
   "grades": [
-    { "id": "h9", "label": { "de": "1. Oberstufe" }, "aliases": ["7. Schuljahr", "1. Real/Sek/Bez"] },
-    { "id": "h10", "label": { "de": "2. Oberstufe" }, "aliases": ["8. Schuljahr", "2. Real/Sek/Bez"] },
-    { "id": "h11", "label": { "de": "3. Oberstufe" }, "aliases": ["9. Schuljahr", "3. Real/Sek/Bez"] }
+    {
+      "id": "h9",
+      "label": {
+        "de": "1. Oberstufe"
+      },
+      "aliases": [
+        "7. Schuljahr",
+        "1. Real/Sek/Bez"
+      ]
+    },
+    {
+      "id": "h10",
+      "label": {
+        "de": "2. Oberstufe"
+      },
+      "aliases": [
+        "8. Schuljahr",
+        "2. Real/Sek/Bez"
+      ]
+    },
+    {
+      "id": "h11",
+      "label": {
+        "de": "3. Oberstufe"
+      },
+      "aliases": [
+        "9. Schuljahr",
+        "3. Real/Sek/Bez"
+      ]
+    }
   ],
   "programs": [
-    { "id": "sek1", "label": { "de": "Oberstufe (Realschule, Sekundarschule, Bezirksschule)" }, "aliases": ["Oberstufe", "Real", "Sek", "Bez"],
-      "notes": "Drei Schultypen mit unterschiedlichen Anforderungen; die Bezirksschule führt zur Kantonsschule. Typenwechsel nach Promotionsverordnung möglich." },
-    { "id": "gym", "label": { "de": "Kantonsschule (Gymnasium)" }, "aliases": ["Kantonsschule", "Kanti", "Gymnasium"],
-      "notes": "Vier Jahre nach der Bezirksschule; Eintritt ohne Prüfung bei erfüllten Notenbedingungen der Bez, sonst Aufnahmeprüfung" },
-    { "id": "fms", "label": { "de": "Fachmittelschule (FMS)" }, "notes": "Drei Jahre bis Fachmittelschulausweis; Fachmaturität im vierten Jahr" },
-    { "id": "wms", "label": { "de": "Wirtschaftsmittelschule (WMS)" }, "stages": ["sec2"], "grades": ["s2-1", "s2-2", "s2-3"], "class_model": "class",
-      "qualifications": ["efz", "berufsmatura"], "notes": "Drei Jahre Vollzeitschule plus Praktikum: EFZ Kauffrau/Kaufmann und Berufsmaturität" },
-    { "id": "ims", "label": { "de": "Informatikmittelschule (IMS)" }, "stages": ["sec2"], "grades": ["s2-1", "s2-2", "s2-3"], "class_model": "class",
-      "qualifications": ["efz", "berufsmatura"], "notes": "Drei Jahre plus Praktikumsjahr: EFZ Informatik und Berufsmaturität" }
+    {
+      "id": "sek1",
+      "label": {
+        "de": "Oberstufe (Realschule, Sekundarschule, Bezirksschule)"
+      },
+      "aliases": [
+        "Oberstufe",
+        "Real",
+        "Sek",
+        "Bez"
+      ],
+      "notes": "Drei Schultypen mit unterschiedlichen Anforderungen; die Bezirksschule führt zur Kantonsschule. Typenwechsel nach Promotionsverordnung möglich."
+    },
+    {
+      "id": "gym",
+      "label": {
+        "de": "Kantonsschule (Gymnasium)"
+      },
+      "aliases": [
+        "Kantonsschule",
+        "Kanti",
+        "Gymnasium"
+      ],
+      "notes": "Vier Jahre nach der Bezirksschule; Eintritt ohne Prüfung bei erfüllten Notenbedingungen der Bez, sonst Aufnahmeprüfung"
+    },
+    {
+      "id": "fms",
+      "label": {
+        "de": "Fachmittelschule (FMS)"
+      },
+      "notes": "Drei Jahre bis Fachmittelschulausweis; Fachmaturität im vierten Jahr"
+    },
+    {
+      "id": "wms",
+      "label": {
+        "de": "Wirtschaftsmittelschule (WMS)"
+      },
+      "stages": [
+        "sec2"
+      ],
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3"
+      ],
+      "class_model": "class",
+      "qualifications": [
+        "efz",
+        "berufsmatura"
+      ],
+      "notes": "Drei Jahre Vollzeitschule plus Praktikum: EFZ Kauffrau/Kaufmann und Berufsmaturität",
+      "remark": {
+        "de": "Fächerkanon nach kantonalem Lehrplan der Schule; hier nur Gang und Abschlüsse"
+      }
+    },
+    {
+      "id": "ims",
+      "label": {
+        "de": "Informatikmittelschule (IMS)"
+      },
+      "stages": [
+        "sec2"
+      ],
+      "grades": [
+        "s2-1",
+        "s2-2",
+        "s2-3"
+      ],
+      "class_model": "class",
+      "qualifications": [
+        "efz",
+        "berufsmatura"
+      ],
+      "notes": "Drei Jahre plus Praktikumsjahr: EFZ Informatik und Berufsmaturität",
+      "remark": {
+        "de": "Fächerkanon nach kantonalem Lehrplan der Schule; hier nur Gang und Abschlüsse"
+      }
+    }
   ],
   "tracks": [
-    { "id": "sek-level", "label": { "de": "Oberstufentyp" }, "scope": "learning_group",
-      "levels": [ { "id": "a", "disabled": true }, { "id": "b", "disabled": true }, { "id": "c", "disabled": true },
-                  { "id": "bez", "label": { "de": "Bezirksschule" } }, { "id": "sek", "label": { "de": "Sekundarschule" } }, { "id": "real", "label": { "de": "Realschule" } } ],
-      "notes": "Der Typ hängt an der Klasse: Eine Klasse ist eine Bez-, Sek- oder Realklasse" },
-    { "id": "sek-subject-level", "disabled": true }
+    {
+      "id": "sek-level",
+      "label": {
+        "de": "Oberstufentyp"
+      },
+      "scope": "learning_group",
+      "levels": [
+        {
+          "id": "a",
+          "disabled": true
+        },
+        {
+          "id": "b",
+          "disabled": true
+        },
+        {
+          "id": "c",
+          "disabled": true
+        },
+        {
+          "id": "bez",
+          "label": {
+            "de": "Bezirksschule"
+          }
+        },
+        {
+          "id": "sek",
+          "label": {
+            "de": "Sekundarschule"
+          }
+        },
+        {
+          "id": "real",
+          "label": {
+            "de": "Realschule"
+          }
+        }
+      ],
+      "notes": "Der Typ hängt an der Klasse: Eine Klasse ist eine Bez-, Sek- oder Realklasse"
+    },
+    {
+      "id": "sek-subject-level",
+      "disabled": true
+    }
   ],
   "qualifications": [
-    { "id": "sek1-abschluss", "label": { "de": "Abschlusszertifikat Volksschule Aargau" }, "after_grade": "h11", "programs": ["sek1"],
-      "notes": "Seit 2021/22 mit kantonaler Abschlussprüfung in der 3. Oberstufe (Deutsch, Mathematik, Fremdsprachen, Projektarbeit)" },
-    { "id": "gym-matura", "label": { "de": "Gymnasiale Maturität" }, "after_grade": "s2-4", "programs": ["gym"] }
+    {
+      "id": "sek1-abschluss",
+      "label": {
+        "de": "Abschlusszertifikat Volksschule Aargau"
+      },
+      "after_grade": "h11",
+      "programs": [
+        "sek1"
+      ],
+      "notes": "Seit 2021/22 mit kantonaler Abschlussprüfung in der 3. Oberstufe (Deutsch, Mathematik, Fremdsprachen, Projektarbeit)"
+    },
+    {
+      "id": "gym-matura",
+      "label": {
+        "de": "Gymnasiale Maturität"
+      },
+      "after_grade": "s2-4",
+      "programs": [
+        "gym"
+      ]
+    },
+    {
+      "id": "efz",
+      "programs": [
+        "berufslehre",
+        "wms",
+        "ims"
+      ]
+    },
+    {
+      "id": "berufsmatura",
+      "programs": [
+        "berufslehre",
+        "wms",
+        "ims"
+      ]
+    }
   ],
   "subjects": [
-    { "id": "rzg", "label": { "de": "Räume, Zeiten, Gesellschaften" }, "domain": "social", "grades": ["h9", "h10", "h11"], "aliases": ["RZG"] },
-    { "id": "erg", "label": { "de": "Ethik, Religionen, Gemeinschaft" }, "domain": "religion", "grades": ["h3", "h4", "h5", "h6", "h7", "h8", "h9", "h10", "h11"], "aliases": ["ERG"] },
-    { "id": "wah", "label": { "de": "Wirtschaft, Arbeit, Haushalt" }, "domain": "cross", "grades": ["h9", "h10", "h11"], "aliases": ["WAH"] },
-    { "id": "projekt", "label": { "de": "Projekte und Recherchen" }, "domain": "cross", "grades": ["h11"], "kind": "project", "notes": "Abschlussprojekt der 3. Oberstufe" }
+    {
+      "id": "de",
+      "tracked": false
+    },
+    {
+      "id": "fr",
+      "tracked": false
+    },
+    {
+      "id": "en",
+      "tracked": false
+    },
+    {
+      "id": "math",
+      "tracked": false
+    },
+    {
+      "id": "projekt",
+      "label": {
+        "de": "Projekte und Recherchen"
+      },
+      "domain": "cross",
+      "grades": [
+        "h11"
+      ],
+      "kind": "project",
+      "notes": "Abschlussprojekt der 3. Oberstufe"
+    }
   ],
   "calendar": {
-    "holiday_authority": { "level": "canton", "label": { "de": "Departement Bildung, Kultur und Sport (BKS) – Ferienplan; Gemeinden legen einzelne Tage fest" }, "url": "https://www.ag.ch/de/verwaltung/bks" }
+    "holiday_authority": {
+      "level": "canton",
+      "label": {
+        "de": "Departement Bildung, Kultur und Sport (BKS) – Ferienplan; Gemeinden legen einzelne Tage fest"
+      },
+      "url": "https://www.ag.ch/de/verwaltung/bks"
+    }
   },
   "rules": [
-    { "id": "uebertritt-oberstufe", "kind": "transition", "label": { "de": "Übertritt in die Oberstufe" }, "applies_to": { "from_grade": "h8" }, "mode": "recommendation",
-      "summary": { "de": "Nach der 6. Primarklasse empfiehlt die Lehrperson auf Grund von Leistungen und Beobachtungen einen Oberstufentyp; die Eltern werden angehört. Bei Uneinigkeit entscheidet die Schulpflege bzw. eine Übertrittsprüfung." },
-      "source": "Verordnung über die Promotion und den Übertritt", "notes": "Verfahren vor Einsatz prüfen" },
-    { "id": "uebertritt-kanti", "kind": "admission", "label": { "de": "Eintritt in die Kantonsschule" }, "applies_to": { "from_grade": "h11" }, "mode": "exam",
-      "summary": { "de": "Aus der Bezirksschule prüfungsfrei bei erreichtem Notendurchschnitt in den Kernfächern; sonst Aufnahmeprüfung. Aus der Sekundarschule nur über Aufnahmeprüfung." },
-      "source": "Verordnung über die Mittelschulen", "notes": "Notenbedingungen vor Einsatz prüfen" },
-    { "id": "schulpflicht", "kind": "compulsory-schooling", "label": { "de": "Schulpflicht" },
-      "summary": { "de": "Elf Jahre obligatorische Schulzeit (zwei Jahre Kindergarten, sechs Jahre Primarschule, drei Jahre Oberstufe); Stichtag 31. Juli." },
-      "source": "Schulgesetz SAR 401.100" },
-    { "id": "promotion", "kind": "promotion", "label": { "de": "Promotion und Typenwechsel" },
-      "summary": { "de": "Promotion auf Grund der Zeugnisnoten; Wechsel in einen anspruchsvolleren Typ bei guten Leistungen, Rückstufung bei nicht erfüllten Bedingungen; Repetition möglich." },
-      "source": "Verordnung über die Promotion und den Übertritt", "notes": "Notenbedingungen vor Einsatz prüfen" }
+    {
+      "id": "uebertritt-oberstufe",
+      "kind": "transition",
+      "label": {
+        "de": "Übertritt in die Oberstufe"
+      },
+      "applies_to": {
+        "from_grade": "h8"
+      },
+      "mode": "recommendation",
+      "summary": {
+        "de": "Nach der 6. Primarklasse empfiehlt die Lehrperson auf Grund von Leistungen und Beobachtungen einen Oberstufentyp; die Eltern werden angehört. Bei Uneinigkeit entscheidet die Schulpflege bzw. eine Übertrittsprüfung."
+      },
+      "source": "Verordnung über die Promotion und den Übertritt",
+      "notes": "Verfahren vor Einsatz prüfen"
+    },
+    {
+      "id": "uebertritt-kanti",
+      "kind": "admission",
+      "label": {
+        "de": "Eintritt in die Kantonsschule"
+      },
+      "applies_to": {
+        "from_grade": "h11"
+      },
+      "mode": "exam",
+      "summary": {
+        "de": "Aus der Bezirksschule prüfungsfrei bei erreichtem Notendurchschnitt in den Kernfächern; sonst Aufnahmeprüfung. Aus der Sekundarschule nur über Aufnahmeprüfung."
+      },
+      "source": "Verordnung über die Mittelschulen",
+      "notes": "Notenbedingungen vor Einsatz prüfen"
+    },
+    {
+      "id": "schulpflicht",
+      "kind": "compulsory-schooling",
+      "label": {
+        "de": "Schulpflicht"
+      },
+      "summary": {
+        "de": "Elf Jahre obligatorische Schulzeit (zwei Jahre Kindergarten, sechs Jahre Primarschule, drei Jahre Oberstufe); Stichtag 31. Juli."
+      },
+      "source": "Schulgesetz SAR 401.100"
+    },
+    {
+      "id": "promotion",
+      "kind": "promotion",
+      "label": {
+        "de": "Promotion und Typenwechsel"
+      },
+      "summary": {
+        "de": "Promotion auf Grund der Zeugnisnoten; Wechsel in einen anspruchsvolleren Typ bei guten Leistungen, Rückstufung bei nicht erfüllten Bedingungen; Repetition möglich."
+      },
+      "source": "Verordnung über die Promotion und den Übertritt",
+      "notes": "Notenbedingungen vor Einsatz prüfen"
+    }
   ],
   "exams": [
-    { "id": "abschluss-volksschule-ag", "label": { "de": "Abschlussprüfung Volksschule Aargau" }, "qualification": "sek1-abschluss", "mode": "central", "at_grade": "h11",
-      "components": [ { "id": "written", "count": 3 }, { "id": "practical", "count": 1, "label": { "de": "Projektarbeit" } } ],
-      "summary": { "de": "Kantonale Abschlussprüfung am Ende der 3. Oberstufe in Deutsch, Mathematik und Fremdsprachen; Projektarbeit; Ergebnis im Abschlusszertifikat." },
-      "source": "Verordnung über die Volksschule", "notes": "Fächer und Gewichtung vor Einsatz prüfen" }
+    {
+      "id": "abschluss-volksschule-ag",
+      "label": {
+        "de": "Abschlussprüfung Volksschule Aargau"
+      },
+      "qualification": "sek1-abschluss",
+      "mode": "central",
+      "at_grade": "h11",
+      "components": [
+        {
+          "id": "written",
+          "count": 3
+        },
+        {
+          "id": "practical",
+          "count": 1,
+          "label": {
+            "de": "Projektarbeit"
+          }
+        }
+      ],
+      "summary": {
+        "de": "Kantonale Abschlussprüfung am Ende der 3. Oberstufe in Deutsch, Mathematik und Fremdsprachen; Projektarbeit; Ergebnis im Abschlusszertifikat."
+      },
+      "source": "Verordnung über die Volksschule",
+      "notes": "Fächer und Gewichtung vor Einsatz prüfen"
+    }
   ],
   "legal": [
-    { "id": "schulgesetz", "kind": "school-act", "label": { "de": "Schulgesetz des Kantons Aargau (SAR 401.100)" }, "url": "https://gesetzessammlungen.ag.ch/",
-      "sections": { "schulpflicht": "§§ 4–6", "volksschule": "§§ 8–33", "mittelschulen": "§§ 34–42", "privatschulen": "§§ 58–60" }, "notes": "Paragrafen gegen aktuellen Stand prüfen" },
-    { "id": "datenschutz", "kind": "data-protection", "label": { "de": "Gesetz über die Information der Öffentlichkeit, den Datenschutz und das Archivwesen (IDAG, SAR 150.700)" },
-      "summary": { "de": "Kantonales Datenschutzrecht für öffentliche Schulen; Auftragsbearbeitung nach IDAG; Datenschutzbeauftragte des Kantons als Aufsicht." } },
-    { "id": "aufsicht", "kind": "authority", "label": { "de": "Departement Bildung, Kultur und Sport (BKS), Abteilung Volksschule; Schulpflegen der Gemeinden bzw. Gemeinderäte seit der Führungsstrukturreform" }, "url": "https://www.ag.ch/de/verwaltung/bks" },
-    { "id": "aufbewahrung", "kind": "retention", "label": { "de": "Aufbewahrung von Schülerdaten" },
-      "summary": { "de": "Zeugnisse und Laufbahnentscheide nach kantonaler Aktenordnung und Archivgesetz; Fristen je Dokumentart." }, "notes": "Fristen vor Einsatz nachtragen" }
+    {
+      "id": "schulgesetz",
+      "kind": "school-act",
+      "label": {
+        "de": "Schulgesetz des Kantons Aargau (SAR 401.100)"
+      },
+      "url": "https://gesetzessammlungen.ag.ch/",
+      "sections": {
+        "schulpflicht": "§§ 4–6",
+        "volksschule": "§§ 8–33",
+        "mittelschulen": "§§ 34–42",
+        "privatschulen": "§§ 58–60"
+      },
+      "notes": "Paragrafen gegen aktuellen Stand prüfen"
+    },
+    {
+      "id": "datenschutz",
+      "kind": "data-protection",
+      "label": {
+        "de": "Gesetz über die Information der Öffentlichkeit, den Datenschutz und das Archivwesen (IDAG, SAR 150.700)"
+      },
+      "summary": {
+        "de": "Kantonales Datenschutzrecht für öffentliche Schulen; Auftragsbearbeitung nach IDAG; Datenschutzbeauftragte des Kantons als Aufsicht."
+      }
+    },
+    {
+      "id": "aufsicht",
+      "kind": "authority",
+      "label": {
+        "de": "Departement Bildung, Kultur und Sport (BKS), Abteilung Volksschule; Schulpflegen der Gemeinden bzw. Gemeinderäte seit der Führungsstrukturreform"
+      },
+      "url": "https://www.ag.ch/de/verwaltung/bks"
+    },
+    {
+      "id": "aufbewahrung",
+      "kind": "retention",
+      "label": {
+        "de": "Aufbewahrung von Schülerdaten"
+      },
+      "summary": {
+        "de": "Zeugnisse und Laufbahnentscheide nach kantonaler Aktenordnung und Archivgesetz; Fristen je Dokumentart."
+      },
+      "notes": "Fristen vor Einsatz nachtragen"
+    }
   ]
 }
