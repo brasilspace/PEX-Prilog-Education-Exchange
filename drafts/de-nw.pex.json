@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/PEX-Prilog-Education-Exchange/main/schema/pex.schema.json",
+    "id": "de-nw",
+    "version": "0.1.0",
+    "kind": "overlay",
+    "extends": "de",
+    "country": "DE",
+    "region": "NW",
+    "languages": ["de"],
+    "name": { "de": "Nordrhein-Westfalen" },
+    "source": "Schulgesetz NRW (SchulG NRW), Ausbildungsordnung Grundschule (AO-GS), Ausbildungs- und Prüfungsordnung Sekundarstufe I (APO-SI), Ausbildungs- und Prüfungsordnung Gymnasiale Oberstufe (APO-GOSt)",
+    "notes": "ENTWURF, nicht amtlich geprüft. Gegliedert: Hauptschule, Realschule, Sekundarschule (5–10, ohne eigene Oberstufe), Gesamtschule (5–13), Gymnasium (G9 für alle ab 2019/20 eingeschulten Jahrgänge, Abitur nach 13). Zentrale Prüfungen am Ende der Klasse 10 (ZP10) und Zentralabitur. Vor Einsatz Paragrafen und Prüfungsfächer gegen den aktuellen Verordnungstext lesen.",
+    "license": "CC-BY-4.0",
+    "maintainer": "info@prilog.team"
+  },
+  "terminology": {
+    "class_teacher": { "de": "Klassenleitung" },
+    "report_midyear": { "de": "Halbjahreszeugnis" }
+  },
+  "grades": [
+    { "id": "g11", "label": { "de": "Jahrgang 11" }, "aliases": ["Einführungsphase", "EF"] },
+    { "id": "g12", "label": { "de": "Jahrgang 12" }, "aliases": ["Qualifikationsphase 1", "Q1"] },
+    { "id": "g13", "label": { "de": "Jahrgang 13" }, "aliases": ["Qualifikationsphase 2", "Q2"] }
+  ],
+  "programs": [
+    { "id": "hauptschule", "label": { "de": "Hauptschule" }, "grades": ["g5", "g6", "g7", "g8", "g9", "g10"], "qualifications": ["esa", "esa-erweitert", "msa"],
+      "notes": "Klasse 10 Typ A (Erweiterter Erster Schulabschluss) oder Typ B (Mittlerer Schulabschluss)" },
+    { "id": "realschule", "label": { "de": "Realschule" }, "grades": ["g5", "g6", "g7", "g8", "g9", "g10"], "qualifications": ["esa", "esa-erweitert", "msa"] },
+    { "id": "sekundarschule", "label": { "de": "Sekundarschule" }, "stages": ["sec1"], "grades": ["g5", "g6", "g7", "g8", "g9", "g10"], "class_model": "class",
+      "tracks": ["ge-kurs"], "qualifications": ["esa", "esa-erweitert", "msa"],
+      "notes": "Alle Abschlüsse der Sekundarstufe I; keine eigene Oberstufe, Kooperation mit Gesamtschule, Gymnasium oder Berufskolleg" },
+    { "id": "gesamtschule", "label": { "de": "Gesamtschule" }, "grades": ["g5", "g6", "g7", "g8", "g9", "g10", "g11", "g12", "g13"],
+      "qualifications": ["esa", "esa-erweitert", "msa", "fhr", "abitur"],
+      "notes": "Fachleistungsdifferenzierung in Erweiterungs- und Grundkursen ab Klasse 7 (Mathematik, Englisch), später Deutsch, Chemie/Physik" },
+    { "id": "gymnasium", "label": { "de": "Gymnasium" }, "grades": ["g5", "g6", "g7", "g8", "g9", "g10", "g11", "g12", "g13"],
+      "qualifications": ["msa", "fhr", "abitur"],
+      "notes": "G9: Erprobungsstufe 5–6, Sekundarstufe I bis 10, Einführungsphase 11, Qualifikationsphase 12–13. Der Mittlere Schulabschluss wird am Ende der Klasse 10 ohne ZP10 vergeben." },
+    { "id": "foerderschule", "label": { "de": "Förderschule" }, "notes": "Förderschwerpunkte nach AO-SF; Gemeinsames Lernen an Regelschulen" }
+  ],
+  "qualifications": [
+    { "id": "esa", "label": { "de": "Erster Schulabschluss (ESA)" }, "after_grade": "g9", "programs": ["hauptschule", "realschule", "sekundarschule", "gesamtschule"],
+      "aliases": ["Hauptschulabschluss nach Klasse 9"] },
+    { "id": "esa-erweitert", "label": { "de": "Erweiterter Erster Schulabschluss" }, "after_grade": "g10", "programs": ["hauptschule", "realschule", "sekundarschule", "gesamtschule"],
+      "aliases": ["Hauptschulabschluss nach Klasse 10"] },
+    { "id": "msa", "label": { "de": "Mittlerer Schulabschluss (Fachoberschulreife)" }, "after_grade": "g10", "programs": ["hauptschule", "realschule", "sekundarschule", "gesamtschule", "gymnasium"],
+      "aliases": ["FOR", "FOR-Q"], "notes": "Mit Qualifikationsvermerk (FOR-Q) berechtigt er zum Besuch der gymnasialen Oberstufe" },
+    { "id": "fhr", "label": { "de": "Fachhochschulreife (schulischer Teil)" }, "after_grade": "g12", "programs": ["gesamtschule", "gymnasium"] },
+    { "id": "abitur", "label": { "de": "Abitur" }, "after_grade": "g13", "programs": ["gesamtschule", "gymnasium"] }
+  ],
+  "subjects": [
+    { "id": "pol", "label": { "de": "Politik/Wirtschaft" }, "domain": "social", "grades": ["g5", "g6", "g7", "g8", "g9", "g10"], "aliases": ["Wirtschaft-Politik"] },
+    { "id": "sowi", "label": { "de": "Sozialwissenschaften" }, "domain": "social", "grades": ["g11", "g12", "g13"], "kind": "elective", "optional": true },
+    { "id": "praktphil", "label": { "de": "Praktische Philosophie" }, "domain": "religion", "grades": ["g5", "g6", "g7", "g8", "g9", "g10"], "optional": true, "notes": "Ersatzfach für Religionslehre in der Sekundarstufe I" },
+    { "id": "phil", "label": { "de": "Philosophie" }, "domain": "religion", "grades": ["g11", "g12", "g13"], "optional": true, "notes": "Ersatzfach für Religionslehre in der Oberstufe" },
+    { "id": "arbeitslehre", "label": { "de": "Arbeitslehre (Hauswirtschaft, Technik, Wirtschaft)" }, "domain": "cross", "grades": ["g5", "g6", "g7", "g8", "g9", "g10"], "programs": ["hauptschule", "sekundarschule", "gesamtschule"] },
+    { "id": "wp", "label": { "de": "Wahlpflichtbereich" }, "domain": "cross", "grades": ["g7", "g8", "g9", "g10"], "kind": "elective", "programs": ["realschule", "sekundarschule", "gesamtschule"],
+      "notes": "Zweite Fremdsprache, Naturwissenschaften, Arbeitslehre oder Darstellen und Gestalten als viertes Hauptfach" }
+  ],
+  "grading": {
+    "by_program": [ { "program": "grundschule", "grades": ["g1", "g2"], "scale": "text" } ]
+  },
+  "calendar": {
+    "holiday_authority": { "level": "state", "label": { "de": "Ministerium für Schule und Bildung des Landes Nordrhein-Westfalen (MSB)" }, "url": "https://www.schulministerium.nrw/" }
+  },
+  "rules": [
+    { "id": "uebertritt-5", "kind": "transition", "label": { "de": "Übergang nach Klasse 4" }, "applies_to": { "from_grade": "g4" }, "mode": "parent-choice",
+      "summary": { "de": "Die Grundschule gibt eine begründete Empfehlung für eine Schulform; die Eltern entscheiden. In der Erprobungsstufe (5–6) wird die Wahl überprüft; am Ende der 6 entscheidet die Schule über den Verbleib." },
+      "source": "SchulG NRW § 11; AO-GS; APO-SI", "notes": "Paragrafen vor Einsatz prüfen" },
+    { "id": "schulpflicht", "kind": "compulsory-schooling", "label": { "de": "Schulpflicht" },
+      "summary": { "de": "Zehn Jahre Vollzeitschulpflicht (Primarstufe und Sekundarstufe I), danach Schulpflicht in der Sekundarstufe II bzw. Berufsschulpflicht; Einschulungsstichtag 30. September." },
+      "source": "SchulG NRW §§ 34–38" },
+    { "id": "versetzung", "kind": "promotion", "label": { "de": "Versetzung" },
+      "summary": { "de": "Grundschule: Klassen 1–2 als Schuleingangsphase ohne Versetzung; ab Klasse 3 Versetzung. Sekundarstufe I: Versetzung nach Leistungen mit Ausgleichsregeln und Nachprüfung; Gesamt-/Sekundarschule bis Klasse 9 in der Regel ohne Versetzungsentscheidung." },
+      "source": "AO-GS; APO-SI", "notes": "Paragrafen vor Einsatz prüfen" }
+  ],
+  "exams": [
+    { "id": "zp10", "label": { "de": "Zentrale Prüfungen am Ende der Klasse 10 (ZP10)" }, "qualification": "msa", "mode": "central", "at_grade": "g10",
+      "components": [ { "id": "written", "count": 3 } ],
+      "summary": { "de": "Landesweit einheitliche schriftliche Prüfungen in Deutsch, Mathematik und Englisch an Haupt-, Real-, Sekundar- und Gesamtschulen; die Vornote zählt mit. Gymnasien nehmen nicht teil." },
+      "source": "APO-SI" },
+    { "id": "abitur-nw", "label": { "de": "Zentralabitur Nordrhein-Westfalen" }, "qualification": "abitur", "mode": "central", "at_grade": "g13",
+      "components": [ { "id": "written", "count": 3 }, { "id": "oral", "count": 1 } ],
+      "summary": { "de": "Zwei Leistungskurse und ein Grundkurs schriftlich mit zentralen Aufgaben, ein Grundkurs mündlich; Gesamtqualifikation aus Q1 und Q2." },
+      "source": "APO-GOSt" }
+  ],
+  "legal": [
+    { "id": "schulgesetz", "kind": "school-act", "label": { "de": "Schulgesetz für das Land Nordrhein-Westfalen (SchulG NRW)" }, "url": "https://bass.schul-welt.de/",
+      "sections": { "schulpflicht": "§§ 34–41", "datenschutz": "§§ 120–122", "ersatzschulen": "§§ 100–115", "mitwirkung": "§§ 62–77" }, "notes": "Paragrafen gegen aktuellen Stand prüfen" },
+    { "id": "datenschutz", "kind": "data-protection", "label": { "de": "SchulG NRW §§ 120–122, VO-DV I und VO-DV II, DSG NRW, DSGVO" },
+      "summary": { "de": "Verarbeitung von Schüler- und Elterndaten nach SchulG und den Datenverarbeitungsverordnungen; Auftragsverarbeitung nach Art. 28 DSGVO; schulische Datenschutzbeauftragte über die Bezirksregierungen." } },
+    { "id": "aufsicht", "kind": "authority", "label": { "de": "Ministerium für Schule und Bildung (MSB); Bezirksregierungen (obere Schulaufsicht); Schulämter der Kreise und kreisfreien Städte (untere Schulaufsicht für Grund-, Haupt- und Förderschulen)" }, "url": "https://www.schulministerium.nrw/" },
+    { "id": "aufbewahrung", "kind": "retention", "label": { "de": "Aufbewahrungsfristen Schülerunterlagen" },
+      "summary": { "de": "Fristen nach der Verordnung über die zur Verarbeitung zugelassenen Daten (VO-DV I) und den Aufbewahrungsvorschriften des Landes; Abschlusszeugnisse langfristig." }, "notes": "Fristen vor Einsatz nachtragen" },
+    { "id": "meldung-ifsg", "kind": "reporting", "label": { "de": "Meldepflicht nach § 34 IfSG" }, "summary": { "de": "Meldung an das Gesundheitsamt bei meldepflichtigen Erkrankungen; Belehrung der Eltern bei Aufnahme." }, "source": "IfSG § 34" }
+  ]
+}

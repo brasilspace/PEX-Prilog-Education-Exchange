@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "format": "pex",
+    "schema": "https://raw.githubusercontent.com/brasilspace/PEX-Prilog-Education-Exchange/main/schema/pex.schema.json",
+    "id": "de-bw",
+    "version": "0.1.0",
+    "kind": "overlay",
+    "extends": "de",
+    "country": "DE",
+    "region": "BW",
+    "languages": ["de"],
+    "name": { "de": "Baden-Württemberg" },
+    "source": "Schulgesetz für Baden-Württemberg (SchG), Versetzungsordnungen, Abiturverordnung Gymnasien der Normalform (AGVO), Realschulabschlussprüfungsordnung, Hauptschulabschlussprüfungsordnung",
+    "notes": "ENTWURF, nicht amtlich geprüft. Grundschule 1–4; Hauptschule/Werkrealschule, Realschule, Gemeinschaftsschule (drei Niveaustufen G/M/E, teils mit Oberstufe), Gymnasium (G8 seit 2004; Rückkehr zu G9 ab Schuljahr 2025/26 beginnend mit den Klassen 5 und 6 – welche Jahrgänge G8 oder G9 sind, gehört je Schule geklärt). Kursstufe mit Leistungs- und Basisfächern. Vor Einsatz Paragrafen, Prüfungsfächer und den Stand der Grundschulempfehlung gegen den aktuellen Text lesen.",
+    "license": "CC-BY-4.0",
+    "maintainer": "info@prilog.team"
+  },
+  "terminology": {
+    "class_teacher": { "de": "Klassenlehrerin / Klassenlehrer" },
+    "report_midyear": { "de": "Halbjahresinformation" }
+  },
+  "grades": [
+    { "id": "g11", "label": { "de": "Klasse 11" }, "aliases": ["Einführungsphase (G9)", "Kursstufe 1 (G8)", "K1"] },
+    { "id": "g12", "label": { "de": "Klasse 12" }, "aliases": ["Kursstufe 1 (G9)", "Kursstufe 2 (G8)", "K2"] },
+    { "id": "g13", "label": { "de": "Klasse 13" }, "aliases": ["Kursstufe 2 (G9)"] }
+  ],
+  "programs": [
+    { "id": "hauptschule", "label": { "de": "Hauptschule / Werkrealschule" }, "grades": ["g5", "g6", "g7", "g8", "g9", "g10"], "qualifications": ["esa", "msa"],
+      "aliases": ["WRS"], "notes": "Hauptschulabschluss nach Klasse 9; Werkrealschulabschluss (mittlerer Bildungsabschluss) nach Klasse 10" },
+    { "id": "realschule", "label": { "de": "Realschule" }, "grades": ["g5", "g6", "g7", "g8", "g9", "g10"], "tracks": ["bw-niveau"], "qualifications": ["esa", "msa"],
+      "notes": "Seit 2016/17 Unterricht auf grundlegendem (G) und mittlerem Niveau (M); Hauptschulabschluss nach 9 möglich" },
+    { "id": "gesamtschule", "disabled": true },
+    { "id": "gemeinschaftsschule", "label": { "de": "Gemeinschaftsschule" }, "stages": ["sec1", "sec2"], "grades": ["g5", "g6", "g7", "g8", "g9", "g10", "g11", "g12", "g13"], "class_model": "class",
+      "tracks": ["bw-niveau", "oberstufe"], "qualifications": ["esa", "msa", "fhr", "abitur"], "aliases": ["GMS"],
+      "notes": "Lernen auf drei Niveaustufen (G, M, E) in einer Lerngruppe; Oberstufe nur an Gemeinschaftsschulen mit Sekundarstufe II" },
+    { "id": "gymnasium", "label": { "de": "Gymnasium" }, "grades": ["g5", "g6", "g7", "g8", "g9", "g10", "g11", "g12", "g13"],
+      "qualifications": ["msa", "fhr", "abitur"],
+      "notes": "G8-Jahrgänge: Abitur nach Klasse 12 (Kursstufe 11–12); G9-Jahrgänge ab 2025/26: Abitur nach Klasse 13. Je Schule und Jahrgang festlegen, welche Klasse die letzte ist." },
+    { "id": "foerderschule", "label": { "de": "Sonderpädagogisches Bildungs- und Beratungszentrum (SBBZ)" }, "aliases": ["SBBZ"] }
+  ],
+  "tracks": [
+    { "id": "bw-niveau", "label": { "de": "Niveaustufe" }, "scope": "enrollment",
+      "levels": [ { "id": "g", "label": { "de": "grundlegendes Niveau (G)" } }, { "id": "m", "label": { "de": "mittleres Niveau (M)" } }, { "id": "e", "label": { "de": "erweitertes Niveau (E)" } } ],
+      "notes": "Gemeinschaftsschule: G, M, E; Realschule: G und M" },
+    { "id": "oberstufe", "label": { "de": "Kursstufe" }, "scope": "enrollment",
+      "levels": [ { "id": "lk", "disabled": true }, { "id": "gk", "disabled": true },
+                  { "id": "lf", "label": { "de": "Leistungsfach (fünfstündig)" } }, { "id": "bf", "label": { "de": "Basisfach" } } ],
+      "notes": "Drei Leistungsfächer, davon zwei aus Deutsch, Mathematik, Fremdsprache oder Naturwissenschaft; übrige Fächer als Basisfächer" }
+  ],
+  "qualifications": [
+    { "id": "esa", "label": { "de": "Hauptschulabschluss" }, "after_grade": "g9", "programs": ["hauptschule", "realschule", "gemeinschaftsschule"] },
+    { "id": "msa", "label": { "de": "Realschulabschluss (Mittlere Reife)" }, "after_grade": "g10", "programs": ["hauptschule", "realschule", "gemeinschaftsschule", "gymnasium"],
+      "aliases": ["Mittlerer Bildungsabschluss", "Werkrealschulabschluss"] },
+    { "id": "fhr", "label": { "de": "Fachhochschulreife (schulischer Teil)" }, "after_grade": "g12", "programs": ["gemeinschaftsschule", "gymnasium"] },
+    { "id": "abitur", "label": { "de": "Abitur" }, "after_grade": "g12", "programs": ["gemeinschaftsschule", "gymnasium"],
+      "notes": "Nach Klasse 12 (G8) oder 13 (G9, ab Jahrgang 2025/26); after_grade zeigt den G8-Fall – Schulen mit G9 setzen es in den eigenen Anpassungen auf g13" }
+  ],
+  "subjects": [
+    { "id": "gk", "label": { "de": "Gemeinschaftskunde" }, "domain": "social", "grades": ["g8", "g9", "g10", "g11", "g12", "g13"], "aliases": ["Politik"] },
+    { "id": "wbs", "label": { "de": "Wirtschaft / Berufs- und Studienorientierung" }, "domain": "social", "grades": ["g7", "g8", "g9", "g10"], "aliases": ["WBS"] },
+    { "id": "bnt", "label": { "de": "Biologie, Naturphänomene und Technik" }, "domain": "science", "grades": ["g5", "g6"], "aliases": ["BNT"] },
+    { "id": "eth", "label": { "de": "Ethik" }, "domain": "religion", "grades": ["g5", "g6", "g7", "g8", "g9", "g10", "g11", "g12", "g13"], "optional": true, "notes": "Ersatzfach für Religionslehre" },
+    { "id": "aes", "label": { "de": "Alltagskultur, Ernährung, Soziales" }, "domain": "cross", "grades": ["g7", "g8", "g9", "g10"], "kind": "elective", "aliases": ["AES"], "programs": ["hauptschule", "realschule", "gemeinschaftsschule"] },
+    { "id": "tech", "label": { "de": "Technik" }, "domain": "cross", "grades": ["g7", "g8", "g9", "g10"], "kind": "elective", "programs": ["hauptschule", "realschule", "gemeinschaftsschule"] },
+    { "id": "nwt", "label": { "de": "Naturwissenschaft und Technik" }, "domain": "science", "grades": ["g8", "g9", "g10"], "kind": "elective", "aliases": ["NwT"], "programs": ["gymnasium"] }
+  ],
+  "grading": {
+    "by_program": [ { "program": "grundschule", "grades": ["g1", "g2"], "scale": "text" } ]
+  },
+  "calendar": {
+    "holiday_authority": { "level": "state", "label": { "de": "Ministerium für Kultus, Jugend und Sport Baden-Württemberg" }, "url": "https://km.baden-wuerttemberg.de/" }
+  },
+  "rules": [
+    { "id": "uebertritt-5", "kind": "transition", "label": { "de": "Übergang nach Klasse 4" }, "applies_to": { "from_grade": "g4" }, "mode": "parent-choice",
+      "summary": { "de": "Die Grundschule erstellt eine Grundschulempfehlung; die Eltern entscheiden über die weiterführende Schule. Seit dem Schuljahr 2024/25 fließen für den Übergang ans Gymnasium zusätzlich ein Potenzialtest und die Empfehlung verbindlicher ein – den genauen Stand vor Einsatz prüfen." },
+      "source": "SchG § 5; Aufnahmeverordnung", "notes": "Reformstand 2024/25 prüfen" },
+    { "id": "schulpflicht", "kind": "compulsory-schooling", "label": { "de": "Schulpflicht" },
+      "summary": { "de": "Neun Jahre allgemeine Schulpflicht, anschließend Berufsschulpflicht bis zu drei Jahre; Einschulungsstichtag 30. Juni." },
+      "source": "SchG §§ 72–78" },
+    { "id": "versetzung", "kind": "promotion", "label": { "de": "Versetzung" },
+      "summary": { "de": "Grundschule: Aufrücken ohne Versetzungsentscheidung in den Klassen 1–2; Sekundarstufe I: Versetzung nach den Versetzungsordnungen der Schulart mit Ausgleichsregeln; Gemeinschaftsschule ohne Sitzenbleiben bis Klasse 9." },
+      "source": "Versetzungsordnungen der Schularten", "notes": "Paragrafen vor Einsatz prüfen" }
+  ],
+  "exams": [
+    { "id": "hsa-bw", "label": { "de": "Hauptschulabschlussprüfung" }, "qualification": "esa", "mode": "central", "at_grade": "g9",
+      "components": [ { "id": "written", "count": 3 }, { "id": "practical", "count": 1, "label": { "de": "Projektarbeit" } }, { "id": "oral", "count": 1 } ],
+      "summary": { "de": "Zentrale schriftliche Prüfungen in Deutsch, Mathematik und Englisch; Projektarbeit; mündliche Prüfung." }, "source": "Hauptschulabschlussprüfungsordnung" },
+    { "id": "rsa-bw", "label": { "de": "Realschulabschlussprüfung" }, "qualification": "msa", "mode": "central", "at_grade": "g10",
+      "components": [ { "id": "written", "count": 3 }, { "id": "oral", "count": 1 } ],
+      "summary": { "de": "Zentrale schriftliche Prüfungen in Deutsch, Mathematik und Englisch; Kommunikationsprüfung in der Fremdsprache; mündliche Prüfung." }, "source": "Realschulabschlussprüfungsordnung" },
+    { "id": "abitur-bw", "label": { "de": "Abiturprüfung Baden-Württemberg" }, "qualification": "abitur", "mode": "central", "at_grade": "g12",
+      "components": [ { "id": "written", "count": 3 }, { "id": "oral", "count": 2 } ],
+      "summary": { "de": "Drei schriftliche Prüfungen in den Leistungsfächern mit zentralen Aufgaben; zwei mündliche Prüfungen in Basisfächern, davon eine als Präsentationsprüfung möglich. G9-Jahrgänge nach Klasse 13." },
+      "source": "AGVO", "notes": "at_grade für G9-Schulen in den eigenen Anpassungen auf g13 setzen" }
+  ],
+  "legal": [
+    { "id": "schulgesetz", "kind": "school-act", "label": { "de": "Schulgesetz für Baden-Württemberg (SchG)" }, "url": "https://www.landesrecht-bw.de/",
+      "sections": { "schulpflicht": "§§ 72–78", "datenschutz": "§ 115", "ersatzschulen": "Privatschulgesetz (PSchG)", "mitwirkung": "§§ 55–69" }, "notes": "Paragrafen gegen aktuellen Stand prüfen" },
+    { "id": "datenschutz", "kind": "data-protection", "label": { "de": "SchG § 115, Verwaltungsvorschrift Datenschutz an öffentlichen Schulen, LDSG BW, DSGVO" },
+      "summary": { "de": "Verarbeitung von Schüler- und Elterndaten nach SchG und Verwaltungsvorschrift; Auftragsverarbeitung nach Art. 28 DSGVO; Datenschutzbeauftragte über das Kultusministerium bzw. die Regierungspräsidien." } },
+    { "id": "aufsicht", "kind": "authority", "label": { "de": "Ministerium für Kultus, Jugend und Sport; Regierungspräsidien (obere Schulaufsicht); Staatliche Schulämter (untere Schulaufsicht)" }, "url": "https://km.baden-wuerttemberg.de/" },
+    { "id": "aufbewahrung", "kind": "retention", "label": { "de": "Aufbewahrungsfristen Schülerunterlagen" },
+      "summary": { "de": "Fristen nach der Verwaltungsvorschrift über die Aufbewahrung von Schriftgut an öffentlichen Schulen; Abschlusszeugnisse und Zeugnislisten langfristig." }, "notes": "Fristen vor Einsatz nachtragen" },
+    { "id": "meldung-ifsg", "kind": "reporting", "label": { "de": "Meldepflicht nach § 34 IfSG" }, "summary": { "de": "Meldung an das Gesundheitsamt bei meldepflichtigen Erkrankungen; Belehrung der Eltern bei Aufnahme." }, "source": "IfSG § 34" }
+  ]
+}
