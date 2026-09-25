@@ -14,10 +14,11 @@
         "de"
       ],
       "name": {
-        "de": "Österreich"
+        "de": "Österreich",
+        "en": "Austria"
       },
       "file": "packages/base/at.pex.json",
-      "sha256": "sha256:834671f65fd0e7e32eff81c45190c4328b616978a13dfd41c490f3cb9a8acfc6"
+      "sha256": "sha256:e474e7ea6d06d333ce70f939e5d6b8392abbe5047e8f70363a56bfe4c3e44714"
     },
     {
       "id": "ch-de",
@@ -27,13 +28,15 @@
       "country": "CH",
       "region": null,
       "languages": [
-        "de"
+        "de",
+        "en"
       ],
       "name": {
-        "de": "Schweiz – Deutschschweiz (Lehrplan 21)"
+        "de": "Schweiz – Deutschschweiz (Lehrplan 21)",
+        "en": "Switzerland – German-speaking Switzerland (Lehrplan 21)"
       },
       "file": "packages/base/ch-de.pex.json",
-      "sha256": "sha256:9f24750b54f15245dc1e3e937d85eb60bef0c99f3b594c54a142a88ccbab4b34"
+      "sha256": "sha256:227897d75440e105f1f6ff8b0fbd51376d95f5ac7ffa1577d15db0bb50a0dee7"
     },
     {
       "id": "de",
@@ -43,13 +46,15 @@
       "country": "DE",
       "region": null,
       "languages": [
-        "de"
+        "de",
+        "en"
       ],
       "name": {
-        "de": "Deutschland (Basis)"
+        "de": "Deutschland (Basis)",
+        "en": "Germany (base)"
       },
       "file": "packages/base/de.pex.json",
-      "sha256": "sha256:1f74e22bf0f3807bc173ba7c06e1098c00af2531626ab19ae14db39f0d38f98d"
+      "sha256": "sha256:d84e026ed824b0dfe0a2f66126453004d4571cad4bdcbdf348708dc1ca5f9d3c"
     },
     {
       "id": "us",
@@ -77,13 +82,15 @@
       "country": "CH",
       "region": "BE",
       "languages": [
-        "de"
+        "de",
+        "en"
       ],
       "name": {
-        "de": "Kanton Bern (deutschsprachiger Kantonsteil)"
+        "de": "Kanton Bern (deutschsprachiger Kantonsteil)",
+        "en": "Canton of Bern (German-speaking part)"
       },
       "file": "packages/overlays/ch-be.pex.json",
-      "sha256": "sha256:c90cbd9271608fa2087ab6054525073a7cac1afbbd11e10da32be9db528cc34e"
+      "sha256": "sha256:cbe8947572dac30c23a0622e380c00f232cc5ab9472af64f6e2681d4bd4962d3"
     },
     {
       "id": "ch-zh",
@@ -98,10 +105,11 @@
         "de"
       ],
       "name": {
-        "de": "Kanton Zürich"
+        "de": "Kanton Zürich",
+        "en": "Canton of Zurich"
       },
       "file": "packages/overlays/ch-zh.pex.json",
-      "sha256": "sha256:e9c874406a0bd66ce630420f373d984252e20ae4e09e924bad3347a5f868fd66"
+      "sha256": "sha256:5576ede439390f5f3667d863c14d24e5a176aea4583d075e010f4eebd0367a35"
     },
     {
       "id": "de-by",
@@ -116,10 +124,11 @@
         "de"
       ],
       "name": {
-        "de": "Bayern"
+        "de": "Bayern",
+        "en": "Bavaria"
       },
       "file": "packages/overlays/de-by.pex.json",
-      "sha256": "sha256:5dbd94dea7705404e174c65ed192ee87d629b826f38ad7aff8c440ec9eea3558"
+      "sha256": "sha256:f022ba0219998c55db300df683c54bdbfe89d1653a22ff25a29993da485a0568"
     },
     {
       "id": "de-hh",
@@ -134,10 +143,11 @@
         "de"
       ],
       "name": {
-        "de": "Hamburg"
+        "de": "Hamburg",
+        "en": "Hamburg"
       },
       "file": "packages/overlays/de-hh.pex.json",
-      "sha256": "sha256:906e69945512c5905308139e5e876d4c5ef9a74fa8ee360282141b8de3ef37c3"
+      "sha256": "sha256:0d1c96f40567a63b7b366a682ac1634dfc33554ca0da831ffdecd7c6be9233ea"
     },
     {
       "id": "de-sh",
@@ -152,10 +162,11 @@
         "de"
       ],
       "name": {
-        "de": "Schleswig-Holstein"
+        "de": "Schleswig-Holstein",
+        "en": "Schleswig-Holstein"
       },
       "file": "packages/overlays/de-sh.pex.json",
-      "sha256": "sha256:3c5bc85fd7175dd71f0691beea407f675953cd8eac50ec0c54f6e330d4cbd055"
+      "sha256": "sha256:1582e41f5a62549bc84907e4d4f71c32ac1ba1663aec8fff63ee5284eec23fb9"
     },
     {
       "id": "montessori",
@@ -210,7 +221,7 @@
         }
       ],
       "file": "dist/effective/at.json",
-      "sha256": "sha256:a3f8b3fd9333ac0234d5caccf45cb7aba7b6cfa46aa5427b35f9d1f59686a9a0",
+      "sha256": "sha256:8843d7134cfbf237dfabb6ba48e59d12c4acffca1e3fa02a5df5490ede6b21d5",
       "hints": 0
     },
     {
@@ -222,7 +233,7 @@
         }
       ],
       "file": "dist/effective/ch-de.json",
-      "sha256": "sha256:341b55e072f8c4131a7cc03212f68918edeeb94c51a786585726d38d4b836469",
+      "sha256": "sha256:a4d9efe4968650b1cbaec6980ab0f5d75603be4fd730ce90c639bf960562cffe",
       "hints": 0
     },
     {
@@ -234,7 +245,7 @@
         }
       ],
       "file": "dist/effective/de.json",
-      "sha256": "sha256:40aaaee1a77d6aa4c657302f1a7b37ffee250ddbc69ed0b808222c6e6136d233",
+      "sha256": "sha256:4a55c204a437999d1f274f07c941a0c82a7374d50560036167476d477feef9ab",
       "hints": 0
     },
     {
@@ -262,7 +273,7 @@
         }
       ],
       "file": "dist/effective/at+montessori.json",
-      "sha256": "sha256:8cf1a3e3c1effedf689410af4a9da47e68949889856cac8e65027458df99bd4c",
+      "sha256": "sha256:cd63af3c3dc6e5b01a42dcece37d570910d84e6ce8c152b198acb964b8969e83",
       "hints": 0
     },
     {
@@ -278,7 +289,7 @@
         }
       ],
       "file": "dist/effective/at+waldorf.json",
-      "sha256": "sha256:8eef2df7dd24ce224e541af5ebc68b709054e97f5de3a2cd884c3cd8539c61e4",
+      "sha256": "sha256:a59c7b446be8fdc0db1c98fb01ccc630f228f52a82ccf9bcd1ba8793b949457c",
       "hints": 0
     },
     {
@@ -294,7 +305,7 @@
         }
       ],
       "file": "dist/effective/ch-de+ch-be.json",
-      "sha256": "sha256:03569632e20c753086d18b83bbeee88644956ce35f9fc0d43d362c8d48b9f4ba",
+      "sha256": "sha256:6a4bd43aa661bf1a22094247f9ec98242850169f2e539db049ca24dc8867b28e",
       "hints": 0
     },
     {
@@ -310,7 +321,7 @@
         }
       ],
       "file": "dist/effective/ch-de+ch-zh.json",
-      "sha256": "sha256:7e1da96e32c39eec47a8d36f1387296a46656a04f5c5d95ddfde292e3a179411",
+      "sha256": "sha256:34d9585e5ab5b35d2cdddc41ac3c4abef09ea1a4a77fcf32ecb772dbd2bb075f",
       "hints": 0
     },
     {
@@ -326,7 +337,7 @@
         }
       ],
       "file": "dist/effective/ch-de+montessori.json",
-      "sha256": "sha256:deec8ac260a58f6b8827c6e30936a44ea595c40efaf0611bb0db06745d949707",
+      "sha256": "sha256:84d617d350c5309744e54d23e26d81777a5e6c7b2312e035cd97cf70847d9c68",
       "hints": 0
     },
     {
@@ -342,7 +353,7 @@
         }
       ],
       "file": "dist/effective/ch-de+waldorf.json",
-      "sha256": "sha256:c41ad37f45240e4ca7165f0ba464e1cdd6924a61716254acef9c34696878e9c0",
+      "sha256": "sha256:c543fa269bebc12148ef966897a2a8300d1ee3986d255775fc7c11df70327400",
       "hints": 0
     },
     {
@@ -362,7 +373,7 @@
         }
       ],
       "file": "dist/effective/ch-de+ch-be+montessori.json",
-      "sha256": "sha256:1e93aa3cc175e267e202200f7896c94e02038fb269d80c165e7adbbf9000f653",
+      "sha256": "sha256:b8d1f5e7a537bce0ed291c48800f07b27e103d3ecf22fa4471651cdcf4f1ce74",
       "hints": 0
     },
     {
@@ -382,7 +393,7 @@
         }
       ],
       "file": "dist/effective/ch-de+ch-be+waldorf.json",
-      "sha256": "sha256:1c7e91f39e0b7f5ffe08a9ff89778318896568afdb3ded7b0ed246dd76f4c7f5",
+      "sha256": "sha256:cd9ee21ccc3dcbba693c72378f1ad1eedb09d4589fe5b4f933ac031d0c98160b",
       "hints": 0
     },
     {
@@ -402,7 +413,7 @@
         }
       ],
       "file": "dist/effective/ch-de+ch-zh+montessori.json",
-      "sha256": "sha256:1f625774a89478f46784c64036fb74e964430d6890d388d3fc10a7e0baafbc6c",
+      "sha256": "sha256:3f4413bde1a0ca2c4517bd84a61c1b8b72ecd956f252d2eb5b0b3902efff6532",
       "hints": 0
     },
     {
@@ -422,7 +433,7 @@
         }
       ],
       "file": "dist/effective/ch-de+ch-zh+waldorf.json",
-      "sha256": "sha256:a5907628c0fe5f800a4ec06843a03ff4d5d2c8e2b733f6a01a1b69868d52b514",
+      "sha256": "sha256:eaff70701c7233da0c158eabf9d61e851b75fd2c6b8cf88c618d4bdea4584e56",
       "hints": 0
     },
     {
@@ -438,7 +449,7 @@
         }
       ],
       "file": "dist/effective/de+de-by.json",
-      "sha256": "sha256:101cd0fbb2a8df4712f0921ac79c2372ffc3e5b84900d157a167b30f6206c82a",
+      "sha256": "sha256:2800424906353f8c55114efc74b6df706a28080c0595689e9421e34f760fc7f8",
       "hints": 0
     },
     {
@@ -454,7 +465,7 @@
         }
       ],
       "file": "dist/effective/de+de-hh.json",
-      "sha256": "sha256:8a57cb9cc6211c1d451d416fbcd4f7e1181bda0b315ddf6908a8b2b112ab85bb",
+      "sha256": "sha256:b1db38f4016fda1bf9d9855c5bee502062891ec18a014001f6efb1f052f4b964",
       "hints": 0
     },
     {
@@ -470,7 +481,7 @@
         }
       ],
       "file": "dist/effective/de+de-sh.json",
-      "sha256": "sha256:706ffa2e605a0329c9a4902749a4ef3aed4059cd850028667b998c5bf09ff53b",
+      "sha256": "sha256:9702719f446001580eeec24eade53059d3deec099a85695712fa5735fe90b3ac",
       "hints": 0
     },
     {
@@ -486,7 +497,7 @@
         }
       ],
       "file": "dist/effective/de+montessori.json",
-      "sha256": "sha256:d776e70e4388bc594a7dc1a627d5b2778af47af531b78d82de924a16df68a8e5",
+      "sha256": "sha256:2790f54c7adf54c25a74a081a55a36fa1a996f587fbe390893a96c67bcca5725",
       "hints": 0
     },
     {
@@ -502,7 +513,7 @@
         }
       ],
       "file": "dist/effective/de+waldorf.json",
-      "sha256": "sha256:9a0d05c0df827988f2fdf8ebf98e3b83bb871d684a8feee47ce7ccdf55839d77",
+      "sha256": "sha256:b352410d1c0a01017599a10b401fd1345d8725c6e9f76d012514a5f27856ac6a",
       "hints": 0
     },
     {
@@ -522,7 +533,7 @@
         }
       ],
       "file": "dist/effective/de+de-by+montessori.json",
-      "sha256": "sha256:559887f406e7abbf2df0d056fd7990515a92fa08a38d33e3e6cdc43f8c4697cc",
+      "sha256": "sha256:156cc23e1063a93afefc267d6071b9c316a64b28c1ce19ae1bb700c02962c4d7",
       "hints": 0
     },
     {
@@ -542,7 +553,7 @@
         }
       ],
       "file": "dist/effective/de+de-by+waldorf.json",
-      "sha256": "sha256:0ee7e225867f8f44beb3b1c63be548ff75c097347f3da5fdc3116da8103463a7",
+      "sha256": "sha256:3071b7f8e6c6a6ee4f5578c9f59cc48402a89680230875fec5a8ad94965ebd94",
       "hints": 0
     },
     {
@@ -562,7 +573,7 @@
         }
       ],
       "file": "dist/effective/de+de-hh+montessori.json",
-      "sha256": "sha256:e4b0ec2ee2e0ff520d0e3ba370e2da73cf913ec888ec9c64312c3d93fc94a7e8",
+      "sha256": "sha256:c9d7154cf23deef70869bbef1a5d01c9b4f93991a27bcece0b8d21a0bf0b36a7",
       "hints": 0
     },
     {
@@ -582,7 +593,7 @@
         }
       ],
       "file": "dist/effective/de+de-hh+waldorf.json",
-      "sha256": "sha256:a4eef992a0b87c3562304b6bb84f54deb52f9cfa057534cb48fe4b6d19fde816",
+      "sha256": "sha256:e73f95e179de46af3b39c84ea3e693d3b652a00ff96177496910c403625fd64e",
       "hints": 0
     },
     {
@@ -602,7 +613,7 @@
         }
       ],
       "file": "dist/effective/de+de-sh+montessori.json",
-      "sha256": "sha256:f2dc3d9b83d025fa64d05754e11ca733b2ca429c2ea071e3be0e435cef51e2c6",
+      "sha256": "sha256:7d41b1b1d62ada171bf0e2cf6d7814575ce17357f61a46ef74fead3fc76db9b1",
       "hints": 0
     },
     {
@@ -622,7 +633,7 @@
         }
       ],
       "file": "dist/effective/de+de-sh+waldorf.json",
-      "sha256": "sha256:02b6176039936906a8e476286469c2a2b3ca19b1939ee053437c5cf13b03b9fb",
+      "sha256": "sha256:0e95c1554a708dab0e00c68a3ec79b396ea44c05b7baa8ac541687433708341d",
       "hints": 0
     },
     {

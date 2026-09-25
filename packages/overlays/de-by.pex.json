@@ -12,7 +12,8 @@
       "de"
     ],
     "name": {
-      "de": "Bayern"
+      "de": "Bayern",
+      "en": "Bavaria"
     },
     "source": "BayEUG, GrSO, MSO, RSO, GSO, Volksschulordnung",
     "notes": "Dreigliedrig: Mittelschule, Realschule, Gymnasium (G9). Bindender Übertritt nach Klasse 4. Gegenpol zu Hamburg.",

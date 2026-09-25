@@ -7,10 +7,12 @@
     "kind": "base",
     "country": "DE",
     "languages": [
-      "de"
+      "de",
+      "en"
     ],
     "name": {
-      "de": "Deutschland (Basis)"
+      "de": "Deutschland (Basis)",
+      "en": "Germany (base)"
     },
     "source": "KMK-Vereinbarungen; Schultypen und Abschlussnamen je Bundesland über Overlays de-<land>",
     "notes": "Entspricht dem heute implizit in Prilog verankerten Modell.",
@@ -19,46 +21,60 @@
   },
   "terminology": {
     "teacher": {
-      "de": "Lehrkraft"
+      "de": "Lehrkraft",
+      "en": "Teacher"
     },
     "class_teacher": {
-      "de": "Klassenleitung"
+      "de": "Klassenleitung",
+      "en": "Class leadership"
     },
     "head": {
-      "de": "Schulleitung"
+      "de": "Schulleitung",
+      "en": "School management"
     },
     "class": {
-      "de": "Klasse"
+      "de": "Klasse",
+      "en": "Class"
     },
     "grade": {
-      "de": "Jahrgangsstufe"
+      "de": "Jahrgangsstufe",
+      "en": "Year group"
     },
     "student": {
-      "de": "Schülerin / Schüler"
+      "de": "Schülerin / Schüler",
+      "en": "Student"
     },
     "parents": {
-      "de": "Erziehungsberechtigte"
+      "de": "Erziehungsberechtigte",
+      "en": "Guardians"
     },
     "report": {
-      "de": "Zeugnis"
+      "de": "Zeugnis",
+      "en": "School report"
     },
     "parent_conference": {
-      "de": "Elternsprechtag"
+      "de": "Elternsprechtag",
+      "en": "Parents' evening"
     },
     "parent_evening": {
-      "de": "Elternabend"
+      "de": "Elternabend",
+      "en": "Parents' evening"
     },
     "holidays": {
-      "de": "Ferien"
+      "de": "Ferien",
+      "en": "Holidays"
     },
     "lesson": {
-      "de": "Unterrichtsstunde"
+      "de": "Unterrichtsstunde",
+      "en": "Lesson period"
     },
     "subject": {
-      "de": "Fach"
+      "de": "Fach",
+      "en": "Subject"
     },
     "track": {
-      "de": "Kurs"
+      "de": "Kurs",
+      "en": "Course"
     }
   },
   "calendar": {
@@ -67,7 +83,8 @@
       {
         "id": "hj1",
         "label": {
-          "de": "1. Halbjahr"
+          "de": "1. Halbjahr",
+          "en": "1st half-year"
         },
         "months": [
           8,
@@ -77,7 +94,8 @@
       {
         "id": "hj2",
         "label": {
-          "de": "2. Halbjahr"
+          "de": "2. Halbjahr",
+          "en": "2nd half-year"
         },
         "months": [
           2,
@@ -96,7 +114,8 @@
       {
         "id": "de-6",
         "label": {
-          "de": "Noten 1–6"
+          "de": "Noten 1–6",
+          "en": "Grades 1–6"
         },
         "kind": "numeric",
         "values": [
@@ -114,7 +133,8 @@
       {
         "id": "de-15",
         "label": {
-          "de": "Punkte 0–15 (Oberstufe)"
+          "de": "Punkte 0–15 (Oberstufe)",
+          "en": "Points 0–15 (upper school)"
         },
         "kind": "points",
         "values": [
@@ -142,7 +162,8 @@
       {
         "id": "text",
         "label": {
-          "de": "Berichtszeugnis"
+          "de": "Berichtszeugnis",
+          "en": "Report card"
         },
         "kind": "text"
       }
@@ -152,7 +173,8 @@
     {
       "id": "primar",
       "label": {
-        "de": "Primarstufe"
+        "de": "Primarstufe",
+        "en": "Primary level"
       },
       "ordinal": 1,
       "grades": [
@@ -165,7 +187,8 @@
     {
       "id": "sec1",
       "label": {
-        "de": "Sekundarstufe I"
+        "de": "Sekundarstufe I",
+        "en": "Lower secondary"
       },
       "ordinal": 2,
       "grades": [
@@ -180,7 +203,8 @@
     {
       "id": "sec2",
       "label": {
-        "de": "Sekundarstufe II"
+        "de": "Sekundarstufe II",
+        "en": "Upper secondary"
       },
       "ordinal": 3,
       "grades": [
@@ -194,7 +218,8 @@
     {
       "id": "g1",
       "label": {
-        "de": "Klasse 1"
+        "de": "Klasse 1",
+        "en": "Grade 1"
       },
       "ordinal": 1,
       "stage": "primar",
@@ -203,7 +228,8 @@
     {
       "id": "g2",
       "label": {
-        "de": "Klasse 2"
+        "de": "Klasse 2",
+        "en": "Grade 2"
       },
       "ordinal": 2,
       "stage": "primar",
@@ -212,7 +238,8 @@
     {
       "id": "g3",
       "label": {
-        "de": "Klasse 3"
+        "de": "Klasse 3",
+        "en": "Grade 3"
       },
       "ordinal": 3,
       "stage": "primar",
@@ -221,7 +248,8 @@
     {
       "id": "g4",
       "label": {
-        "de": "Klasse 4"
+        "de": "Klasse 4",
+        "en": "Grade 4"
       },
       "ordinal": 4,
       "stage": "primar",
@@ -230,7 +258,8 @@
     {
       "id": "g5",
       "label": {
-        "de": "Klasse 5"
+        "de": "Klasse 5",
+        "en": "Grade 5"
       },
       "ordinal": 5,
       "stage": "sec1",
@@ -239,7 +268,8 @@
     {
       "id": "g6",
       "label": {
-        "de": "Klasse 6"
+        "de": "Klasse 6",
+        "en": "Grade 6"
       },
       "ordinal": 6,
       "stage": "sec1",
@@ -248,7 +278,8 @@
     {
       "id": "g7",
       "label": {
-        "de": "Klasse 7"
+        "de": "Klasse 7",
+        "en": "Grade 7"
       },
       "ordinal": 7,
       "stage": "sec1",
@@ -257,7 +288,8 @@
     {
       "id": "g8",
       "label": {
-        "de": "Klasse 8"
+        "de": "Klasse 8",
+        "en": "Grade 8"
       },
       "ordinal": 8,
       "stage": "sec1",
@@ -266,7 +298,8 @@
     {
       "id": "g9",
       "label": {
-        "de": "Klasse 9"
+        "de": "Klasse 9",
+        "en": "Grade 9"
       },
       "ordinal": 9,
       "stage": "sec1",
@@ -275,7 +308,8 @@
     {
       "id": "g10",
       "label": {
-        "de": "Klasse 10"
+        "de": "Klasse 10",
+        "en": "Grade 10"
       },
       "ordinal": 10,
       "stage": "sec1",
@@ -284,7 +318,8 @@
     {
       "id": "g11",
       "label": {
-        "de": "Jahrgang 11"
+        "de": "Jahrgang 11",
+        "en": "Year 11"
       },
       "ordinal": 11,
       "stage": "sec2",
@@ -297,7 +332,8 @@
     {
       "id": "g12",
       "label": {
-        "de": "Jahrgang 12"
+        "de": "Jahrgang 12",
+        "en": "Year 12"
       },
       "ordinal": 12,
       "stage": "sec2",
@@ -309,7 +345,8 @@
     {
       "id": "g13",
       "label": {
-        "de": "Jahrgang 13"
+        "de": "Jahrgang 13",
+        "en": "Year 13"
       },
       "ordinal": 13,
       "stage": "sec2",
@@ -323,7 +360,8 @@
     {
       "id": "grundschule",
       "label": {
-        "de": "Grundschule"
+        "de": "Grundschule",
+        "en": "Primary school"
       },
       "stages": [
         "primar"
@@ -339,7 +377,8 @@
     {
       "id": "gymnasium",
       "label": {
-        "de": "Gymnasium"
+        "de": "Gymnasium",
+        "en": "Gymnasium"
       },
       "stages": [
         "sec1",
@@ -369,7 +408,8 @@
     {
       "id": "gesamtschule",
       "label": {
-        "de": "Gesamtschule"
+        "de": "Gesamtschule",
+        "en": "Comprehensive school"
       },
       "stages": [
         "sec1",
@@ -402,7 +442,8 @@
     {
       "id": "realschule",
       "label": {
-        "de": "Realschule"
+        "de": "Realschule",
+        "en": "Realschule"
       },
       "stages": [
         "sec1"
@@ -423,7 +464,8 @@
     {
       "id": "hauptschule",
       "label": {
-        "de": "Hauptschule"
+        "de": "Hauptschule",
+        "en": "Hauptschule"
       },
       "stages": [
         "sec1"
@@ -443,7 +485,8 @@
     {
       "id": "foerderschule",
       "label": {
-        "de": "Förderschule"
+        "de": "Förderschule",
+        "en": "Special school"
       },
       "stages": [
         "primar",
@@ -472,20 +515,23 @@
     {
       "id": "ge-kurs",
       "label": {
-        "de": "Kursniveau (Gesamtschule)"
+        "de": "Kursniveau (Gesamtschule)",
+        "en": "Course level (comprehensive school)"
       },
       "scope": "enrollment",
       "levels": [
         {
           "id": "e",
           "label": {
-            "de": "E-Kurs (erweitert)"
+            "de": "E-Kurs (erweitert)",
+            "en": "E course (extended)"
           }
         },
         {
           "id": "g",
           "label": {
-            "de": "G-Kurs (grundlegend)"
+            "de": "G-Kurs (grundlegend)",
+            "en": "G course (basic)"
           }
         }
       ]
@@ -493,20 +539,23 @@
     {
       "id": "oberstufe",
       "label": {
-        "de": "Kursart Oberstufe"
+        "de": "Kursart Oberstufe",
+        "en": "Course type (upper school)"
       },
       "scope": "enrollment",
       "levels": [
         {
           "id": "lk",
           "label": {
-            "de": "Leistungskurs"
+            "de": "Leistungskurs",
+            "en": "Advanced course"
           }
         },
         {
           "id": "gk",
           "label": {
-            "de": "Grundkurs"
+            "de": "Grundkurs",
+            "en": "Basic course"
           }
         }
       ]
@@ -516,7 +565,8 @@
     {
       "id": "esa",
       "label": {
-        "de": "Erster allgemeinbildender Schulabschluss"
+        "de": "Erster allgemeinbildender Schulabschluss",
+        "en": "First general school-leaving certificate"
       },
       "after_grade": "g9",
       "grants_access": [
@@ -534,7 +584,8 @@
     {
       "id": "msa",
       "label": {
-        "de": "Mittlerer Schulabschluss"
+        "de": "Mittlerer Schulabschluss",
+        "en": "Intermediate school certificate"
       },
       "after_grade": "g10",
       "grants_access": [
@@ -555,7 +606,8 @@
     {
       "id": "fhr",
       "label": {
-        "de": "Fachhochschulreife"
+        "de": "Fachhochschulreife",
+        "en": "Advanced technical college entrance qualification"
       },
       "after_grade": "g12",
       "grants_access": [
@@ -569,7 +621,8 @@
     {
       "id": "abitur",
       "label": {
-        "de": "Allgemeine Hochschulreife (Abitur)"
+        "de": "Allgemeine Hochschulreife (Abitur)",
+        "en": "General higher education entrance qualification (Abitur)"
       },
       "after_grade": "g12",
       "grants_access": [
@@ -586,55 +639,64 @@
     {
       "id": "lang",
       "label": {
-        "de": "Sprachen"
+        "de": "Sprachen",
+        "en": "Languages"
       }
     },
     {
       "id": "math",
       "label": {
-        "de": "Mathematik"
+        "de": "Mathematik",
+        "en": "Mathematics"
       }
     },
     {
       "id": "science",
       "label": {
-        "de": "Naturwissenschaften"
+        "de": "Naturwissenschaften",
+        "en": "Natural sciences"
       }
     },
     {
       "id": "social",
       "label": {
-        "de": "Gesellschaftswissenschaften"
+        "de": "Gesellschaftswissenschaften",
+        "en": "Social sciences"
       }
     },
     {
       "id": "arts",
       "label": {
-        "de": "Künste"
+        "de": "Künste",
+        "en": "Arts"
       }
     },
     {
       "id": "sport",
       "label": {
-        "de": "Sport"
+        "de": "Sport",
+        "en": "Physical education"
       }
     },
     {
       "id": "religion",
       "label": {
-        "de": "Religion / Ethik"
+        "de": "Religion / Ethik",
+        "en": "Religion / ethics"
       }
     },
     {
       "id": "media",
       "label": {
-        "de": "Informatik / Medien"
+        "de": "Informatik / Medien",
+        "en": "Computer science / media"
       }
     },
     {
       "id": "cross",
       "label": {
-        "de": "Übergreifend"
+        "de": "Übergreifend",
+        "en": "Cross-cutting"
       }
     }
   ],
@@ -642,7 +704,8 @@
     {
       "id": "de",
       "label": {
-        "de": "Deutsch"
+        "de": "Deutsch",
+        "en": "German"
       },
       "domain": "lang",
       "grades": [
@@ -665,7 +728,8 @@
     {
       "id": "en",
       "label": {
-        "de": "Englisch"
+        "de": "Englisch",
+        "en": "English"
       },
       "domain": "lang",
       "grades": [
@@ -686,7 +750,8 @@
     {
       "id": "fr",
       "label": {
-        "de": "Französisch"
+        "de": "Französisch",
+        "en": "French"
       },
       "domain": "lang",
       "grades": [
@@ -705,7 +770,8 @@
     {
       "id": "la",
       "label": {
-        "de": "Latein"
+        "de": "Latein",
+        "en": "Latin"
       },
       "domain": "lang",
       "grades": [
@@ -724,7 +790,8 @@
     {
       "id": "es",
       "label": {
-        "de": "Spanisch"
+        "de": "Spanisch",
+        "en": "Spanish"
       },
       "domain": "lang",
       "grades": [
@@ -741,7 +808,8 @@
     {
       "id": "math",
       "label": {
-        "de": "Mathematik"
+        "de": "Mathematik",
+        "en": "Mathematics"
       },
       "domain": "math",
       "grades": [
@@ -764,7 +832,8 @@
     {
       "id": "su",
       "label": {
-        "de": "Sachunterricht"
+        "de": "Sachunterricht",
+        "en": "General studies"
       },
       "domain": "science",
       "grades": [
@@ -777,7 +846,8 @@
     {
       "id": "bio",
       "label": {
-        "de": "Biologie"
+        "de": "Biologie",
+        "en": "Biology"
       },
       "domain": "science",
       "grades": [
@@ -795,7 +865,8 @@
     {
       "id": "ch",
       "label": {
-        "de": "Chemie"
+        "de": "Chemie",
+        "en": "Chemistry"
       },
       "domain": "science",
       "grades": [
@@ -811,7 +882,8 @@
     {
       "id": "ph",
       "label": {
-        "de": "Physik"
+        "de": "Physik",
+        "en": "Physics"
       },
       "domain": "science",
       "grades": [
@@ -828,7 +900,8 @@
     {
       "id": "nawi",
       "label": {
-        "de": "Naturwissenschaften"
+        "de": "Naturwissenschaften",
+        "en": "Natural sciences"
       },
       "domain": "science",
       "grades": [
@@ -843,7 +916,8 @@
     {
       "id": "gs",
       "label": {
-        "de": "Geschichte"
+        "de": "Geschichte",
+        "en": "History"
       },
       "domain": "social",
       "grades": [
@@ -861,7 +935,8 @@
     {
       "id": "geo",
       "label": {
-        "de": "Geografie"
+        "de": "Geografie",
+        "en": "Geography"
       },
       "domain": "social",
       "grades": [
@@ -882,7 +957,8 @@
     {
       "id": "pol",
       "label": {
-        "de": "Politik / Gesellschaft"
+        "de": "Politik / Gesellschaft",
+        "en": "Politics / society"
       },
       "domain": "social",
       "grades": [
@@ -904,7 +980,8 @@
     {
       "id": "wi",
       "label": {
-        "de": "Wirtschaft"
+        "de": "Wirtschaft",
+        "en": "Economics"
       },
       "domain": "social",
       "grades": [
@@ -925,7 +1002,8 @@
     {
       "id": "ku",
       "label": {
-        "de": "Kunst"
+        "de": "Kunst",
+        "en": "Art"
       },
       "domain": "arts",
       "grades": [
@@ -947,7 +1025,8 @@
     {
       "id": "mu",
       "label": {
-        "de": "Musik"
+        "de": "Musik",
+        "en": "Music"
       },
       "domain": "arts",
       "grades": [
@@ -969,7 +1048,8 @@
     {
       "id": "ds",
       "label": {
-        "de": "Darstellendes Spiel"
+        "de": "Darstellendes Spiel",
+        "en": "Drama"
       },
       "domain": "arts",
       "grades": [
@@ -990,7 +1070,8 @@
     {
       "id": "sp",
       "label": {
-        "de": "Sport"
+        "de": "Sport",
+        "en": "Physical education"
       },
       "domain": "sport",
       "grades": [
@@ -1012,7 +1093,8 @@
     {
       "id": "rel",
       "label": {
-        "de": "Religion"
+        "de": "Religion",
+        "en": "Religion"
       },
       "domain": "religion",
       "grades": [
@@ -1035,7 +1117,8 @@
     {
       "id": "eth",
       "label": {
-        "de": "Ethik / Philosophie"
+        "de": "Ethik / Philosophie",
+        "en": "Ethics / philosophy"
       },
       "domain": "religion",
       "grades": [
@@ -1058,7 +1141,8 @@
     {
       "id": "inf",
       "label": {
-        "de": "Informatik"
+        "de": "Informatik",
+        "en": "Computer science"
       },
       "domain": "media",
       "grades": [
@@ -1076,7 +1160,8 @@
     {
       "id": "wpk",
       "label": {
-        "de": "Wahlpflichtkurs"
+        "de": "Wahlpflichtkurs",
+        "en": "Elective course"
       },
       "domain": "cross",
       "grades": [
@@ -1091,7 +1176,8 @@
     {
       "id": "sem",
       "label": {
-        "de": "Seminar / Projektkurs"
+        "de": "Seminar / Projektkurs",
+        "en": "Seminar / project course"
       },
       "domain": "cross",
       "grades": [

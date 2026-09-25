@@ -7,10 +7,12 @@
     "kind": "base",
     "country": "CH",
     "languages": [
-      "de"
+      "de",
+      "en"
     ],
     "name": {
-      "de": "Schweiz – Deutschschweiz (Lehrplan 21)"
+      "de": "Schweiz – Deutschschweiz (Lehrplan 21)",
+      "en": "Switzerland – German-speaking Switzerland (Lehrplan 21)"
     },
     "source": "Lehrplan 21 (D-EDK), Maturitätsanerkennungsreglement MAR",
     "notes": "Kantonale Bezeichnungen und Zugmodelle über Overlays ch-<kanton>. Fremdsprachenfolge der Basis (Englisch ab 3., Französisch ab 5. Klasse) ist das Modell der Zentral- und Ostschweiz; Westkantone (BE, BS, SO …) drehen sie im Overlay.",
@@ -29,49 +31,60 @@
   },
   "terminology": {
     "teacher": {
-      "de": "Lehrperson"
+      "de": "Lehrperson",
+      "en": "Teacher"
     },
     "class_teacher": {
       "de": "Lernbegleiter:in",
       "en": "Guide"
     },
     "head": {
-      "de": "Schulleitung"
+      "de": "Schulleitung",
+      "en": "School management"
     },
     "class": {
       "de": "Lerngruppe",
       "en": "Learning group"
     },
     "grade": {
-      "de": "Klassenstufe"
+      "de": "Klassenstufe",
+      "en": "Grade"
     },
     "student": {
-      "de": "Schülerin / Schüler"
+      "de": "Schülerin / Schüler",
+      "en": "Student"
     },
     "parents": {
-      "de": "Erziehungsberechtigte"
+      "de": "Erziehungsberechtigte",
+      "en": "Guardians"
     },
     "report": {
       "de": "Entwicklungsbericht",
       "en": "Developmental report"
     },
     "parent_conference": {
-      "de": "Elterngespräch"
+      "de": "Elterngespräch",
+      "en": "Parent meeting"
     },
     "parent_evening": {
-      "de": "Elternabend"
+      "de": "Elternabend",
+      "en": "Parents' evening"
     },
     "holidays": {
-      "de": "Ferien"
+      "de": "Ferien",
+      "en": "Holidays"
     },
     "lesson": {
-      "de": "Lektion"
+      "de": "Lektion",
+      "en": "Lesson"
     },
     "subject": {
-      "de": "Fach"
+      "de": "Fach",
+      "en": "Subject"
     },
     "track": {
-      "de": "Niveau"
+      "de": "Niveau",
+      "en": "Level"
     }
   },
   "calendar": {
@@ -80,7 +93,8 @@
       {
         "id": "s1",
         "label": {
-          "de": "1. Semester"
+          "de": "1. Semester",
+          "en": "1st semester"
         },
         "months": [
           8,
@@ -90,7 +104,8 @@
       {
         "id": "s2",
         "label": {
-          "de": "2. Semester"
+          "de": "2. Semester",
+          "en": "2nd semester"
         },
         "months": [
           2,
@@ -109,7 +124,8 @@
       {
         "id": "ch-6",
         "label": {
-          "de": "Noten 1–6"
+          "de": "Noten 1–6",
+          "en": "Grades 1–6"
         },
         "kind": "numeric",
         "values": [
@@ -143,7 +159,8 @@
     {
       "id": "kg",
       "label": {
-        "de": "Kindergarten"
+        "de": "Kindergarten",
+        "en": "Kindergarten"
       },
       "ordinal": 1,
       "grades": [
@@ -154,7 +171,8 @@
     {
       "id": "primar",
       "label": {
-        "de": "Primarstufe"
+        "de": "Primarstufe",
+        "en": "Primary level"
       },
       "ordinal": 2,
       "grades": [
@@ -169,7 +187,8 @@
     {
       "id": "sec1",
       "label": {
-        "de": "Sekundarstufe I"
+        "de": "Sekundarstufe I",
+        "en": "Lower secondary"
       },
       "ordinal": 3,
       "grades": [
@@ -181,7 +200,8 @@
     {
       "id": "sec2",
       "label": {
-        "de": "Sekundarstufe II"
+        "de": "Sekundarstufe II",
+        "en": "Upper secondary"
       },
       "ordinal": 4,
       "grades": [
@@ -196,7 +216,8 @@
     {
       "id": "h1",
       "label": {
-        "de": "1. Kindergarten"
+        "de": "1. Kindergarten",
+        "en": "1st kindergarten year"
       },
       "ordinal": 1,
       "stage": "kg",
@@ -205,7 +226,8 @@
     {
       "id": "h2",
       "label": {
-        "de": "2. Kindergarten"
+        "de": "2. Kindergarten",
+        "en": "2nd kindergarten year"
       },
       "ordinal": 2,
       "stage": "kg",
@@ -214,7 +236,8 @@
     {
       "id": "h3",
       "label": {
-        "de": "1. Klasse"
+        "de": "1. Klasse",
+        "en": "Grade 1"
       },
       "ordinal": 3,
       "stage": "primar",
@@ -223,7 +246,8 @@
     {
       "id": "h4",
       "label": {
-        "de": "2. Klasse"
+        "de": "2. Klasse",
+        "en": "Grade 2"
       },
       "ordinal": 4,
       "stage": "primar",
@@ -232,7 +256,8 @@
     {
       "id": "h5",
       "label": {
-        "de": "3. Klasse"
+        "de": "3. Klasse",
+        "en": "Grade 3"
       },
       "ordinal": 5,
       "stage": "primar",
@@ -241,7 +266,8 @@
     {
       "id": "h6",
       "label": {
-        "de": "4. Klasse"
+        "de": "4. Klasse",
+        "en": "Grade 4"
       },
       "ordinal": 6,
       "stage": "primar",
@@ -250,7 +276,8 @@
     {
       "id": "h7",
       "label": {
-        "de": "5. Klasse"
+        "de": "5. Klasse",
+        "en": "Grade 5"
       },
       "ordinal": 7,
       "stage": "primar",
@@ -259,7 +286,8 @@
     {
       "id": "h8",
       "label": {
-        "de": "6. Klasse"
+        "de": "6. Klasse",
+        "en": "Grade 6"
       },
       "ordinal": 8,
       "stage": "primar",
@@ -268,7 +296,8 @@
     {
       "id": "h9",
       "label": {
-        "de": "7. Klasse"
+        "de": "7. Klasse",
+        "en": "Grade 7"
       },
       "ordinal": 9,
       "stage": "sec1",
@@ -281,7 +310,8 @@
     {
       "id": "h10",
       "label": {
-        "de": "8. Klasse"
+        "de": "8. Klasse",
+        "en": "Grade 8"
       },
       "ordinal": 10,
       "stage": "sec1",
@@ -294,7 +324,8 @@
     {
       "id": "h11",
       "label": {
-        "de": "9. Klasse"
+        "de": "9. Klasse",
+        "en": "Grade 9"
       },
       "ordinal": 11,
       "stage": "sec1",
@@ -307,7 +338,8 @@
     {
       "id": "s2-1",
       "label": {
-        "de": "1. Jahr Sek II"
+        "de": "1. Jahr Sek II",
+        "en": "1st year upper secondary"
       },
       "ordinal": 12,
       "stage": "sec2",
@@ -316,7 +348,8 @@
     {
       "id": "s2-2",
       "label": {
-        "de": "2. Jahr Sek II"
+        "de": "2. Jahr Sek II",
+        "en": "2nd year upper secondary"
       },
       "ordinal": 13,
       "stage": "sec2",
@@ -325,7 +358,8 @@
     {
       "id": "s2-3",
       "label": {
-        "de": "3. Jahr Sek II"
+        "de": "3. Jahr Sek II",
+        "en": "3rd year upper secondary"
       },
       "ordinal": 14,
       "stage": "sec2",
@@ -334,7 +368,8 @@
     {
       "id": "s2-4",
       "label": {
-        "de": "4. Jahr Sek II"
+        "de": "4. Jahr Sek II",
+        "en": "4th year upper secondary"
       },
       "ordinal": 15,
       "stage": "sec2",
@@ -345,7 +380,8 @@
     {
       "id": "kg",
       "label": {
-        "de": "Kindergarten"
+        "de": "Kindergarten",
+        "en": "Kindergarten"
       },
       "stages": [
         "kg"
@@ -359,7 +395,8 @@
     {
       "id": "primar",
       "label": {
-        "de": "Primarschule"
+        "de": "Primarschule",
+        "en": "Primary school"
       },
       "stages": [
         "primar"
@@ -377,7 +414,8 @@
     {
       "id": "sek1",
       "label": {
-        "de": "Sekundarschule"
+        "de": "Sekundarschule",
+        "en": "Secondary school"
       },
       "stages": [
         "sec1"
@@ -406,7 +444,8 @@
     {
       "id": "gym",
       "label": {
-        "de": "Gymnasium"
+        "de": "Gymnasium",
+        "en": "Gymnasium"
       },
       "stages": [
         "sec2"
@@ -433,7 +472,8 @@
     {
       "id": "fms",
       "label": {
-        "de": "Fachmittelschule"
+        "de": "Fachmittelschule",
+        "en": "Specialised middle school"
       },
       "stages": [
         "sec2"
@@ -453,7 +493,8 @@
     {
       "id": "berufslehre",
       "label": {
-        "de": "Berufliche Grundbildung"
+        "de": "Berufliche Grundbildung",
+        "en": "Vocational education and training"
       },
       "stages": [
         "sec2"
@@ -537,26 +578,30 @@
     {
       "id": "sek-level",
       "label": {
-        "de": "Anforderungsniveau Sek I"
+        "de": "Anforderungsniveau Sek I",
+        "en": "Lower secondary attainment level"
       },
       "scope": "learning_group",
       "levels": [
         {
           "id": "a",
           "label": {
-            "de": "Niveau A (erweiterte Anforderungen)"
+            "de": "Niveau A (erweiterte Anforderungen)",
+            "en": "Level A (extended requirements)"
           }
         },
         {
           "id": "b",
           "label": {
-            "de": "Niveau B (grundlegende Anforderungen)"
+            "de": "Niveau B (grundlegende Anforderungen)",
+            "en": "Level B (basic requirements)"
           }
         },
         {
           "id": "c",
           "label": {
-            "de": "Niveau C (Grundanforderungen)"
+            "de": "Niveau C (Grundanforderungen)",
+            "en": "Level C (basic requirements)"
           }
         }
       ]
@@ -564,20 +609,23 @@
     {
       "id": "sek-subject-level",
       "label": {
-        "de": "Niveaufach"
+        "de": "Niveaufach",
+        "en": "Level subject"
       },
       "scope": "enrollment",
       "levels": [
         {
           "id": "e",
           "label": {
-            "de": "erweitert"
+            "de": "erweitert",
+            "en": "extended"
           }
         },
         {
           "id": "g",
           "label": {
-            "de": "grundlegend"
+            "de": "grundlegend",
+            "en": "basic"
           }
         }
       ]
@@ -585,20 +633,23 @@
     {
       "id": "gym-variant",
       "label": {
-        "de": "Gymnasialtyp"
+        "de": "Gymnasialtyp",
+        "en": "Gymnasium type"
       },
       "scope": "program",
       "levels": [
         {
           "id": "kurz",
           "label": {
-            "de": "Kurzzeitgymnasium (ab Sek I)"
+            "de": "Kurzzeitgymnasium (ab Sek I)",
+            "en": "Short-track gymnasium (from lower secondary)"
           }
         },
         {
           "id": "lang",
           "label": {
-            "de": "Langzeitgymnasium (ab 6. Klasse)"
+            "de": "Langzeitgymnasium (ab 6. Klasse)",
+            "en": "Long-track gymnasium (from grade 6)"
           }
         }
       ]
@@ -608,7 +659,8 @@
     {
       "id": "sek1-abschluss",
       "label": {
-        "de": "Abschluss der obligatorischen Schule"
+        "de": "Abschluss der obligatorischen Schule",
+        "en": "Completion of compulsory schooling"
       },
       "after_grade": "h11",
       "grants_access": [
@@ -623,7 +675,8 @@
     {
       "id": "gym-matura",
       "label": {
-        "de": "Gymnasiale Maturität"
+        "de": "Gymnasiale Maturität",
+        "en": "Gymnasium Matura"
       },
       "after_grade": "s2-4",
       "grants_access": [
@@ -639,7 +692,8 @@
     {
       "id": "fms-ausweis",
       "label": {
-        "de": "Fachmittelschulausweis"
+        "de": "Fachmittelschulausweis",
+        "en": "Specialised middle school certificate"
       },
       "after_grade": "s2-3",
       "grants_access": [
@@ -652,7 +706,8 @@
     {
       "id": "fachmatura",
       "label": {
-        "de": "Fachmaturität"
+        "de": "Fachmaturität",
+        "en": "Specialised baccalaureate"
       },
       "after_grade": "s2-4",
       "grants_access": [
@@ -666,7 +721,8 @@
     {
       "id": "efz",
       "label": {
-        "de": "Eidg. Fähigkeitszeugnis (EFZ)"
+        "de": "Eidg. Fähigkeitszeugnis (EFZ)",
+        "en": "Federal VET diploma (EFZ)"
       },
       "after_grade": "s2-4",
       "grants_access": [
@@ -679,7 +735,8 @@
     {
       "id": "eba",
       "label": {
-        "de": "Eidg. Berufsattest (EBA)"
+        "de": "Eidg. Berufsattest (EBA)",
+        "en": "Federal VET certificate (EBA)"
       },
       "after_grade": "s2-2",
       "grants_access": [
@@ -692,7 +749,8 @@
     {
       "id": "berufsmatura",
       "label": {
-        "de": "Berufsmaturität"
+        "de": "Berufsmaturität",
+        "en": "Vocational baccalaureate"
       },
       "after_grade": "s2-4",
       "grants_access": [
@@ -708,67 +766,78 @@
     {
       "id": "lang",
       "label": {
-        "de": "Sprachen"
+        "de": "Sprachen",
+        "en": "Languages"
       }
     },
     {
       "id": "math",
       "label": {
-        "de": "Mathematik"
+        "de": "Mathematik",
+        "en": "Mathematics"
       }
     },
     {
       "id": "science",
       "label": {
-        "de": "Natur, Mensch, Gesellschaft"
+        "de": "Natur, Mensch, Gesellschaft",
+        "en": "Nature, people, society"
       }
     },
     {
       "id": "arts",
       "label": {
-        "de": "Gestalten"
+        "de": "Gestalten",
+        "en": "Arts and crafts"
       }
     },
     {
       "id": "music",
       "label": {
-        "de": "Musik"
+        "de": "Musik",
+        "en": "Music"
       }
     },
     {
       "id": "sport",
       "label": {
-        "de": "Bewegung und Sport"
+        "de": "Bewegung und Sport",
+        "en": "Movement and sport"
       }
     },
     {
       "id": "media",
       "label": {
-        "de": "Medien und Informatik"
+        "de": "Medien und Informatik",
+        "en": "Media and computer science"
       }
     },
     {
       "id": "cross",
       "label": {
-        "de": "Überfachlich"
+        "de": "Überfachlich",
+        "en": "Cross-curricular"
       }
     },
     {
       "id": "gym-core",
       "label": {
-        "de": "Grundlagenfächer"
+        "de": "Grundlagenfächer",
+        "en": "Core subjects"
       }
     },
     {
       "id": "gym-major",
       "label": {
-        "de": "Schwerpunktfächer"
+        "de": "Schwerpunktfächer",
+        "en": "Major subjects"
       }
     },
     {
       "id": "gym-minor",
       "label": {
-        "de": "Ergänzungsfächer"
+        "de": "Ergänzungsfächer",
+        "en": "Complementary subjects"
       }
     }
   ],
@@ -776,7 +845,8 @@
     {
       "id": "de",
       "label": {
-        "de": "Deutsch"
+        "de": "Deutsch",
+        "en": "German"
       },
       "domain": "lang",
       "grades": [
@@ -799,7 +869,8 @@
     {
       "id": "fr",
       "label": {
-        "de": "Französisch"
+        "de": "Französisch",
+        "en": "French"
       },
       "domain": "lang",
       "grades": [
@@ -818,7 +889,8 @@
     {
       "id": "en",
       "label": {
-        "de": "Englisch"
+        "de": "Englisch",
+        "en": "English"
       },
       "domain": "lang",
       "grades": [
@@ -839,7 +911,8 @@
     {
       "id": "math",
       "label": {
-        "de": "Mathematik"
+        "de": "Mathematik",
+        "en": "Mathematics"
       },
       "domain": "math",
       "grades": [
@@ -862,7 +935,8 @@
     {
       "id": "nmg",
       "label": {
-        "de": "Natur, Mensch, Gesellschaft"
+        "de": "Natur, Mensch, Gesellschaft",
+        "en": "Nature, people, society"
       },
       "domain": "science",
       "grades": [
@@ -880,7 +954,8 @@
     {
       "id": "nt",
       "label": {
-        "de": "Natur und Technik"
+        "de": "Natur und Technik",
+        "en": "Nature and technology"
       },
       "domain": "science",
       "grades": [
@@ -898,7 +973,8 @@
     {
       "id": "wah",
       "label": {
-        "de": "Wirtschaft, Arbeit, Haushalt"
+        "de": "Wirtschaft, Arbeit, Haushalt",
+        "en": "Economics, work, household"
       },
       "domain": "science",
       "grades": [
@@ -916,7 +992,8 @@
     {
       "id": "rzg",
       "label": {
-        "de": "Räume, Zeiten, Gesellschaften"
+        "de": "Räume, Zeiten, Gesellschaften",
+        "en": "Spaces, times, societies"
       },
       "domain": "science",
       "grades": [
@@ -934,7 +1011,8 @@
     {
       "id": "erg",
       "label": {
-        "de": "Ethik, Religionen, Gemeinschaft"
+        "de": "Ethik, Religionen, Gemeinschaft",
+        "en": "Ethics, religions, community"
       },
       "domain": "science",
       "grades": [
@@ -949,7 +1027,8 @@
     {
       "id": "bg",
       "label": {
-        "de": "Bildnerisches Gestalten"
+        "de": "Bildnerisches Gestalten",
+        "en": "Visual arts"
       },
       "domain": "arts",
       "grades": [
@@ -971,7 +1050,8 @@
     {
       "id": "ttg",
       "label": {
-        "de": "Textiles und Technisches Gestalten"
+        "de": "Textiles und Technisches Gestalten",
+        "en": "Textile and technical design"
       },
       "domain": "arts",
       "grades": [
@@ -997,7 +1077,8 @@
     {
       "id": "mu",
       "label": {
-        "de": "Musik"
+        "de": "Musik",
+        "en": "Music"
       },
       "domain": "music",
       "grades": [
@@ -1019,7 +1100,8 @@
     {
       "id": "sp",
       "label": {
-        "de": "Bewegung und Sport"
+        "de": "Bewegung und Sport",
+        "en": "Movement and sport"
       },
       "domain": "sport",
       "grades": [
@@ -1047,7 +1129,8 @@
     {
       "id": "mi",
       "label": {
-        "de": "Medien und Informatik"
+        "de": "Medien und Informatik",
+        "en": "Media and computer science"
       },
       "domain": "media",
       "grades": [
@@ -1062,7 +1145,8 @@
     {
       "id": "bo",
       "label": {
-        "de": "Berufliche Orientierung"
+        "de": "Berufliche Orientierung",
+        "en": "Career orientation"
       },
       "domain": "cross",
       "grades": [
@@ -1076,7 +1160,8 @@
     {
       "id": "pu",
       "label": {
-        "de": "Projektunterricht"
+        "de": "Projektunterricht",
+        "en": "Project lessons"
       },
       "domain": "cross",
       "grades": [
@@ -1090,7 +1175,8 @@
     {
       "id": "it",
       "label": {
-        "de": "Italienisch"
+        "de": "Italienisch",
+        "en": "Italian"
       },
       "domain": "lang",
       "grades": [
@@ -1106,7 +1192,8 @@
     {
       "id": "la",
       "label": {
-        "de": "Latein"
+        "de": "Latein",
+        "en": "Latin"
       },
       "domain": "lang",
       "grades": [
@@ -1122,7 +1209,8 @@
     {
       "id": "tast",
       "label": {
-        "de": "Tastaturschreiben"
+        "de": "Tastaturschreiben",
+        "en": "Keyboard skills"
       },
       "domain": "media",
       "grades": [
@@ -1137,7 +1225,8 @@
     {
       "id": "chor",
       "label": {
-        "de": "Chor"
+        "de": "Chor",
+        "en": "Choir"
       },
       "domain": "music",
       "grades": [
@@ -1154,7 +1243,8 @@
     {
       "id": "gym-de",
       "label": {
-        "de": "Deutsch"
+        "de": "Deutsch",
+        "en": "German"
       },
       "domain": "gym-core",
       "grades": [
@@ -1171,7 +1261,8 @@
     {
       "id": "gym-fr",
       "label": {
-        "de": "Französisch"
+        "de": "Französisch",
+        "en": "French"
       },
       "domain": "gym-core",
       "grades": [
@@ -1188,7 +1279,8 @@
     {
       "id": "gym-en",
       "label": {
-        "de": "Englisch"
+        "de": "Englisch",
+        "en": "English"
       },
       "domain": "gym-core",
       "grades": [
@@ -1205,7 +1297,8 @@
     {
       "id": "gym-math",
       "label": {
-        "de": "Mathematik"
+        "de": "Mathematik",
+        "en": "Mathematics"
       },
       "domain": "gym-core",
       "grades": [
@@ -1222,7 +1315,8 @@
     {
       "id": "gym-bio",
       "label": {
-        "de": "Biologie"
+        "de": "Biologie",
+        "en": "Biology"
       },
       "domain": "gym-core",
       "grades": [
@@ -1238,7 +1332,8 @@
     {
       "id": "gym-ch",
       "label": {
-        "de": "Chemie"
+        "de": "Chemie",
+        "en": "Chemistry"
       },
       "domain": "gym-core",
       "grades": [
@@ -1253,7 +1348,8 @@
     {
       "id": "gym-ph",
       "label": {
-        "de": "Physik"
+        "de": "Physik",
+        "en": "Physics"
       },
       "domain": "gym-core",
       "grades": [
@@ -1268,7 +1364,8 @@
     {
       "id": "gym-gs",
       "label": {
-        "de": "Geschichte"
+        "de": "Geschichte",
+        "en": "History"
       },
       "domain": "gym-core",
       "grades": [
@@ -1285,7 +1382,8 @@
     {
       "id": "gym-gg",
       "label": {
-        "de": "Geografie"
+        "de": "Geografie",
+        "en": "Geography"
       },
       "domain": "gym-core",
       "grades": [
@@ -1301,7 +1399,8 @@
     {
       "id": "gym-wr",
       "label": {
-        "de": "Wirtschaft und Recht"
+        "de": "Wirtschaft und Recht",
+        "en": "Economics and law"
       },
       "domain": "gym-core",
       "grades": [
@@ -1316,7 +1415,8 @@
     {
       "id": "gym-bg",
       "label": {
-        "de": "Bildnerisches Gestalten"
+        "de": "Bildnerisches Gestalten",
+        "en": "Visual arts"
       },
       "domain": "gym-core",
       "grades": [
@@ -1331,7 +1431,8 @@
     {
       "id": "gym-mu",
       "label": {
-        "de": "Musik"
+        "de": "Musik",
+        "en": "Music"
       },
       "domain": "gym-core",
       "grades": [
@@ -1346,7 +1447,8 @@
     {
       "id": "gym-sp",
       "label": {
-        "de": "Sport"
+        "de": "Sport",
+        "en": "Physical education"
       },
       "domain": "gym-core",
       "grades": [
@@ -1363,7 +1465,8 @@
     {
       "id": "gym-inf",
       "label": {
-        "de": "Informatik"
+        "de": "Informatik",
+        "en": "Computer science"
       },
       "domain": "gym-core",
       "grades": [
@@ -1377,7 +1480,8 @@
     {
       "id": "gym-ma",
       "label": {
-        "de": "Maturaarbeit"
+        "de": "Maturaarbeit",
+        "en": "Matura paper"
       },
       "domain": "gym-core",
       "grades": [
@@ -1392,7 +1496,8 @@
     {
       "id": "spf-la",
       "label": {
-        "de": "Schwerpunkt Latein"
+        "de": "Schwerpunkt Latein",
+        "en": "Major in Latin"
       },
       "domain": "gym-major",
       "grades": [
@@ -1410,7 +1515,8 @@
     {
       "id": "spf-it",
       "label": {
-        "de": "Schwerpunkt Italienisch"
+        "de": "Schwerpunkt Italienisch",
+        "en": "Major in Italian"
       },
       "domain": "gym-major",
       "grades": [
@@ -1428,7 +1534,8 @@
     {
       "id": "spf-sp",
       "label": {
-        "de": "Schwerpunkt Spanisch"
+        "de": "Schwerpunkt Spanisch",
+        "en": "Major in Spanish"
       },
       "domain": "gym-major",
       "grades": [
@@ -1446,7 +1553,8 @@
     {
       "id": "spf-pam",
       "label": {
-        "de": "Schwerpunkt Physik und Anwendungen der Mathematik"
+        "de": "Schwerpunkt Physik und Anwendungen der Mathematik",
+        "en": "Major in physics and applications of mathematics"
       },
       "domain": "gym-major",
       "grades": [
@@ -1463,7 +1571,8 @@
     {
       "id": "spf-bc",
       "label": {
-        "de": "Schwerpunkt Biologie und Chemie"
+        "de": "Schwerpunkt Biologie und Chemie",
+        "en": "Major in biology and chemistry"
       },
       "domain": "gym-major",
       "grades": [
@@ -1480,7 +1589,8 @@
     {
       "id": "spf-wr",
       "label": {
-        "de": "Schwerpunkt Wirtschaft und Recht"
+        "de": "Schwerpunkt Wirtschaft und Recht",
+        "en": "Major in economics and law"
       },
       "domain": "gym-major",
       "grades": [
@@ -1497,7 +1607,8 @@
     {
       "id": "spf-ppp",
       "label": {
-        "de": "Schwerpunkt Philosophie/Pädagogik/Psychologie"
+        "de": "Schwerpunkt Philosophie/Pädagogik/Psychologie",
+        "en": "Major in philosophy/education/psychology"
       },
       "domain": "gym-major",
       "grades": [
@@ -1514,7 +1625,8 @@
     {
       "id": "spf-bg",
       "label": {
-        "de": "Schwerpunkt Bildnerisches Gestalten"
+        "de": "Schwerpunkt Bildnerisches Gestalten",
+        "en": "Major in visual arts"
       },
       "domain": "gym-major",
       "grades": [
@@ -1531,7 +1643,8 @@
     {
       "id": "spf-mu",
       "label": {
-        "de": "Schwerpunkt Musik"
+        "de": "Schwerpunkt Musik",
+        "en": "Major in music"
       },
       "domain": "gym-major",
       "grades": [
@@ -1548,7 +1661,8 @@
     {
       "id": "ef",
       "label": {
-        "de": "Ergänzungsfach"
+        "de": "Ergänzungsfach",
+        "en": "Complementary subject"
       },
       "domain": "gym-minor",
       "grades": [
